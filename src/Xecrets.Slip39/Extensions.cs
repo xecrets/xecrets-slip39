@@ -73,35 +73,11 @@ public static class Extensions
     public static Share[] GenerateShares(this IShamirsSecretSharing sss, int memberThreshold,
         int memberCount, string masterSecret, StringEncoding encoding)
     {
-        byte[] secretBytes;
-        switch (encoding)
-        {
-            case StringEncoding.None:
-                secretBytes = Encoding.UTF8.GetBytes(masterSecret);
-                int paddedLength = secretBytes.Length < 16 ? 16 : secretBytes.Length;
-                paddedLength += paddedLength % 2;
-                secretBytes = secretBytes
-                    .ArrayConcat(Enumerable.Repeat((byte)0xFF, paddedLength - secretBytes.Length).ToArray());
-                break;
+        byte[] secretBytes = masterSecret.ToSecretBytes(encoding);
 
-            case StringEncoding.Base64:
-                secretBytes = masterSecret.FromUrlSafeBase64();
-                break;
-
-            case StringEncoding.Hex:
-                secretBytes = masterSecret.FromHex();
-                break;
-
-            case StringEncoding.Bip39:
-                secretBytes = masterSecret.FromBip39();
-                break;
-
-            default:
-                throw new InvalidOperationException("Unknown secret string encoding.");
-        }
-
-        return sss.GenerateShares(extendable: true, iterationExponent: 0, 1,
+        Share[][] shares = sss.GenerateShares(extendable: true, iterationExponent: 0, 1,
             [new Group(memberThreshold, memberCount)], string.Empty, secretBytes);
+        return shares[0];
     }
 
     /// <summary>
@@ -117,7 +93,38 @@ public static class Extensions
     public static Share[] GenerateShares(this IShamirsSecretSharing sss, int memberThreshold,
         int memberCount, byte[] masterSecret) =>
             sss.GenerateShares(extendable: true, iterationExponent: 0, 1, [new Group(memberThreshold, memberCount)],
-                string.Empty, masterSecret);
+                string.Empty, masterSecret)[0];
+
+    /// <summary>
+    /// Take a master secret string, and using the specified <see cref="StringEncoding"/> convert it to a byte array.
+    /// </summary>
+    /// <param name="masterSecret">The string representation of the master secret.</param>
+    /// <param name="stringEncoding">How the string is encoded and should be interpreted.</param>
+    /// <returns>The raw byte[] representation of the master secret.</returns>
+    /// <exception cref="InvalidOperationException">If an unknown encoding is specified.</exception>
+    public static byte[] ToSecretBytes(this string masterSecret, StringEncoding stringEncoding)
+    {
+        static byte[] FromNone(string secret)
+        {
+            byte[] secretBytes = Encoding.UTF8.GetBytes(secret);
+            int paddedLength = secretBytes.Length < 16 ? 16 : secretBytes.Length;
+            paddedLength += paddedLength % 2;
+            secretBytes = secretBytes
+                .ArrayConcat(Enumerable.Repeat((byte)0xFF, paddedLength - secretBytes.Length).ToArray());
+            return secretBytes;
+        }
+
+        byte[] bytes = stringEncoding switch
+        {
+            StringEncoding.None => FromNone(masterSecret),
+            StringEncoding.Base64 => masterSecret.FromUrlSafeBase64(),
+            StringEncoding.Hex => masterSecret.FromHex(),
+            StringEncoding.Bip39 => masterSecret.FromBip39(),
+            _ => throw new InvalidOperationException("Unknown secret string encoding.")
+        };
+
+        return bytes;
+    }
 
     /// <summary>
     /// Try to parse a string into a <see cref="Share"/> instance.

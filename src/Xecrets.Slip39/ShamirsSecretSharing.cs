@@ -83,7 +83,7 @@ public class ShamirsSecretSharing(IRandom random) : IShamirsSecretSharing
     /// <param name="masterSecret">The secret to be split into shares.</param>
     /// <returns>A list of shares that can be used to reconstruct the secret.</returns>
     /// <exception cref="ArgumentException">Thrown when inputs do not meet the required constraints.</exception>
-    public Share[] GenerateShares(bool extendable, int iterationExponent, int groupThreshold, Group[] groups, string passphrase, byte[] masterSecret)
+    public Share[][] GenerateShares(bool extendable, int iterationExponent, int groupThreshold, Group[] groups, string passphrase, byte[] masterSecret)
     {
         // Validating seed strength and format
         if (masterSecret.Length * 8 < Share.MinStrengthBits || masterSecret.Length % 2 != 0)
@@ -121,9 +121,10 @@ public class ShamirsSecretSharing(IRandom random) : IShamirsSecretSharing
         ShareData[] groupShares = SplitSecret(groupThreshold, groups.Length, encryptedSecret);
 
         // Split each group share into member shares and create the final second level share objects
-        List<Share> shares = [];
+        List<Share[]> shares = [];
         foreach (ShareData groupShare in groupShares)
         {
+            List<Share> thisGroupShares = [];
             Group group = groups[groupShare.Index];
 
             ShareData[] memberShares = SplitSecret(group.GroupThreshold, group.GroupCount, groupShare.Value);
@@ -141,8 +142,9 @@ public class ShamirsSecretSharing(IRandom random) : IShamirsSecretSharing
                     MemberThreshold = group.GroupThreshold
                 };
                 SharePrefix sharePrefix = new(parameters);
-                shares.Add(new(sharePrefix, memberShare.Value));
+                thisGroupShares.Add(new(sharePrefix, memberShare.Value));
             }
+            shares.Add([.. thisGroupShares]);
         }
 
         return [.. shares];

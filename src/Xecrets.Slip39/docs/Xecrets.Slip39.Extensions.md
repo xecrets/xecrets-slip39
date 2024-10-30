@@ -351,6 +351,38 @@ The bytes to convert.
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  
 The hex string.
 
+<a name='Xecrets.Slip39.Extensions.ToSecretBytes(thisstring,Xecrets.Slip39.StringEncoding)'></a>
+
+## Extensions.ToSecretBytes(this string, StringEncoding) Method
+
+Take a master secret string, and using the specified [StringEncoding](Xecrets.Slip39.StringEncoding.md 'Xecrets.Slip39.StringEncoding') convert it to a byte array.
+
+```csharp
+public static byte[] ToSecretBytes(this string masterSecret, Xecrets.Slip39.StringEncoding stringEncoding);
+```
+#### Parameters
+
+<a name='Xecrets.Slip39.Extensions.ToSecretBytes(thisstring,Xecrets.Slip39.StringEncoding).masterSecret'></a>
+
+`masterSecret` [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')
+
+The string representation of the master secret.
+
+<a name='Xecrets.Slip39.Extensions.ToSecretBytes(thisstring,Xecrets.Slip39.StringEncoding).stringEncoding'></a>
+
+`stringEncoding` [StringEncoding](Xecrets.Slip39.StringEncoding.md 'Xecrets.Slip39.StringEncoding')
+
+How the string is encoded and should be interpreted.
+
+#### Returns
+[System.Byte](https://docs.microsoft.com/en-us/dotnet/api/System.Byte 'System.Byte')[[]](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array')  
+The raw byte[] representation of the master secret.
+
+#### Exceptions
+
+[System.InvalidOperationException](https://docs.microsoft.com/en-us/dotnet/api/System.InvalidOperationException 'System.InvalidOperationException')  
+If an unknown encoding is specified.
+
 <a name='Xecrets.Slip39.Extensions.ToSecretString(thisbyte[])'></a>
 
 ## Extensions.ToSecretString(this byte[]) Method

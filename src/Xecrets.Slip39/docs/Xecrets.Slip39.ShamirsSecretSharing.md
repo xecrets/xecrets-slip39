@@ -72,7 +72,7 @@ Thrown when the shares are insufficient or invalid.
 Generates SLIP-0039 shares from a given master secret.
 
 ```csharp
-public Xecrets.Slip39.Share[] GenerateShares(bool extendable, int iterationExponent, int groupThreshold, Xecrets.Slip39.Group[] groups, string passphrase, byte[] masterSecret);
+public Xecrets.Slip39.Share[][] GenerateShares(bool extendable, int iterationExponent, int groupThreshold, Xecrets.Slip39.Group[] groups, string passphrase, byte[] masterSecret);
 ```
 #### Parameters
 
@@ -115,7 +115,7 @@ The secret to be split into shares.
 Implements [GenerateShares(bool, int, int, Group[], string, byte[])](Xecrets.Slip39.md#Xecrets.Slip39.IShamirsSecretSharing.GenerateShares(bool,int,int,Xecrets.Slip39.Group[],string,byte[]) 'Xecrets.Slip39.IShamirsSecretSharing.GenerateShares(bool, int, int, Xecrets.Slip39.Group[], string, byte[])')
 
 #### Returns
-[Share](Xecrets.Slip39.Share.md 'Xecrets.Slip39.Share')[[]](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array')  
+[Share](Xecrets.Slip39.Share.md 'Xecrets.Slip39.Share')[[]](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array')[[]](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array')  
 A list of shares that can be used to reconstruct the secret.
 
 #### Exceptions

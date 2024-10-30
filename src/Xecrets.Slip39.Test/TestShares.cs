@@ -40,7 +40,7 @@ public class TestShares
         byte[] secret = new byte[16];
         random.GetBytes(secret);
         ShamirsSecretSharing sss = new ShamirsSecretSharing(random);
-        Share[] shares = sss.GenerateShares(true, 0, 1, [new Group(3, 5)], string.Empty, secret);
+        Share[] shares = sss.GenerateShares(true, 0, 1, [new Group(3, 5)], string.Empty, secret)[0];
         Assert.Equal(
             sss.CombineShares(shares[..3], string.Empty),
             sss.CombineShares(shares[2..], string.Empty)
@@ -51,7 +51,7 @@ public class TestShares
     public void TestBasicSharingFixed()
     {
         ShamirsSecretSharing sss = new ShamirsSecretSharing(new FakeRandom());
-        Share[] shares = sss.GenerateShares(true, 0, 1, [new Group(3, 5)], string.Empty, MS);
+        Share[] shares = sss.GenerateShares(true, 0, 1, [new Group(3, 5)], string.Empty, MS)[0];
         Assert.Equal(MS, sss.CombineShares(shares[..3], string.Empty));
         Assert.Equal(MS, sss.CombineShares(shares[1..4], string.Empty));
         Assert.Throws<ArgumentException>(() =>
@@ -63,7 +63,7 @@ public class TestShares
     public void TestPassphrase()
     {
         ShamirsSecretSharing sss = new ShamirsSecretSharing(new FakeRandom());
-        Share[] shares = sss.GenerateShares(true, 0, 1, [new Group(3, 5)], "TREZOR", MS);
+        Share[] shares = sss.GenerateShares(true, 0, 1, [new Group(3, 5)], "TREZOR", MS)[0];
         Assert.Equal(MS, sss.CombineShares(shares[1..4], "TREZOR"));
         Assert.NotEqual(MS, sss.CombineShares(shares[1..4], string.Empty));
     }
@@ -72,7 +72,7 @@ public class TestShares
     public void TestNonExtendable()
     {
         ShamirsSecretSharing sss = new ShamirsSecretSharing(new FakeRandom());
-        Share[] shares = sss.GenerateShares(false, 0, 1, [new Group(3, 5)], string.Empty, MS);
+        Share[] shares = sss.GenerateShares(false, 0, 1, [new Group(3, 5)], string.Empty, MS)[0];
         Assert.Equal(MS, sss.CombineShares(shares[1..4], string.Empty));
     }
 
@@ -80,11 +80,11 @@ public class TestShares
     public void TestIterationExponent()
     {
         ShamirsSecretSharing sss = new ShamirsSecretSharing(new FakeRandom());
-        Share[] shares = sss.GenerateShares(true, iterationExponent: 1, 1, [new Group(3, 5)], "TREZOR", MS);
+        Share[] shares = sss.GenerateShares(true, iterationExponent: 1, 1, [new Group(3, 5)], "TREZOR", MS)[0];
         Assert.Equal(MS, sss.CombineShares(shares[1..4], "TREZOR"));
         Assert.NotEqual(MS, sss.CombineShares(shares[1..4], string.Empty));
 
-        shares = sss.GenerateShares(true, iterationExponent: 2, 1, [new Group(3, 5)], "TREZOR", MS);
+        shares = sss.GenerateShares(true, iterationExponent: 2, 1, [new Group(3, 5)], "TREZOR", MS)[0];
         Assert.Equal(MS, sss.CombineShares(shares[1..4], "TREZOR"));
         Assert.NotEqual(MS, sss.CombineShares(shares[1..4], string.Empty));
     }
@@ -95,8 +95,7 @@ public class TestShares
         int groupThreshold = 2;
         Group[] groups = [new Group(3, 5), new Group(2, 3), new Group(2, 5), new Group(1, 1),];
         ShamirsSecretSharing sss = new ShamirsSecretSharing(new FakeRandom());
-        Share[] shares = sss.GenerateShares(true, 0, groupThreshold, groups, string.Empty, MS);
-        Share[][] shareGroupings = shares.GroupBy(x => x.SharePrefix.GroupIndex).Select(x => x.ToArray()).ToArray();
+        Share[][] shareGroupings = sss.GenerateShares(true, 0, groupThreshold, groups, string.Empty, MS);
 
         // Test all valid combinations of mnemonics.
         foreach ((Share[] shares, int memberThreshold)[] combinations in
@@ -134,8 +133,7 @@ public class TestShares
 
         Group[] groups = [new Group(3, 5), new Group(2, 3), new Group(2, 5), new Group(1, 1),];
         ShamirsSecretSharing sss = new ShamirsSecretSharing(new FakeRandom());
-        Share[] shares = sss.GenerateShares(true, 0, groupThreshold, groups, string.Empty, MS);
-        Share[][] shareGroupings = shares.GroupBy(x => x.SharePrefix.GroupIndex).Select(x => x.ToArray()).ToArray();
+        Share[][] shareGroupings = sss.GenerateShares(true, 0, groupThreshold, groups, string.Empty, MS);
 
         foreach ((Share[] groupShares, int memberThreshold) in shareGroupings.Zip(groups.Select(g => g.GroupThreshold)))
         {
@@ -156,8 +154,7 @@ public class TestShares
 
         foreach (int groupThreshold in new int[] { 1, 2, 5 })
         {
-            Share[] shares = sss.GenerateShares(true, 0, groupThreshold, groups, string.Empty, MS);
-            Share[][] shareGroupings = shares.GroupBy(x => x.SharePrefix.GroupIndex).Select(x => x.ToArray()).ToArray();
+            Share[][] shareGroupings = sss.GenerateShares(true, 0, groupThreshold, groups, string.Empty, MS);
             Assert.Equal(5, shareGroupings.Length);
             Assert.Equal(19, shareGroupings.Sum(g => g.Length));
         }

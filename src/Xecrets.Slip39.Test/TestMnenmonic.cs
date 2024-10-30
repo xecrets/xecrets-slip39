@@ -44,7 +44,7 @@ public class TestMnenmonic
     public void TestGenerateMnemonics()
     {
         ShamirsSecretSharing sss = new(new FakeRandom());
-        Share[] shares = sss.GenerateShares(true, 0, 1, [new Group(3, 5)], string.Empty, _masterSecret);
+        Share[] shares = sss.GenerateShares(true, 0, 1, [new Group(3, 5)], string.Empty, _masterSecret)[0];
         Assert.Equal(mnemonics.Length, shares.Length);
         for (int i = 0; i < shares.Length; ++i)
         {

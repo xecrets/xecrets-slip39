@@ -118,7 +118,7 @@ The original master secret.
 Generate shares according to the given parameters.
 
 ```csharp
-Xecrets.Slip39.Share[] GenerateShares(bool extendable, int iterationExponent, int groupThreshold, Xecrets.Slip39.Group[] groups, string passphrase, byte[] masterSecret);
+Xecrets.Slip39.Share[][] GenerateShares(bool extendable, int iterationExponent, int groupThreshold, Xecrets.Slip39.Group[] groups, string passphrase, byte[] masterSecret);
 ```
 #### Parameters
 
@@ -161,9 +161,9 @@ The (optional) passphrase used to encrypt the master secret.
 The master secret, at least 128 bits and a multiple of 16 bits.
 
 #### Returns
-[Share](Xecrets.Slip39.Share.md 'Xecrets.Slip39.Share')[[]](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array')  
-A [Share[]](https://docs.microsoft.com/en-us/dotnet/api/Share[] 'Share[]') with shares that can be distributed according to the threshold  
-            parameters.
+[Share](Xecrets.Slip39.Share.md 'Xecrets.Slip39.Share')[[]](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array')[[]](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array')  
+An array of arrays [Share](https://docs.microsoft.com/en-us/dotnet/api/Share 'Share') with shares that can be distributed according to the  
+            threshold parameters.
 
 | Enums | |
 | :--- | :--- |

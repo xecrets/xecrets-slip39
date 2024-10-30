@@ -43,9 +43,9 @@ public interface IShamirsSecretSharing
     /// <param name="groups">The group definitions as a <see cref="T:Group[]"/>.</param>
     /// <param name="passphrase">The (optional) passphrase used to encrypt the master secret.</param>
     /// <param name="masterSecret">The master secret, at least 128 bits and a multiple of 16 bits.</param>
-    /// <returns>A <see cref="T:Share[]"/> with shares that can be distributed according to the threshold
-    /// parameters.</returns>
-    Share[] GenerateShares(bool extendable, int iterationExponent, int groupThreshold, Group[] groups,
+    /// <returns>An array of arrays <see cref="T:Share"/> with shares that can be distributed according to the
+    /// threshold parameters.</returns>
+    Share[][] GenerateShares(bool extendable, int iterationExponent, int groupThreshold, Group[] groups,
         string passphrase, byte[] masterSecret);
 
     /// <summary>
