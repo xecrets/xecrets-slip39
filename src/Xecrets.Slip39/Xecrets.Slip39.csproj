@@ -11,7 +11,18 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <IncludeSymbols>False</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-    <Copyright>Copyright © 2024 Lucas Ontivero, Svante Seleborg</Copyright>
+    <Title>Xecrets Slip39 BETA Shamir's Secret-Sharing</Title>
+    <Copyright>Copyright © 2024 Lucas Ontivero, Svante Seleborg, All Rights Reserved</Copyright>
+    <Description>Shamir's Secret-Sharing for Mnemonic Codes in C#</Description>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Version>2.3.0-beta</Version>
+    <Authors>Axantum Software AB, Svante Seleborg</Authors>
+    <Company>Axantum Software AB</Company>
+    <PackageProjectUrl>https://www.axantum.com</PackageProjectUrl>
+    <PackageIcon>icon_128x128.png</PackageIcon>
+    <RepositoryUrl>https://github.com/xecrets/xecrets-slip39</RepositoryUrl>
+    <PackageTags>slip39;slip-39;slip-0039;wallet;bitcoin;shamir;seed;mnemonic</PackageTags>
+    <NeutralLanguage>en-US</NeutralLanguage>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -21,6 +32,7 @@
     <NoWarn />
     <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
     <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+    <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -30,7 +42,12 @@
     <NoWarn />
     <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
     <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+    <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\icon_128x128.png" />
+  </ItemGroup>
 
   <ItemGroup>
     <None Include="..\..\README.md">
@@ -44,6 +61,13 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\icon_128x128.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>
