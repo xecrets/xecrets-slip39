@@ -3,7 +3,7 @@
 A C# implementation of the [SLIP39](https://github.com/satoshilabs/slips/blob/master/slip-0039.md) for Shamir's
 Secret-Sharing for Mnemonic Codes.
 
-The code is heavily "inspired" on the [Bitcoin Wallet library in Rust
+The code is heavily "inspired" by the [Bitcoin Wallet library in Rust
 implementation](https://github.com/rust-bitcoin/rust-wallet/blob/master/src/sss.rs)
 
 It has been refactored to more idiomatic C#, as well as adding a few features and improvements by [Svante
@@ -23,13 +23,14 @@ into unique parts which can be distributed among participants, and requires a sp
 supplied in order to reconstruct the original secret. Knowledge of fewer than the required number of parts does not
 leak information about the secret.
 
-
 ## Specification
 See https://github.com/satoshilabs/slips/blob/master/slip-0039.md for the full SLIP-0039 specification.
 
 ## Using
 
-See the [documentation](src/Slip39/docs/index.md 'XML Documentation') for the full API documentation.
+See the [documentation](src/Xecrets.Slip39/docs/index.md 'XML Documentation') for the full API documentation. It's also
+used by [Xecrets Cli](https://github.com/xecrets/xecrets-cli) which can be used as a reference for how to use it, or
+directly as a fairly fully featured command line interface for the library.
 
 ```c#
 /**
