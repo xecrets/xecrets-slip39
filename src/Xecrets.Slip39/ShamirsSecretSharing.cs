@@ -94,7 +94,7 @@ public class ShamirsSecretSharing(IRandom random) : IShamirsSecretSharing
         // Validating group constraints
         if (groupThreshold > MAX_SHARE_COUNT)
         {
-            throw new ArgumentException("More than 16 groups are not supported.");
+            throw new ArgumentException("More than 16 groups is not supported.");
         }
 
         if (groupThreshold > groups.Length)
