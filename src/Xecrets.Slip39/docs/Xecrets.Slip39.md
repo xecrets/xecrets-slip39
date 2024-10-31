@@ -168,5 +168,5 @@ A [Share](https://docs.microsoft.com/en-us/dotnet/api/Share 'Share')[][] with sh
 
 | Enums | |
 | :--- | :--- |
-| [ErrorCode](Xecrets.Slip39.ErrorCode.md 'Xecrets.Slip39.ErrorCode') | Error codes used in [Slip39Exception](https://docs.microsoft.com/en-us/dotnet/api/Slip39Exception 'Slip39Exception') to facilitate UI error messages to users with localization etc.<br/>The full english text of the actual error is found the message property of the exception. |
+| [ErrorCode](Xecrets.Slip39.ErrorCode.md 'Xecrets.Slip39.ErrorCode') | Error codes used in [Slip39Exception](https://docs.microsoft.com/en-us/dotnet/api/Slip39Exception 'Slip39Exception') to facilitate UI error messages to users with localization etc.<br/>The full english text of the actual error is found in the message property of the exception. |
 | [StringEncoding](Xecrets.Slip39.StringEncoding.md 'Xecrets.Slip39.StringEncoding') | The master secret string encoding |
