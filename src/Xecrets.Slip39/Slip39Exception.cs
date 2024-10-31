@@ -25,15 +25,18 @@
 */
 #endregion Copyright and MIT License
 
-using System;
-
 namespace Xecrets.Slip39;
 
 /// <summary>
 /// Creates an exception for catcheable Slip39 errors. This will only be thrown when the error is due to incorrect
-/// input data.
+/// input data, not due to an internal error or programming errors et.
 /// </summary>
+/// <param name="errorCode">The error code associated with the error.</param>
 /// <param name="message">The message associated with the error.</param>
-public class Slip39Exception(string message) : Exception(message)
+public class Slip39Exception(ErrorCode errorCode, string message) : Exception(message)
 {
+    /// <summary>
+    /// The error code associated with the error.
+    /// </summary>
+    public ErrorCode ErrorCode { get; } = errorCode;
 }

@@ -25,10 +25,6 @@
 */
 #endregion Copyright and MIT License
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
 using Xecrets.Slip39.Properties;
 
 namespace Xecrets.Slip39;
@@ -58,16 +54,12 @@ internal static class Mnemonic
 
     private static int[] ToIndices(string mnemonic, Dictionary<string, int> wordMap)
     {
-        try
-        {
-            return mnemonic.Split()
-                           .Select(word => wordMap[word.ToLower()])
-                           .ToArray();
-        }
-        catch (KeyNotFoundException keyError)
-        {
-            throw new Slip39Exception($"Invalid mnemonic word '{keyError.Message}'.");
-        }
+        return mnemonic.Split()
+                       .Select(word => wordMap.TryGetValue(word.ToLower(), out int value)
+                            ? value
+                            : throw new Slip39Exception(ErrorCode.InvalidMnemonic,
+                                $"Invalid mnemonic word '{word}'."))
+                       .ToArray();
     }
 
     private static string[] LoadWordlist(string words, int size)

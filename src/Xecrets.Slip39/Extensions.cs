@@ -23,8 +23,6 @@
 */
 #endregion Copyright and MIT License
 
-using System;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -46,9 +44,9 @@ public static class Extensions
     /// <returns>The set of shares, of which <paramref name="memberThreshold"/> are required to recover the
     /// secret.</returns>
     /// <remarks>
-    /// The master secret is encoded as a <see cref="T:byte[]"/> of UTF-8 encoded bytes, and if required padded with 0xff
-    /// to fulfil the requirements. When recovering the secret, any trailing 0xff bytes thus need to be trimmed before
-    /// producing the original master secret string, <seealso cref="ToSecretString(byte[])"/>.
+    /// The master secret is encoded as a <see cref="T:System.Byte"/>[] with UTF-8 encoded bytes, and if required
+    /// padded with 0xff to fulfil the requirements. When recovering the secret, any trailing 0xff bytes thus need to
+    /// be trimmed before producing the original master secret string, <seealso cref="ToSecretString(byte[])"/>.
     /// </remarks>
     public static Share[] GenerateShares(this IShamirsSecretSharing sss, int memberThreshold,
         int memberCount, string masterSecret) =>
@@ -66,9 +64,9 @@ public static class Extensions
     /// <returns>The set of shares, of which <paramref name="memberThreshold"/> are required to recover the
     /// secret.</returns>
     /// <remarks>
-    /// The master secret is encoded as a <see cref="T:byte[]"/> of UTF-8 encoded bytes, and if required padded with
-    /// 0xff to fulfil the requirements. When recovering the secret, any trailing 0xff bytes thus need to be trimmed
-    /// before producing the original master secret string, <seealso cref="ToSecretString(byte[])"/>.
+    /// The master secret is encoded as a <see cref="T:System.Byte"/>[] of UTF-8 encoded bytes, and if required padded
+    /// with 0xff to fulfil the requirements. When recovering the secret, any trailing 0xff bytes thus need to be
+    /// trimmed before producing the original master secret string, <seealso cref="ToSecretString(byte[])"/>.
     /// </remarks>
     public static Share[] GenerateShares(this IShamirsSecretSharing sss, int memberThreshold,
         int memberCount, string masterSecret, StringEncoding encoding)
@@ -246,7 +244,7 @@ public static class Extensions
         int csCheck = sha256.GetBits((offset: 0, length: csLength));
 
         return cs != csCheck
-            ? throw new ArgumentException("Invalid checksum.")
+            ? throw new Slip39Exception(ErrorCode.InvalidChecksum, "Invalid checksum.")
             : entropy;
     }
 
@@ -276,10 +274,10 @@ public static class Extensions
     }
 
     /// <summary>
-    /// Get bits from a bit array, represented as a <see cref="T:byte[]"/>, where the bytes as well as the bits in the
-    /// bytes are considered stored in big-endian order. This means that the most significant bit of the first byte is
-    /// the first bit in the array, and the least significant bit of the last byte is the last bit. <seealso
-    /// cref="SetBits(byte[], ValueTuple{int, int}, int)"/>
+    /// Get bits from a bit array, represented as a <see cref="T:System.Byte"/>[], where the bytes as well as the bits
+    /// in the bytes are considered stored in big-endian order. This means that the most significant bit of the first
+    /// byte is the first bit in the array, and the least significant bit of the last byte is the last bit.
+    /// <seealso cref="SetBits(byte[], ValueTuple{int, int}, int)"/>
     /// </summary>
     /// <param name="bytes">The bytes holding the bits.</param>
     /// <param name="pos">The offset and length of the bit field to get.</param>
@@ -316,10 +314,10 @@ public static class Extensions
     }
 
     /// <summary>
-    /// Set bits in a bit array, represented as a <see cref="T:byte[]"/>, where the bytes as well as the bits in the
-    /// bytes are considered stored in big-endian order. This means that the most significant bit of the first byte is
-    /// the first bit in the array, and the least significant bit of the last byte is the last bit. <seealso
-    /// cref="GetBits(byte[], ValueTuple{int, int})"/>
+    /// Set bits in a bit array, represented as a <see cref="T:System.Byte"/>[], where the bytes as well as the bits in
+    /// the bytes are considered stored in big-endian order. This means that the most significant bit of the first byte
+    /// is the first bit in the array, and the least significant bit of the last byte is the last bit.
+    /// <seealso cref="GetBits(byte[], ValueTuple{int, int})"/>
     /// </summary>
     /// <param name="bytes">The bytes holding the bits.</param>
     /// <param name="pos">The offset and length of the bit field to get.</param>

@@ -23,7 +23,6 @@
 */
 #endregion Copyright and MIT License
 
-using System;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;

@@ -38,7 +38,7 @@ Implements [GetBytes(byte[])](Xecrets.Slip39.md#Xecrets.Slip39.IRandom.GetBytes(
 
 ## StrongRandom.GetBytes(int) Method
 
-Get a [byte[]](https://docs.microsoft.com/en-us/dotnet/api/byte[] 'byte[]') with random bytes.
+Get a [System.Byte](https://docs.microsoft.com/en-us/dotnet/api/System.Byte 'System.Byte')[] with random bytes.
 
 ```csharp
 public byte[] GetBytes(int count);
@@ -55,4 +55,4 @@ Implements [GetBytes(int)](Xecrets.Slip39.md#Xecrets.Slip39.IRandom.GetBytes(int
 
 #### Returns
 [System.Byte](https://docs.microsoft.com/en-us/dotnet/api/System.Byte 'System.Byte')[[]](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array')  
-A [byte[]](https://docs.microsoft.com/en-us/dotnet/api/byte[] 'byte[]') with random bytes.
+A [System.Byte](https://docs.microsoft.com/en-us/dotnet/api/System.Byte 'System.Byte')[] with random bytes.

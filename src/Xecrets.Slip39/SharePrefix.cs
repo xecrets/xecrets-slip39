@@ -23,16 +23,12 @@
 */
 #endregion Copyright and MIT License
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
 namespace Xecrets.Slip39;
 
 /// <summary>
 /// A representation of the share prefix, which consists of the parameters for the share.
 /// </summary>
-internal class SharePrefix
+public class SharePrefix
 {
     private readonly byte[] _prefix;
 
@@ -66,7 +62,7 @@ internal class SharePrefix
     /// Instantiate an instance of <see cref="SharePrefix"/> using a provided set of parameters.
     /// </summary>
     /// <param name="parameters">The <see cref="ShareParameters"/> to use.</param>
-    public SharePrefix(ShareParameters parameters)
+    internal SharePrefix(ShareParameters parameters)
     {
         _prefix = new byte[_lengthBytes];
 
@@ -83,7 +79,7 @@ internal class SharePrefix
     /// <summary>
     /// Instantiate a <see cref="SharePrefix"/> from a binary representation.
     /// </summary>
-    /// <param name="prefix">A <see cref="T:byte[]"/> containing the binary prefix.</param>
+    /// <param name="prefix">A <see cref="T:System.Byte"/>[] containing the binary prefix.</param>
     public SharePrefix(byte[] prefix)
     {
         _prefix = prefix;
@@ -138,7 +134,7 @@ internal class SharePrefix
     /// <summary>
     /// The binary representation of the share prefix.
     /// </summary>
-    public byte[] PrefixValue => _prefix[.._lengthBytes];
+    internal byte[] PrefixValue => _prefix[.._lengthBytes];
 
     private static (int offset, int length) Pos(string name)
     {

@@ -25,10 +25,6 @@
 */
 #endregion Copyright and MIT License
 
-using System;
-using System.Collections;
-using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 
 namespace Xecrets.Slip39;
@@ -40,11 +36,14 @@ public partial class Share
 {
     internal Share(SharePrefix sharePrefix, byte[] value)
     {
-        SharePrefix = sharePrefix;
+        Prefix = sharePrefix;
         Value = value;
     }
 
-    internal SharePrefix SharePrefix { get; }
+    /// <summary>
+    /// The <see cref="T:SharePrefix"/> meta data of the share.
+    /// </summary>
+    public SharePrefix Prefix { get; }
 
     /// <summary>
     /// The actual share value, exactly as long as the master secret.
@@ -63,7 +62,7 @@ public partial class Share
     /// </summary>
     /// <param name="stringValue">The string to parse.</param>
     /// <returns>A <see cref="Share"/> object.</returns>
-    /// <exception cref="ArgumentException"></exception>
+    /// <exception cref="Slip39Exception"></exception>
     public static Share Parse(string stringValue)
     {
         if (MnemonicWordsPattern().IsMatch(stringValue))
@@ -80,7 +79,7 @@ public partial class Share
             byte[] bytes = stringValue.FromHex();
             return ShareFromBytes(bytes);
         }
-        throw new ArgumentException("Invalid share format.");
+        throw new Slip39Exception(ErrorCode.InvalidFormat, "Invalid share format.");
     }
 
     private static Share ShareFromBytes(byte[] bytes)
@@ -98,7 +97,8 @@ public partial class Share
         int[] words = Mnemonic.FromSlip39(stringValue);
 
         return words.Length < MIN_MNEMONIC_LENGTH_WORDS
-            ? throw new ArgumentException($"Invalid mnemonic length. The length of each mnemonic must be at least {MIN_MNEMONIC_LENGTH_WORDS} words.")
+            ? throw new Slip39Exception(ErrorCode.InvalidFormat,
+            $"Invalid mnemonic length. The length of each mnemonic must be at least {MIN_MNEMONIC_LENGTH_WORDS} words.")
             : FromMnemonicIndices(words);
     }
 
@@ -109,20 +109,20 @@ public partial class Share
 
         if (Checksum(words, sharePrefix.Extendable) != 1)
         {
-            throw new ArgumentException($"Invalid checksum.");
+            throw new Slip39Exception(ErrorCode.InvalidChecksum, $"Invalid checksum.");
         }
 
         int valueWords = words.Length - ((SharePrefix.LengthBits / 10) + CHECKSUM_LENGTH_WORDS);
         int paddingLength = 10 * valueWords % 16;
         if (paddingLength > 8)
         {
-            throw new ArgumentException("Invalid padding length.");
+            throw new Slip39Exception(ErrorCode.InvalidFormat, "Invalid padding length.");
         }
 
         int padding = paddingLength > 0 ? bytes.GetBits((offset: SharePrefix.LengthBits, length: paddingLength)) : 0;
         if (padding != 0)
         {
-            throw new ArgumentException("Invalid padding value, it should be all zeroes.");
+            throw new Slip39Exception(ErrorCode.InvalidFormat, "Invalid padding value, it should be all zeroes.");
         }
 
         byte[] value = new byte[valueWords * 10 / 8];
@@ -156,10 +156,10 @@ public partial class Share
             paddedValue.SetBits((offset: padding + (i * 8), length: 8), Value[i]);
         }
 
-        int[] words = BytesToWords(SharePrefix.PrefixValue)
+        int[] words = BytesToWords(Prefix.PrefixValue)
             .ArrayConcat(BytesToWords(paddedValue)).ArrayConcat(new int[CHECKSUM_LENGTH_WORDS]);
 
-        int chk = Checksum(words, SharePrefix.Extendable) ^ 1;
+        int chk = Checksum(words, Prefix.Extendable) ^ 1;
         int len = words.Length;
         for (int i = 0; i < CHECKSUM_LENGTH_WORDS; i++)
         {

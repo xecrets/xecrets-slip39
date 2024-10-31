@@ -54,7 +54,7 @@ public class TestShares
         Share[] shares = sss.GenerateShares(true, 0, 1, [new Group(3, 5)], string.Empty, MS)[0];
         Assert.Equal(MS, sss.CombineShares(shares[..3], string.Empty));
         Assert.Equal(MS, sss.CombineShares(shares[1..4], string.Empty));
-        Assert.Throws<ArgumentException>(() =>
+        Assert.Throws<Slip39Exception>(() =>
             sss.CombineShares(shares[..2], string.Empty)
         );
     }
@@ -115,11 +115,11 @@ public class TestShares
         Assert.Equal(MS, sss.CombineShares([shareGroupings[2][0], shareGroupings[2][2], shareGroupings[3][0]], string.Empty));
         Assert.Equal(MS, sss.CombineShares([shareGroupings[2][3], shareGroupings[3][0], shareGroupings[2][4]], string.Empty));
 
-        Assert.Throws<ArgumentException>(() =>
+        Assert.Throws<Slip39Exception>(() =>
             sss.CombineShares(shareGroupings[0][2..].ArrayConcat(shareGroupings[1][..1]), string.Empty)
         );
 
-        Assert.Throws<ArgumentException>(() =>
+        Assert.Throws<Slip39Exception>(() =>
             sss.CombineShares(shareGroupings[0][1..4], string.Empty)
         );
     }
@@ -165,31 +165,31 @@ public class TestShares
     {
         ShamirsSecretSharing sss = new ShamirsSecretSharing(new FakeRandom());
 
-        Assert.Throws<ArgumentException>(() =>
+        Assert.Throws<Slip39Exception>(() =>
             sss.GenerateShares(true, 0, 1, [new Group(2, 3)], string.Empty, MS.Take(14).ToArray())
         );
 
-        Assert.Throws<ArgumentException>(() =>
+        Assert.Throws<Slip39Exception>(() =>
             sss.GenerateShares(true, 0, 1, [new Group(2, 3)], string.Empty, [.. MS, .. "X"u8.ToArray()])
         );
 
-        Assert.Throws<ArgumentException>(() =>
+        Assert.Throws<Slip39Exception>(() =>
             sss.GenerateShares(true, 0, 3, [new Group(3, 5), new Group(2, 5)], string.Empty, MS)
         );
 
-        Assert.Throws<ArgumentException>(() =>
+        Assert.Throws<Slip39Exception>(() =>
             sss.GenerateShares(true, 0, 0, [new Group(3, 5), new Group(2, 5)], string.Empty, MS)
         );
 
-        Assert.Throws<ArgumentException>(() =>
+        Assert.Throws<Slip39Exception>(() =>
             sss.GenerateShares(true, 0, 2, [new Group(3, 2), new Group(2, 5)], string.Empty, MS)
         );
 
-        Assert.Throws<ArgumentException>(() =>
+        Assert.Throws<Slip39Exception>(() =>
             sss.GenerateShares(true, 0, 2, [new Group(0, 2), new Group(2, 5)], string.Empty, MS)
         );
 
-        Assert.Throws<ArgumentException>(() =>
+        Assert.Throws<Slip39Exception>(() =>
             sss.GenerateShares(true, 0, 2, [new Group(3, 5), new Group(1, 3), new Group(2, 5)], string.Empty, MS)
         );
     }

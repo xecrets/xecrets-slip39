@@ -25,9 +25,6 @@
 */
 #endregion Copyright and MIT License
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -82,34 +79,37 @@ public class ShamirsSecretSharing(IRandom random) : IShamirsSecretSharing
     /// <param name="passphrase">The passphrase used for encryption.</param>
     /// <param name="masterSecret">The secret to be split into shares.</param>
     /// <returns>A list of shares that can be used to reconstruct the secret.</returns>
-    /// <exception cref="ArgumentException">Thrown when inputs do not meet the required constraints.</exception>
+    /// <exception cref="Slip39Exception">Thrown when inputs do not meet the required constraints.</exception>
     public Share[][] GenerateShares(bool extendable, int iterationExponent, int groupThreshold, Group[] groups, string passphrase, byte[] masterSecret)
     {
         // Validating seed strength and format
         if (masterSecret.Length * 8 < Share.MinStrengthBits || masterSecret.Length % 2 != 0)
         {
-            throw new ArgumentException("Master secret entropy must be at least 128 bits and multiple of 16 bits.");
+            throw new Slip39Exception(ErrorCode.InvalidFormat,
+                "Master secret entropy must be at least 128 bits and multiple of 16 bits.");
         }
 
         // Validating group constraints
         if (groupThreshold > MAX_SHARE_COUNT)
         {
-            throw new ArgumentException("More than 16 groups is not supported.");
+            throw new Slip39Exception(ErrorCode.InvalidGroups, "More than 16 groups is not supported.");
         }
 
         if (groupThreshold > groups.Length)
         {
-            throw new ArgumentException("Group threshold should not exceed number of groups.");
+            throw new Slip39Exception(ErrorCode.InvalidGroups,
+                "Group threshold should not exceed number of groups.");
         }
 
         if (groups.Any(group => group is { GroupThreshold: 1, GroupCount: > 1 }))
         {
-            throw new ArgumentException("Can only generate one share for threshold = 1.");
+            throw new Slip39Exception(ErrorCode.InvalidGroups, "Can only generate one share for threshold = 1.");
         }
 
         if (groups.Any(group => group.GroupThreshold > group.GroupCount))
         {
-            throw new ArgumentException("Number of shares must not be less than threshold.");
+            throw new Slip39Exception(ErrorCode.InvalidGroups,
+                "Number of shares must not be less than threshold.");
         }
 
         int id = SharePrefix.GenerateId(random);
@@ -156,7 +156,7 @@ public class ShamirsSecretSharing(IRandom random) : IShamirsSecretSharing
     /// <param name="shares">The array of shares to combine.</param>
     /// <param name="passphrase">The passphrase used for decrypting the shares.</param>
     /// <returns>The reconstructed secret.</returns>
-    /// <exception cref="ArgumentException">Thrown when the shares are insufficient or invalid.</exception>
+    /// <exception cref="Slip39Exception">Thrown when the shares are insufficient or invalid.</exception>
     public byte[] CombineShares(Share[] shares, string passphrase)
     {
         // Preprocess the shares to extract group and member information
@@ -165,22 +165,25 @@ public class ShamirsSecretSharing(IRandom random) : IShamirsSecretSharing
         // Validating group constraints 
         if (common.Groups.Count < common.GroupThreshold)
         {
-            throw new ArgumentException("Need shares from more groups to reconstruct secret.");
+            throw new Slip39Exception(ErrorCode.InsufficientShares,
+                "Need shares from more groups to reconstruct secret.");
         }
 
-        if (common.Groups.Count != common.GroupThreshold)
+        if (common.Groups.Count > common.GroupThreshold)
         {
-            throw new ArgumentException("Shares from too many groups.");
+            throw new Slip39Exception(ErrorCode.InconsistentShares, "Shares from too many groups.");
         }
 
         if (common.Groups.Any(group => group.Value[0].MemberThreshold != group.Value.Count))
         {
-            throw new ArgumentException("For every group, number of member shares should match member threshold.");
+            throw new Slip39Exception(ErrorCode.InconsistentShares,
+                "For every group, number of member shares should match member threshold.");
         }
 
         if (common.Groups.Any(group => group.Value.Select(v => v.MemberThreshold).ToHashSet().Count > 1))
         {
-            throw new ArgumentException("Member threshold must be the same within a group.");
+            throw new Slip39Exception(ErrorCode.InconsistentShares,
+                "Member threshold must be the same within a group.");
         }
 
         // Recover secrets for each group and then combine them to get the final secret
@@ -194,7 +197,7 @@ public class ShamirsSecretSharing(IRandom random) : IShamirsSecretSharing
         byte[] finalRecoveredSecret = RecoverSecret(common.GroupThreshold, [.. groupSecrets]);
 
         // Decrypt the secret using the passphrase
-        byte[] decryptedMasterSecret = Decrypt(common.Id, common.IterationExponent, finalRecoveredSecret, passphrase, shares[0].SharePrefix.Extendable);
+        byte[] decryptedMasterSecret = Decrypt(common.Id, common.IterationExponent, finalRecoveredSecret, passphrase, shares[0].Prefix.Extendable);
         return decryptedMasterSecret;
     }
 
@@ -203,54 +206,54 @@ public class ShamirsSecretSharing(IRandom random) : IShamirsSecretSharing
     /// </summary>
     /// <param name="shares">The array of shares to preprocess.</param>
     /// <returns>A tuple containing identifiers and group information for the shares.</returns>
-    /// <exception cref="ArgumentException">Thrown when the shares do not meet the required constraints.</exception>
+    /// <exception cref="Slip39Exception">Thrown when the shares do not meet the required constraints.</exception>
     private static CommonParameters Preprocess(Share[] shares)
     {
         if (shares.Length < 1)
         {
-            throw new ArgumentException("Need at least one share to reconstruct secret.");
+            throw new Slip39Exception(ErrorCode.InsufficientShares, "Need at least one share to reconstruct secret.");
         }
 
-        CommonParameters parameters = new(Id: shares[0].SharePrefix.Id,
-                                          IterationExponent: shares[0].SharePrefix.IterationExponent,
-                                          GroupThreshold: shares[0].SharePrefix.GroupThreshold,
+        CommonParameters parameters = new(Id: shares[0].Prefix.Id,
+                                          IterationExponent: shares[0].Prefix.IterationExponent,
+                                          GroupThreshold: shares[0].Prefix.GroupThreshold,
                                           []);
 
-        if (shares.Any(s => s.SharePrefix.Id != parameters.Id))
+        if (shares.Any(s => s.Prefix.Id != parameters.Id))
         {
-            throw new ArgumentException("Shares do not belong to the same secret.");
+            throw new Slip39Exception(ErrorCode.InconsistentShares, "Shares do not belong to the same secret.");
         }
 
-        if (shares.Any(s => s.SharePrefix.IterationExponent != parameters.IterationExponent))
+        if (shares.Any(s => s.Prefix.IterationExponent != parameters.IterationExponent))
         {
-            throw new ArgumentException("Shares do not have the same iteration exponent.");
+            throw new Slip39Exception(ErrorCode.InconsistentShares, "Shares do not have the same iteration exponent.");
         }
 
-        if (shares.Any(s => s.SharePrefix.GroupThreshold != parameters.GroupThreshold))
+        if (shares.Any(s => s.Prefix.GroupThreshold != parameters.GroupThreshold))
         {
-            throw new ArgumentException("Shares do not have the same group threshold.");
+            throw new Slip39Exception(ErrorCode.InconsistentShares, "Shares do not have the same group threshold.");
         }
 
-        if (shares.Any(s => s.SharePrefix.GroupCount != shares[0].SharePrefix.GroupCount))
+        if (shares.Any(s => s.Prefix.GroupCount != shares[0].Prefix.GroupCount))
         {
-            throw new ArgumentException("Shares do not have the same group count.");
+            throw new Slip39Exception(ErrorCode.InconsistentShares, "Shares do not have the same group count.");
         }
 
-        if (shares.Any(s => s.SharePrefix.GroupThreshold > s.SharePrefix.GroupCount))
+        if (shares.Any(s => s.Prefix.GroupThreshold > s.Prefix.GroupCount))
         {
-            throw new ArgumentException("Group threshold is greater than group count.");
+            throw new Slip39Exception(ErrorCode.InconsistentShares, "Group threshold is greater than group count.");
         }
 
         // Group the shares by group index
         foreach (Share share in shares)
         {
-            if (!parameters.Groups.TryGetValue(share.SharePrefix.GroupIndex, out List<MemberData>? value))
+            if (!parameters.Groups.TryGetValue(share.Prefix.GroupIndex, out List<MemberData>? value))
             {
                 value = [];
-                parameters.Groups[share.SharePrefix.GroupIndex] = value;
+                parameters.Groups[share.Prefix.GroupIndex] = value;
             }
 
-            value.Add(new MemberData(MemberThreshold: share.SharePrefix.MemberThreshold, MemberIndex: share.SharePrefix.MemberIndex, Value: share.Value));
+            value.Add(new MemberData(MemberThreshold: share.Prefix.MemberThreshold, MemberIndex: share.Prefix.MemberIndex, Value: share.Value));
         }
 
         return parameters;
@@ -262,7 +265,7 @@ public class ShamirsSecretSharing(IRandom random) : IShamirsSecretSharing
     /// <param name="threshold">The number of shares required to reconstruct the secret.</param>
     /// <param name="shares">The shares to be used for reconstruction.</param>
     /// <returns>The recovered secret.</returns>
-    /// <exception cref="ArgumentException">Thrown when the share digests are incorrect.</exception>
+    /// <exception cref="Slip39Exception">Thrown when the share digests are incorrect.</exception>
     private static byte[] RecoverSecret(int threshold, ShareData[] shares)
     {
         // If the threshold is 1, simply return the first share's value
@@ -278,7 +281,7 @@ public class ShamirsSecretSharing(IRandom random) : IShamirsSecretSharing
         // Verify the share digest according to SLIP-0039 specification of RecoverSecret()
         return BitConverter.ToInt32(ShareDigest(digestShare[DIGEST_LENGTH_BYTES..], sharedSecret)) !=
             BitConverter.ToInt32(digestShare.AsSpan()[..DIGEST_LENGTH_BYTES])
-                ? throw new ArgumentException("Share digest is incorrect.")
+                ? throw new Slip39Exception(ErrorCode.InvalidChecksum, "Share digest is incorrect.")
                 : sharedSecret;
     }
 
@@ -289,22 +292,23 @@ public class ShamirsSecretSharing(IRandom random) : IShamirsSecretSharing
     /// <param name="shareCount">Total number of members in group i, a positive integer, 1 ≤ Ni ≤ 16.</param>
     /// <param name="sharedSecret">Encrypted master secret or a group share, an octet string.</param>
     /// <returns>An array with size Ni with the member shares for this group.</returns>
-    /// <exception cref="ArgumentException"></exception>
+    /// <exception cref="Slip39Exception"></exception>
     private ShareData[] SplitSecret(int threshold, int shareCount, byte[] sharedSecret)
     {
         if (threshold < 1)
         {
-            throw new ArgumentException("Sharing threshold must be > 1.");
+            throw new Slip39Exception(ErrorCode.InvalidGroups, "Sharing threshold must be > 1.");
         }
 
         if (shareCount > MAX_SHARE_COUNT)
         {
-            throw new ArgumentException("Too many shares.");
+            throw new Slip39Exception(ErrorCode.InvalidGroups, "Too many shares.");
         }
 
         if (threshold > shareCount)
         {
-            throw new ArgumentException("Number of shares should be at least equal to threshold.");
+            throw new Slip39Exception(ErrorCode.InvalidGroups,
+                "Number of shares should be at least equal to threshold.");
         }
 
         List<ShareData> shares = [];
@@ -362,16 +366,16 @@ public class ShamirsSecretSharing(IRandom random) : IShamirsSecretSharing
         HashSet<int> xCoordinates = shares.Select(share => share.Index).ToHashSet();
         if (xCoordinates.Count != shares.Length)
         {
-            throw new ArgumentException("Need unique shares for interpolation.");
+            throw new Slip39Exception(ErrorCode.InconsistentShares, "Need unique shares for interpolation.");
         }
         if (shares.Length < 1)
         {
-            throw new ArgumentException("Need at least one share for interpolation.");
+            throw new Slip39Exception(ErrorCode.InsufficientShares, "Need at least one share for interpolation.");
         }
         int len = shares[0].Value.Length;
         if (shares.Any(share => share.Value.Length != len))
         {
-            throw new ArgumentException("Shares should have equal length.");
+            throw new Slip39Exception(ErrorCode.InconsistentShares, "Shares should have equal length.");
         }
         if (xCoordinates.Contains(x))
         {

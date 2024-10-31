@@ -253,9 +253,9 @@ The set of shares, of which [memberThreshold](Xecrets.Slip39.Extensions.md#Xecre
             secret.
 
 ### Remarks
-The master secret is encoded as a [byte[]](https://docs.microsoft.com/en-us/dotnet/api/byte[] 'byte[]') of UTF-8 encoded bytes, and if required padded with 0xff  
-to fulfil the requirements. When recovering the secret, any trailing 0xff bytes thus need to be trimmed before  
-producing the original master secret string, <seealso cref="M:Xecrets.Slip39.Extensions.ToSecretString(System.Byte[])"/>.
+The master secret is encoded as a [System.Byte](https://docs.microsoft.com/en-us/dotnet/api/System.Byte 'System.Byte')[] with UTF-8 encoded bytes, and if required  
+padded with 0xff to fulfil the requirements. When recovering the secret, any trailing 0xff bytes thus need to  
+be trimmed before producing the original master secret string, <seealso cref="M:Xecrets.Slip39.Extensions.ToSecretString(System.Byte[])"/>.
 
 <a name='Xecrets.Slip39.Extensions.GenerateShares(thisXecrets.Slip39.IShamirsSecretSharing,int,int,string,Xecrets.Slip39.StringEncoding)'></a>
 
@@ -305,9 +305,9 @@ The set of shares, of which [memberThreshold](Xecrets.Slip39.Extensions.md#Xecre
             secret.
 
 ### Remarks
-The master secret is encoded as a [byte[]](https://docs.microsoft.com/en-us/dotnet/api/byte[] 'byte[]') of UTF-8 encoded bytes, and if required padded with  
-0xff to fulfil the requirements. When recovering the secret, any trailing 0xff bytes thus need to be trimmed  
-before producing the original master secret string, <seealso cref="M:Xecrets.Slip39.Extensions.ToSecretString(System.Byte[])"/>.
+The master secret is encoded as a [System.Byte](https://docs.microsoft.com/en-us/dotnet/api/System.Byte 'System.Byte')[] of UTF-8 encoded bytes, and if required padded  
+with 0xff to fulfil the requirements. When recovering the secret, any trailing 0xff bytes thus need to be  
+trimmed before producing the original master secret string, <seealso cref="M:Xecrets.Slip39.Extensions.ToSecretString(System.Byte[])"/>.
 
 <a name='Xecrets.Slip39.Extensions.ToBip39(thisbyte[])'></a>
 

@@ -1,9 +1,7 @@
 ﻿#region Copyright and MIT License
 /* MIT License
  *
- * Copyright © 2024 Lucas Ontivero
- * 
- * Modifications Copyright © 2024 Svante Seleborg
+ * Copyright © 2024 Svante Seleborg
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -28,20 +26,48 @@
 namespace Xecrets.Slip39;
 
 /// <summary>
-/// Generate sequences of random bytes.
+/// Error codes used in <see cref="T:Slip39Exception"/> to facilitate UI error messages to users with localization etc.
+/// The full english text of the actual error is found in the message property of the exception.
 /// </summary>
-public interface IRandom
+public enum ErrorCode
 {
     /// <summary>
-    /// Fill the provided buffer with random byte values.
+    /// The undefined, invalid, zero error code.
     /// </summary>
-    /// <param name="buffer">The buffer to fill.</param>
-    void GetBytes(byte[] buffer);
+    Undefined = 0,
 
     /// <summary>
-    /// Get a <see cref="T:System.Byte"/>[] with random bytes.
+    /// No error
     /// </summary>
-    /// <param name="count">The number of random bytes to get.</param>
-    /// <returns>A <see cref="T:System.Byte"/>[] with random bytes.</returns>
-    byte[] GetBytes(int count);
+    NoError,
+
+    /// <summary>
+    /// A checksum or digest was found to be incorrect. Check the exception message for details.
+    /// </summary>
+    InvalidChecksum,
+
+    /// <summary>
+    /// Group specification or actual group meta data is invalid. Check the exception message for details.
+    /// </summary>
+    InvalidGroups,
+
+    /// <summary>
+    /// The number of shares is insufficient. Check the exception message for details.
+    /// </summary>
+    InsufficientShares,
+
+    /// <summary>
+    /// The set of shares have inconsistent meta data. Check the exception message for details.
+    /// </summary>
+    InconsistentShares,
+
+    /// <summary>
+    /// Input is in the wrong format. Check the exception message for details.
+    /// </summary>
+    InvalidFormat,
+
+    /// <summary>
+    /// An invalid mnemonic word or set of words were input. Check the exception message for details.
+    /// </summary>
+    InvalidMnemonic,
 }

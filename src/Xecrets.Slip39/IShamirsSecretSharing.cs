@@ -40,11 +40,11 @@ public interface IShamirsSecretSharing
     /// <param name="iterationExponent">The total number of iterations to be used in PBKDF2, calculated as
     /// 10000×2^e.</param>
     /// <param name="groupThreshold">The number of group shares needed to reconstruct the master secret.</param>
-    /// <param name="groups">The group definitions as a <see cref="T:Group[]"/>.</param>
+    /// <param name="groups">The group definitions as a <see cref="T:Group"/>[].</param>
     /// <param name="passphrase">The (optional) passphrase used to encrypt the master secret.</param>
     /// <param name="masterSecret">The master secret, at least 128 bits and a multiple of 16 bits.</param>
-    /// <returns>An array of arrays <see cref="T:Share"/> with shares that can be distributed according to the
-    /// threshold parameters.</returns>
+    /// <returns>A <see cref="T:Share"/>[][] with shares that can be distributed according to the threshold
+    /// parameters.</returns>
     Share[][] GenerateShares(bool extendable, int iterationExponent, int groupThreshold, Group[] groups,
         string passphrase, byte[] masterSecret);
 

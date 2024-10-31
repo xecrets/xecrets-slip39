@@ -35,7 +35,7 @@ internal readonly record struct ShareParameters
     public bool Extendable { get; init; }
 
     public int IterationExponent { get; init; }
-
+    
     public int GroupIndex { get; init; }
 
     /// <summary>

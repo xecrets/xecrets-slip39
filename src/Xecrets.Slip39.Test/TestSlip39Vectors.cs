@@ -58,12 +58,13 @@ public class TestSlip39Vectors
         }
         else
         {
-            Assert.Throws<ArgumentException>((Action)(() =>
+            Assert.Throws<Slip39Exception>((Action)(() =>
             {
                 Share[] shares = test.Mnemonics.Select((m) =>
                 {
                     return !m.TryParse(out Share share)
-                        ? throw new ArgumentException($"Failed to parse mnemonic \"{m}\".")
+                        ? throw new Slip39Exception(ErrorCode.InvalidMnemonic,
+                            $"Failed to parse mnemonic \"{m}\".")
                         : share;
                 }).ToArray();
                 sss.CombineShares((Share[])shares, string.Empty);

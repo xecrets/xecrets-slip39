@@ -10,6 +10,20 @@ public class Share
 ```
 
 Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; Share
+### Properties
+
+<a name='Xecrets.Slip39.Share.Prefix'></a>
+
+## Share.Prefix Property
+
+The [SharePrefix](https://docs.microsoft.com/en-us/dotnet/api/SharePrefix 'SharePrefix') meta data of the share.
+
+```csharp
+public Xecrets.Slip39.SharePrefix Prefix { get; }
+```
+
+#### Property Value
+[SharePrefix](Xecrets.Slip39.SharePrefix.md 'Xecrets.Slip39.SharePrefix')
 ### Methods
 
 <a name='Xecrets.Slip39.Share.Parse(string)'></a>
@@ -35,7 +49,7 @@ A [Share](Xecrets.Slip39.Share.md 'Xecrets.Slip39.Share') object.
 
 #### Exceptions
 
-[System.ArgumentException](https://docs.microsoft.com/en-us/dotnet/api/System.ArgumentException 'System.ArgumentException')
+[Slip39Exception](Xecrets.Slip39.Slip39Exception.md 'Xecrets.Slip39.Slip39Exception')
 
 <a name='Xecrets.Slip39.Share.ToString()'></a>
 

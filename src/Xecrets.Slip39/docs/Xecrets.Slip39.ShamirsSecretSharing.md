@@ -62,7 +62,7 @@ The reconstructed secret.
 
 #### Exceptions
 
-[System.ArgumentException](https://docs.microsoft.com/en-us/dotnet/api/System.ArgumentException 'System.ArgumentException')  
+[Slip39Exception](Xecrets.Slip39.Slip39Exception.md 'Xecrets.Slip39.Slip39Exception')  
 Thrown when the shares are insufficient or invalid.
 
 <a name='Xecrets.Slip39.ShamirsSecretSharing.GenerateShares(bool,int,int,Xecrets.Slip39.Group[],string,byte[])'></a>
@@ -120,5 +120,5 @@ A list of shares that can be used to reconstruct the secret.
 
 #### Exceptions
 
-[System.ArgumentException](https://docs.microsoft.com/en-us/dotnet/api/System.ArgumentException 'System.ArgumentException')  
+[Slip39Exception](Xecrets.Slip39.Slip39Exception.md 'Xecrets.Slip39.Slip39Exception')  
 Thrown when inputs do not meet the required constraints.

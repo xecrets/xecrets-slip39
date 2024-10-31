@@ -13,7 +13,8 @@ The main entry point for the library is through the [IShamirsSecretSharing](Xecr
 | [Group](Xecrets.Slip39.Group.md 'Xecrets.Slip39.Group') | Defines the main parameter of a group. |
 | [ShamirsSecretSharing](Xecrets.Slip39.ShamirsSecretSharing.md 'Xecrets.Slip39.ShamirsSecretSharing') | A class for implementing Shamir's Secret Sharing with SLIP-0039 enhancements. |
 | [Share](Xecrets.Slip39.Share.md 'Xecrets.Slip39.Share') | A representation of a Shamir secret sharing share. |
-| [Slip39Exception](Xecrets.Slip39.Slip39Exception.md 'Xecrets.Slip39.Slip39Exception') | Creates an exception for catcheable Slip39 errors. This will only be thrown when the error is due to incorrect<br/>input data. |
+| [SharePrefix](Xecrets.Slip39.SharePrefix.md 'Xecrets.Slip39.SharePrefix') | A representation of the share prefix, which consists of the parameters for the share. |
+| [Slip39Exception](Xecrets.Slip39.Slip39Exception.md 'Xecrets.Slip39.Slip39Exception') | Creates an exception for catcheable Slip39 errors. This will only be thrown when the error is due to incorrect<br/>input data, not due to an internal error or programming errors et. |
 | [StrongRandom](Xecrets.Slip39.StrongRandom.md 'Xecrets.Slip39.StrongRandom') | An [IRandom](Xecrets.Slip39.md#Xecrets.Slip39.IRandom 'Xecrets.Slip39.IRandom') implementation using [System.Security.Cryptography.RandomNumberGenerator](https://docs.microsoft.com/en-us/dotnet/api/System.Security.Cryptography.RandomNumberGenerator 'System.Security.Cryptography.RandomNumberGenerator'). |
 ### Interfaces
 
@@ -52,7 +53,7 @@ The buffer to fill.
 
 ## IRandom.GetBytes(int) Method
 
-Get a [byte[]](https://docs.microsoft.com/en-us/dotnet/api/byte[] 'byte[]') with random bytes.
+Get a [System.Byte](https://docs.microsoft.com/en-us/dotnet/api/System.Byte 'System.Byte')[] with random bytes.
 
 ```csharp
 byte[] GetBytes(int count);
@@ -67,7 +68,7 @@ The number of random bytes to get.
 
 #### Returns
 [System.Byte](https://docs.microsoft.com/en-us/dotnet/api/System.Byte 'System.Byte')[[]](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array')  
-A [byte[]](https://docs.microsoft.com/en-us/dotnet/api/byte[] 'byte[]') with random bytes.
+A [System.Byte](https://docs.microsoft.com/en-us/dotnet/api/System.Byte 'System.Byte')[] with random bytes.
 
 <a name='Xecrets.Slip39.IShamirsSecretSharing'></a>
 
@@ -146,7 +147,7 @@ The number of group shares needed to reconstruct the master secret.
 
 `groups` [Group](Xecrets.Slip39.Group.md 'Xecrets.Slip39.Group')[[]](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array')
 
-The group definitions as a [Group[]](https://docs.microsoft.com/en-us/dotnet/api/Group[] 'Group[]').
+The group definitions as a [Group](https://docs.microsoft.com/en-us/dotnet/api/Group 'Group')[].
 
 <a name='Xecrets.Slip39.IShamirsSecretSharing.GenerateShares(bool,int,int,Xecrets.Slip39.Group[],string,byte[]).passphrase'></a>
 
@@ -162,9 +163,10 @@ The master secret, at least 128 bits and a multiple of 16 bits.
 
 #### Returns
 [Share](Xecrets.Slip39.Share.md 'Xecrets.Slip39.Share')[[]](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array')[[]](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array')  
-An array of arrays [Share](https://docs.microsoft.com/en-us/dotnet/api/Share 'Share') with shares that can be distributed according to the  
-            threshold parameters.
+A [Share](https://docs.microsoft.com/en-us/dotnet/api/Share 'Share')[][] with shares that can be distributed according to the threshold  
+            parameters.
 
 | Enums | |
 | :--- | :--- |
+| [ErrorCode](Xecrets.Slip39.ErrorCode.md 'Xecrets.Slip39.ErrorCode') | Error codes used in [Slip39Exception](https://docs.microsoft.com/en-us/dotnet/api/Slip39Exception 'Slip39Exception') to facilitate UI error messages to users with localization etc.<br/>The full english text of the actual error is found the message property of the exception. |
 | [StringEncoding](Xecrets.Slip39.StringEncoding.md 'Xecrets.Slip39.StringEncoding') | The master secret string encoding |
