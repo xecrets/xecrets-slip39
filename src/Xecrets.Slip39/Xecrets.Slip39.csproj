@@ -1,48 +1,50 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <GenerateDocumentationFile>True</GenerateDocumentationFile>
-    <DefaultDocumentationGeneratedAccessModifiers>Public</DefaultDocumentationGeneratedAccessModifiers>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
-    <IncludeSymbols>False</IncludeSymbols>
-    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-    <Title>Xecrets Slip39 BETA Shamir's Secret-Sharing</Title>
-    <Copyright>Copyright © 2024 Lucas Ontivero, Svante Seleborg, All Rights Reserved</Copyright>
-    <Description>Shamir's Secret-Sharing for Mnemonic Codes in C#</Description>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Version>2.3.0-beta</Version>
-    <Authors>Axantum Software AB, Svante Seleborg</Authors>
+    <AssemblyVersion>2.3.0.0</AssemblyVersion>
+    <Authors>Svante Seleborg, Lucas Ontivero</Authors>
     <Company>Axantum Software AB</Company>
-    <PackageProjectUrl>https://www.axantum.com</PackageProjectUrl>
+    <Copyright>Copyright © 2022-2024 Lucas Ontivero, Svante Seleborg, All Rights Reserved</Copyright>
+    <DefaultDocumentationGeneratedAccessModifiers>Public</DefaultDocumentationGeneratedAccessModifiers>
+    <Description>Shamir's Secret-Sharing for Mnemonic Codes in C#</Description>
+    <FileVersion>2.3.0.0</FileVersion>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <IncludeSymbols>False</IncludeSymbols>
+    <Nullable>enable</Nullable>
     <PackageIcon>icon_128x128.png</PackageIcon>
-    <RepositoryUrl>https://github.com/xecrets/xecrets-slip39</RepositoryUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://www.axantum.com</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
     <PackageTags>slip39;slip-39;slip-0039;wallet;bitcoin;shamir;seed;mnemonic</PackageTags>
-    <NeutralLanguage>en-US</NeutralLanguage>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/xecrets/xecrets-slip39</RepositoryUrl>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <TargetFramework>net8.0</TargetFramework>
+    <Title>Xecrets Slip39 BETA GPL Shamir's Secret-Sharing</Title>
+    <Version>2.3.0-beta</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <IsTrimmable>True</IsTrimmable>
-    <IsAotCompatible>True</IsAotCompatible>
-    <WarningLevel>9999</WarningLevel>
-    <NoWarn />
-    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
     <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
     <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
+    <IsAotCompatible>True</IsAotCompatible>
+    <IsTrimmable>True</IsTrimmable>
+    <NoWarn />
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+    <WarningLevel>9999</WarningLevel>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <IsTrimmable>True</IsTrimmable>
-    <IsAotCompatible>True</IsAotCompatible>
-    <WarningLevel>9999</WarningLevel>
-    <NoWarn />
-    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
     <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
     <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
+    <IsAotCompatible>True</IsAotCompatible>
+    <IsTrimmable>True</IsTrimmable>
+    <NoWarn />
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+    <WarningLevel>9999</WarningLevel>
   </PropertyGroup>
 
   <ItemGroup>

@@ -1,7 +1,7 @@
-#region Copyright and MIT License
+ï»¿#region Copyright and MIT License
 /* MIT License
  *
- * Copyright © 2024 Svante Seleborg
+ * Copyright Â© 2024 Svante Seleborg
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,11 +26,12 @@
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using System.Resources;
 
-// General Information about an assembly is controlled through the following 
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
-[assembly: AssemblyTitle("Xecrets Slip39 BETA Shamir's Secret-Sharing")]
+[assembly: InternalsVisibleTo("Xecrets.Slip39.Test")]
+[assembly: AssemblyMetadata("IsTrimmable", "True")]
+
+[assembly: AssemblyTitle("Xecrets Slip39 BETA GPL Shamir's Secret-Sharing")]
 [assembly: AssemblyDescription("Shamir's Secret-Sharing for Mnemonic Codes in C#")]
 #if DEBUG
 [assembly: AssemblyConfiguration("Debug")]
@@ -39,29 +40,14 @@ using System.Runtime.InteropServices;
 #endif
 [assembly: AssemblyCompany("Axantum Software AB")]
 [assembly: AssemblyProduct("Xecrets Slip39")]
-[assembly: AssemblyCopyright("Copyright © 2022-2024 Lucas Ontivero, Svante Seleborg, All Rights Reserved")]
+[assembly: AssemblyCopyright("Copyright Â© 2022-2024 Lucas Ontivero, Svante Seleborg, All Rights Reserved")]
 [assembly: AssemblyTrademark("Xecrets is a trademark of Axantum Software AB")]
 [assembly: AssemblyCulture("")]
+[assembly: AssemblyMetadata("RepositoryUrl", "https://github.com/xecrets/xecrets-slip39")]
+[assembly: NeutralResourcesLanguage("en-US")]
 
-
-// Setting ComVisible to false makes the types in this assembly not visible to COM
-// components.  If you need to access a type in this assembly from COM, set the ComVisible
-// attribute to true on that type.
-
-[assembly: ComVisible(false)]
-
-// The following GUID is for the ID of the typelib if this project is exposed to COM.
-
-[assembly: Guid("3c0adc00-14e7-46c2-a91b-0cc99fe04725")]
-
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version 
-//      Build Number
-//      Revision
-//
 [assembly: AssemblyVersion("2.3.0.0")]
 [assembly: AssemblyFileVersion("2.3.0.0")]
+
 [assembly: CLSCompliant(true)]
-[assembly: InternalsVisibleTo("Xecrets.Slip39.Test")]
+[assembly: ComVisible(false)]
