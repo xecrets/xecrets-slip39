@@ -28,9 +28,10 @@ See https://github.com/satoshilabs/slips/blob/master/slip-0039.md for the full S
 
 ## Using
 
-See the [documentation](src/Xecrets.Slip39/docs/index.md 'XML Documentation') for the full API documentation. It's also
-used by [Xecrets Cli](https://github.com/xecrets/xecrets-cli) which can be used as a reference for how to use it, or
-directly as a fairly fully featured command line interface for the library.
+See the [documentation](https://github.com/xecrets/xecrets-slip39/blob/main/src/Xecrets.Slip39/docs/index.md 'XML
+Documentation') for the full API documentation. It's also used by [Xecrets Cli](https://github.com/xecrets/xecrets-cli)
+which can be used as a reference for how to use it, or directly as a fairly fully featured command line interface for
+the library.
 
 ```c#
 /**
