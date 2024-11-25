@@ -74,7 +74,7 @@ A [System.Byte](https://docs.microsoft.com/en-us/dotnet/api/System.Byte 'System.
 
 ## IShamirsSecretSharing Interface
 
-Implement Shamirs Secret Sharing according to <seealso href="https://github.com/satoshilabs/slips/blob/master/slip-0039.md">  
+Implement Shamirs Secret Sharing according to <seealso href="https://github.com/satoshilabs/slips/blob/master/slip-0039.md">  
 SLIP-039</seealso>.
 
 ```csharp

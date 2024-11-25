@@ -211,52 +211,6 @@ The master secret to share.
 The set of shares, of which [memberThreshold](Xecrets.Slip39.Extensions.md#Xecrets.Slip39.Extensions.GenerateShares(thisXecrets.Slip39.IShamirsSecretSharing,int,int,byte[]).memberThreshold 'Xecrets.Slip39.Extensions.GenerateShares(this Xecrets.Slip39.IShamirsSecretSharing, int, int, byte[]).memberThreshold') are required to recover the  
             secret.
 
-<a name='Xecrets.Slip39.Extensions.GenerateShares(thisXecrets.Slip39.IShamirsSecretSharing,int,int,string)'></a>
-
-## Extensions.GenerateShares(this IShamirsSecretSharing, int, int, string) Method
-
-Convenience method to generate shares for the simple case of a single group of shares with a single threshold,  
-and no encryption.
-
-```csharp
-public static Xecrets.Slip39.Share[] GenerateShares(this Xecrets.Slip39.IShamirsSecretSharing sss, int memberThreshold, int memberCount, string masterSecret);
-```
-#### Parameters
-
-<a name='Xecrets.Slip39.Extensions.GenerateShares(thisXecrets.Slip39.IShamirsSecretSharing,int,int,string).sss'></a>
-
-`sss` [IShamirsSecretSharing](Xecrets.Slip39.md#Xecrets.Slip39.IShamirsSecretSharing 'Xecrets.Slip39.IShamirsSecretSharing')
-
-The [IShamirsSecretSharing](Xecrets.Slip39.md#Xecrets.Slip39.IShamirsSecretSharing 'Xecrets.Slip39.IShamirsSecretSharing') instance.
-
-<a name='Xecrets.Slip39.Extensions.GenerateShares(thisXecrets.Slip39.IShamirsSecretSharing,int,int,string).memberThreshold'></a>
-
-`memberThreshold` [System.Int32](https://docs.microsoft.com/en-us/dotnet/api/System.Int32 'System.Int32')
-
-The member threshold.
-
-<a name='Xecrets.Slip39.Extensions.GenerateShares(thisXecrets.Slip39.IShamirsSecretSharing,int,int,string).memberCount'></a>
-
-`memberCount` [System.Int32](https://docs.microsoft.com/en-us/dotnet/api/System.Int32 'System.Int32')
-
-The total number of members.
-
-<a name='Xecrets.Slip39.Extensions.GenerateShares(thisXecrets.Slip39.IShamirsSecretSharing,int,int,string).masterSecret'></a>
-
-`masterSecret` [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')
-
-The master secret to share as a string.
-
-#### Returns
-[Share](Xecrets.Slip39.Share.md 'Xecrets.Slip39.Share')[[]](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array')  
-The set of shares, of which [memberThreshold](Xecrets.Slip39.Extensions.md#Xecrets.Slip39.Extensions.GenerateShares(thisXecrets.Slip39.IShamirsSecretSharing,int,int,string).memberThreshold 'Xecrets.Slip39.Extensions.GenerateShares(this Xecrets.Slip39.IShamirsSecretSharing, int, int, string).memberThreshold') are required to recover the  
-            secret.
-
-### Remarks
-The master secret is encoded as a [System.Byte](https://docs.microsoft.com/en-us/dotnet/api/System.Byte 'System.Byte')[] with UTF-8 encoded bytes, and if required  
-padded with 0xff to fulfil the requirements. When recovering the secret, any trailing 0xff bytes thus need to  
-be trimmed before producing the original master secret string, <seealso cref="M:Xecrets.Slip39.Extensions.ToSecretString(System.Byte[])"/>.
-
 <a name='Xecrets.Slip39.Extensions.GenerateShares(thisXecrets.Slip39.IShamirsSecretSharing,int,int,string,Xecrets.Slip39.StringEncoding)'></a>
 
 ## Extensions.GenerateShares(this IShamirsSecretSharing, int, int, string, StringEncoding) Method
@@ -308,6 +262,52 @@ The set of shares, of which [memberThreshold](Xecrets.Slip39.Extensions.md#Xecre
 The master secret is encoded as a [System.Byte](https://docs.microsoft.com/en-us/dotnet/api/System.Byte 'System.Byte')[] of UTF-8 encoded bytes, and if required padded  
 with 0xff to fulfil the requirements. When recovering the secret, any trailing 0xff bytes thus need to be  
 trimmed before producing the original master secret string, <seealso cref="M:Xecrets.Slip39.Extensions.ToSecretString(System.Byte[])"/>.
+
+<a name='Xecrets.Slip39.Extensions.GenerateShares(thisXecrets.Slip39.IShamirsSecretSharing,int,int,string)'></a>
+
+## Extensions.GenerateShares(this IShamirsSecretSharing, int, int, string) Method
+
+Convenience method to generate shares for the simple case of a single group of shares with a single threshold,  
+and no encryption.
+
+```csharp
+public static Xecrets.Slip39.Share[] GenerateShares(this Xecrets.Slip39.IShamirsSecretSharing sss, int memberThreshold, int memberCount, string masterSecret);
+```
+#### Parameters
+
+<a name='Xecrets.Slip39.Extensions.GenerateShares(thisXecrets.Slip39.IShamirsSecretSharing,int,int,string).sss'></a>
+
+`sss` [IShamirsSecretSharing](Xecrets.Slip39.md#Xecrets.Slip39.IShamirsSecretSharing 'Xecrets.Slip39.IShamirsSecretSharing')
+
+The [IShamirsSecretSharing](Xecrets.Slip39.md#Xecrets.Slip39.IShamirsSecretSharing 'Xecrets.Slip39.IShamirsSecretSharing') instance.
+
+<a name='Xecrets.Slip39.Extensions.GenerateShares(thisXecrets.Slip39.IShamirsSecretSharing,int,int,string).memberThreshold'></a>
+
+`memberThreshold` [System.Int32](https://docs.microsoft.com/en-us/dotnet/api/System.Int32 'System.Int32')
+
+The member threshold.
+
+<a name='Xecrets.Slip39.Extensions.GenerateShares(thisXecrets.Slip39.IShamirsSecretSharing,int,int,string).memberCount'></a>
+
+`memberCount` [System.Int32](https://docs.microsoft.com/en-us/dotnet/api/System.Int32 'System.Int32')
+
+The total number of members.
+
+<a name='Xecrets.Slip39.Extensions.GenerateShares(thisXecrets.Slip39.IShamirsSecretSharing,int,int,string).masterSecret'></a>
+
+`masterSecret` [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')
+
+The master secret to share as a string.
+
+#### Returns
+[Share](Xecrets.Slip39.Share.md 'Xecrets.Slip39.Share')[[]](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array')  
+The set of shares, of which [memberThreshold](Xecrets.Slip39.Extensions.md#Xecrets.Slip39.Extensions.GenerateShares(thisXecrets.Slip39.IShamirsSecretSharing,int,int,string).memberThreshold 'Xecrets.Slip39.Extensions.GenerateShares(this Xecrets.Slip39.IShamirsSecretSharing, int, int, string).memberThreshold') are required to recover the  
+            secret.
+
+### Remarks
+The master secret is encoded as a [System.Byte](https://docs.microsoft.com/en-us/dotnet/api/System.Byte 'System.Byte')[] with UTF-8 encoded bytes, and if required  
+padded with 0xff to fulfil the requirements. When recovering the secret, any trailing 0xff bytes thus need to  
+be trimmed before producing the original master secret string, <seealso cref="M:Xecrets.Slip39.Extensions.ToSecretString(System.Byte[])"/>.
 
 <a name='Xecrets.Slip39.Extensions.ToBip39(thisbyte[])'></a>
 
