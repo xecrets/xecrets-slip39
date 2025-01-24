@@ -4,7 +4,7 @@
     <AssemblyVersion>2.3.0.0</AssemblyVersion>
     <Authors>Svante Seleborg, Lucas Ontivero</Authors>
     <Company>Axantum Software AB</Company>
-    <Copyright>Copyright © 2022-2024 Lucas Ontivero, Svante Seleborg, All Rights Reserved</Copyright>
+    <Copyright>Copyright © 2022-2025 Lucas Ontivero, Svante Seleborg, All Rights Reserved</Copyright>
     <DefaultDocumentationGeneratedAccessModifiers>Public</DefaultDocumentationGeneratedAccessModifiers>
     <Description>Shamir's Secret-Sharing for Mnemonic Codes in C#</Description>
     <FileVersion>2.3.0.0</FileVersion>

@@ -1,7 +1,7 @@
 ﻿#region Copyright and MIT License
 /* MIT License
  *
- * Copyright © 2024 Svante Seleborg
+ * Copyright © 2024-2025 Svante Seleborg
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -40,7 +40,7 @@ using System.Resources;
 #endif
 [assembly: AssemblyCompany("Axantum Software AB")]
 [assembly: AssemblyProduct("Xecrets Slip39")]
-[assembly: AssemblyCopyright("Copyright © 2022-2024 Lucas Ontivero, Svante Seleborg, All Rights Reserved")]
+[assembly: AssemblyCopyright("Copyright © 2022-2025 Lucas Ontivero, Svante Seleborg, All Rights Reserved")]
 [assembly: AssemblyTrademark("Xecrets is a trademark of Axantum Software AB")]
 [assembly: AssemblyCulture("")]
 [assembly: AssemblyMetadata("RepositoryUrl", "https://github.com/xecrets/xecrets-slip39")]
