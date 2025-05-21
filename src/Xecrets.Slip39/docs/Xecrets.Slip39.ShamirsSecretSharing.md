@@ -38,7 +38,7 @@ public ShamirsSecretSharing(Xecrets.Slip39.IRandom random);
 Combines shares to reconstruct the original secret.
 
 ```csharp
-public byte[] CombineShares(Xecrets.Slip39.Share[] shares, string passphrase);
+public Xecrets.Slip39.GroupedShares CombineShares(Xecrets.Slip39.Share[] shares, string passphrase);
 ```
 #### Parameters
 
@@ -57,7 +57,7 @@ The passphrase used for decrypting the shares.
 Implements [CombineShares(Share[], string)](Xecrets.Slip39.md#Xecrets.Slip39.IShamirsSecretSharing.CombineShares(Xecrets.Slip39.Share[],string) 'Xecrets.Slip39.IShamirsSecretSharing.CombineShares(Xecrets.Slip39.Share[], string)')
 
 #### Returns
-[System.Byte](https://docs.microsoft.com/en-us/dotnet/api/System.Byte 'System.Byte')[[]](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array')  
+[GroupedShares](Xecrets.Slip39.GroupedShares.md 'Xecrets.Slip39.GroupedShares')  
 The reconstructed secret.
 
 #### Exceptions

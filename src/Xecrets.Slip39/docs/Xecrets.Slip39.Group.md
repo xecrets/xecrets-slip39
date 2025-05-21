@@ -22,44 +22,44 @@ Implements [System.IEquatable&lt;](https://docs.microsoft.com/en-us/dotnet/api/S
 Defines the main parameter of a group.
 
 ```csharp
-public Group(int GroupThreshold, int GroupCount);
+public Group(int ShareThreshold, int ShareCount);
 ```
 #### Parameters
 
-<a name='Xecrets.Slip39.Group.Group(int,int).GroupThreshold'></a>
+<a name='Xecrets.Slip39.Group.Group(int,int).ShareThreshold'></a>
 
-`GroupThreshold` [System.Int32](https://docs.microsoft.com/en-us/dotnet/api/System.Int32 'System.Int32')
+`ShareThreshold` [System.Int32](https://docs.microsoft.com/en-us/dotnet/api/System.Int32 'System.Int32')
 
-Member threshold for group i, a positive integer, 1 ≤ Ti ≤ Ni.
+Share threshold for group i, a positive integer, 1 ≤ Ti ≤ Ni.
 
-<a name='Xecrets.Slip39.Group.Group(int,int).GroupCount'></a>
+<a name='Xecrets.Slip39.Group.Group(int,int).ShareCount'></a>
 
-`GroupCount` [System.Int32](https://docs.microsoft.com/en-us/dotnet/api/System.Int32 'System.Int32')
+`ShareCount` [System.Int32](https://docs.microsoft.com/en-us/dotnet/api/System.Int32 'System.Int32')
 
-Total number of members in group i, a positive integer, 1 ≤ Ni ≤ 16.
+Total number of shares in group i, a positive integer, 1 ≤ Ni ≤ 16.
 ### Properties
 
-<a name='Xecrets.Slip39.Group.GroupCount'></a>
+<a name='Xecrets.Slip39.Group.ShareCount'></a>
 
-## Group.GroupCount Property
+## Group.ShareCount Property
 
-Total number of members in group i, a positive integer, 1 ≤ Ni ≤ 16.
+Total number of shares in group i, a positive integer, 1 ≤ Ni ≤ 16.
 
 ```csharp
-public int GroupCount { get; set; }
+public int ShareCount { get; set; }
 ```
 
 #### Property Value
 [System.Int32](https://docs.microsoft.com/en-us/dotnet/api/System.Int32 'System.Int32')
 
-<a name='Xecrets.Slip39.Group.GroupThreshold'></a>
+<a name='Xecrets.Slip39.Group.ShareThreshold'></a>
 
-## Group.GroupThreshold Property
+## Group.ShareThreshold Property
 
-Member threshold for group i, a positive integer, 1 ≤ Ti ≤ Ni.
+Share threshold for group i, a positive integer, 1 ≤ Ti ≤ Ni.
 
 ```csharp
-public int GroupThreshold { get; set; }
+public int ShareThreshold { get; set; }
 ```
 
 #### Property Value

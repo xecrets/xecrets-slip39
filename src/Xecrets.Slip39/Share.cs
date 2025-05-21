@@ -69,15 +69,21 @@ public partial class Share
         {
             return ParseSlip39MnemonicWords(stringValue);
         }
-        if (UrlSafeBase64Pattern().IsMatch(stringValue))
-        {
-            byte[] bytes = stringValue.FromUrlSafeBase64();
-            return ShareFromBytes(bytes);
-        }
         if (HexPattern().IsMatch(stringValue))
         {
             byte[] bytes = stringValue.FromHex();
             return ShareFromBytes(bytes);
+        }
+        if (UrlSafeBase64Pattern().IsMatch(stringValue))
+        {
+            try
+            {
+                byte[] bytes = stringValue.FromUrlSafeBase64();
+                return ShareFromBytes(bytes);
+            }
+            catch (FormatException)
+            {
+            }
         }
         throw new Slip39Exception(ErrorCode.InvalidFormat, "Invalid share format.");
     }

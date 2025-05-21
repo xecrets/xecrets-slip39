@@ -87,7 +87,7 @@ A third array consisting of the concatenated result.
 Convenience method to recover a master secret from a set of shares, without a password.
 
 ```csharp
-public static byte[] CombineShares(this Xecrets.Slip39.IShamirsSecretSharing sss, Xecrets.Slip39.Share[] shares);
+public static Xecrets.Slip39.GroupedShares CombineShares(this Xecrets.Slip39.IShamirsSecretSharing sss, Xecrets.Slip39.Share[] shares);
 ```
 #### Parameters
 
@@ -104,7 +104,7 @@ The [IShamirsSecretSharing](Xecrets.Slip39.md#Xecrets.Slip39.IShamirsSecretShari
 The shares to to recover from.
 
 #### Returns
-[System.Byte](https://docs.microsoft.com/en-us/dotnet/api/System.Byte 'System.Byte')[[]](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array')  
+[GroupedShares](Xecrets.Slip39.GroupedShares.md 'Xecrets.Slip39.GroupedShares')  
 The recovered master secret.
 
 <a name='Xecrets.Slip39.Extensions.FromBip39(thisstring)'></a>
@@ -387,8 +387,8 @@ If an unknown encoding is specified.
 
 ## Extensions.ToSecretString(this byte[]) Method
 
-Convert a recovered binary master secret to a UTF-8 encoded string, assuming it may have been padded with 0xFF  
-bytes.
+Convert a recovered binary master secret to a UTF-8 encoded string, assuming it has been padded with 0xFF  
+bytes. If it can't be interpreted as a valid UTF-8 string, it will be converted to a BIP-39 mnemonic
 
 ```csharp
 public static string ToSecretString(this byte[] masterSecret);
@@ -403,7 +403,7 @@ The binary secret.
 
 #### Returns
 [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  
-The original unpadded string.
+The original unpadded string, or a BIP-39 mnemonic.
 
 <a name='Xecrets.Slip39.Extensions.ToUrlSafeBase64(thisbyte[])'></a>
 

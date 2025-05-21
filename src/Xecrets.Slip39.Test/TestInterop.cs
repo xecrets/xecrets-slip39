@@ -45,7 +45,7 @@ public class TestInterop
         ];
 
         ShamirsSecretSharing sss = new ShamirsSecretSharing(new FakeRandom());
-        byte[] bytes = sss.CombineShares(shares.Select(Share.Parse).ToArray());
+        byte[] bytes = sss.CombineShares([.. shares.Select(Share.Parse)]).Secret;
 
         Assert.Equal(secret.ToUpper(), bytes.ToHex());
     }

@@ -42,8 +42,8 @@ public class TestShares
         ShamirsSecretSharing sss = new ShamirsSecretSharing(random);
         Share[] shares = sss.GenerateShares(true, 0, 1, [new Group(3, 5)], string.Empty, secret)[0];
         Assert.Equal(
-            sss.CombineShares(shares[..3], string.Empty),
-            sss.CombineShares(shares[2..], string.Empty)
+            sss.CombineShares(shares[..3], string.Empty).Secret,
+            sss.CombineShares(shares[2..], string.Empty).Secret
         );
     }
 
@@ -52,11 +52,9 @@ public class TestShares
     {
         ShamirsSecretSharing sss = new ShamirsSecretSharing(new FakeRandom());
         Share[] shares = sss.GenerateShares(true, 0, 1, [new Group(3, 5)], string.Empty, MS)[0];
-        Assert.Equal(MS, sss.CombineShares(shares[..3], string.Empty));
-        Assert.Equal(MS, sss.CombineShares(shares[1..4], string.Empty));
-        Assert.Throws<Slip39Exception>(() =>
-            sss.CombineShares(shares[..2], string.Empty)
-        );
+        Assert.Equal(MS, sss.CombineShares(shares[..3], string.Empty).Secret);
+        Assert.Equal(MS, sss.CombineShares(shares[1..4], string.Empty).Secret);
+        Assert.Equal([], sss.CombineShares(shares[..2], string.Empty).Secret);
     }
 
     [Fact]
@@ -64,8 +62,8 @@ public class TestShares
     {
         ShamirsSecretSharing sss = new ShamirsSecretSharing(new FakeRandom());
         Share[] shares = sss.GenerateShares(true, 0, 1, [new Group(3, 5)], "TREZOR", MS)[0];
-        Assert.Equal(MS, sss.CombineShares(shares[1..4], "TREZOR"));
-        Assert.NotEqual(MS, sss.CombineShares(shares[1..4], string.Empty));
+        Assert.Equal(MS, sss.CombineShares(shares[1..4], "TREZOR").Secret);
+        Assert.NotEqual(MS, sss.CombineShares(shares[1..4], string.Empty).Secret);
     }
 
     [Fact]
@@ -73,7 +71,7 @@ public class TestShares
     {
         ShamirsSecretSharing sss = new ShamirsSecretSharing(new FakeRandom());
         Share[] shares = sss.GenerateShares(false, 0, 1, [new Group(3, 5)], string.Empty, MS)[0];
-        Assert.Equal(MS, sss.CombineShares(shares[1..4], string.Empty));
+        Assert.Equal(MS, sss.CombineShares(shares[1..4], string.Empty).Secret);
     }
 
     [Fact]
@@ -81,12 +79,12 @@ public class TestShares
     {
         ShamirsSecretSharing sss = new ShamirsSecretSharing(new FakeRandom());
         Share[] shares = sss.GenerateShares(true, iterationExponent: 1, 1, [new Group(3, 5)], "TREZOR", MS)[0];
-        Assert.Equal(MS, sss.CombineShares(shares[1..4], "TREZOR"));
-        Assert.NotEqual(MS, sss.CombineShares(shares[1..4], string.Empty));
+        Assert.Equal(MS, sss.CombineShares(shares[1..4], "TREZOR").Secret);
+        Assert.NotEqual(MS, sss.CombineShares(shares[1..4], string.Empty).Secret);
 
         shares = sss.GenerateShares(true, iterationExponent: 2, 1, [new Group(3, 5)], "TREZOR", MS)[0];
-        Assert.Equal(MS, sss.CombineShares(shares[1..4], "TREZOR"));
-        Assert.NotEqual(MS, sss.CombineShares(shares[1..4], string.Empty));
+        Assert.Equal(MS, sss.CombineShares(shares[1..4], "TREZOR").Secret);
+        Assert.NotEqual(MS, sss.CombineShares(shares[1..4], string.Empty).Secret);
     }
 
     [Fact]
@@ -99,7 +97,7 @@ public class TestShares
 
         // Test all valid combinations of mnemonics.
         foreach ((Share[] shares, int memberThreshold)[] combinations in
-            Combinations(shareGroupings.Zip(groups.Select(g => g.GroupThreshold)), groupThreshold))
+            Combinations(shareGroupings.Zip(groups.Select(g => g.ShareThreshold)), groupThreshold))
         {
             foreach (Share[] group1Subset in Combinations(combinations[0].shares, combinations[0].memberThreshold))
             {
@@ -107,21 +105,20 @@ public class TestShares
                 {
                     Share[] shareSubset = group1Subset.ArrayConcat(group2Subset);
                     shareSubset = [.. shareSubset.OrderBy(x => Guid.NewGuid())];
-                    Assert.Equal(MS, sss.CombineShares(shareSubset, string.Empty));
+                    Assert.Equal(MS, sss.CombineShares(shareSubset, string.Empty).Secret);
                 }
             }
         }
 
-        Assert.Equal(MS, sss.CombineShares([shareGroupings[2][0], shareGroupings[2][2], shareGroupings[3][0]], string.Empty));
-        Assert.Equal(MS, sss.CombineShares([shareGroupings[2][3], shareGroupings[3][0], shareGroupings[2][4]], string.Empty));
+        Assert.Equal(MS, sss.CombineShares([shareGroupings[2][0], shareGroupings[2][2], shareGroupings[3][0]], string.Empty).Secret);
+        Assert.Equal(MS, sss.CombineShares([shareGroupings[2][3], shareGroupings[3][0], shareGroupings[2][4]], string.Empty).Secret);
 
-        Assert.Throws<Slip39Exception>(() =>
-            sss.CombineShares(shareGroupings[0][2..].ArrayConcat(shareGroupings[1][..1]), string.Empty)
-        );
+        Assert.Equal([], sss.CombineShares(shareGroupings[0][2..].ArrayConcat(shareGroupings[1][..1]), string.Empty).Secret);
 
-        Assert.Throws<Slip39Exception>(() =>
-            sss.CombineShares(shareGroupings[0][1..4], string.Empty)
-        );
+        GroupedShares groupedShares = sss.CombineShares(shareGroupings[0][1..4], string.Empty);
+        Assert.Single(groupedShares.ShareGroups);
+        Assert.Equal(3, groupedShares.ShareGroups[0].Length);
+        Assert.Equal([], groupedShares.Secret);
     }
 
     [Fact]
@@ -135,12 +132,12 @@ public class TestShares
         ShamirsSecretSharing sss = new ShamirsSecretSharing(new FakeRandom());
         Share[][] shareGroupings = sss.GenerateShares(true, 0, groupThreshold, groups, string.Empty, MS);
 
-        foreach ((Share[] groupShares, int memberThreshold) in shareGroupings.Zip(groups.Select(g => g.GroupThreshold)))
+        foreach ((Share[] groupShares, int memberThreshold) in shareGroupings.Zip(groups.Select(g => g.ShareThreshold)))
         {
             foreach (Share[] groupSubset in Combinations(groupShares, memberThreshold))
             {
                 Share[] shareSubset = [.. groupSubset.OrderBy(_ => Guid.NewGuid())];
-                Assert.Equal(MS, sss.CombineShares(shareSubset, string.Empty));
+                Assert.Equal(MS, sss.CombineShares(shareSubset, string.Empty).Secret);
             }
         }
     }
@@ -166,7 +163,7 @@ public class TestShares
         ShamirsSecretSharing sss = new ShamirsSecretSharing(new FakeRandom());
 
         Assert.Throws<Slip39Exception>(() =>
-            sss.GenerateShares(true, 0, 1, [new Group(2, 3)], string.Empty, MS.Take(14).ToArray())
+            sss.GenerateShares(true, 0, 1, [new Group(2, 3)], string.Empty, [.. MS.Take(14)])
         );
 
         Assert.Throws<Slip39Exception>(() =>
@@ -198,11 +195,11 @@ public class TestShares
     {
         IEnumerable<IEnumerable<T>> InternalCombinations()
         {
-            T[] pool = iterable.ToArray();
+            T[] pool = [.. iterable];
             int n = pool.Length;
             if (r > n) yield break;
 
-            int[] indices = Enumerable.Range(0, r).ToArray();
+            int[] indices = [.. Enumerable.Range(0, r)];
 
             yield return indices.Select(i => pool[i]);
 
@@ -229,6 +226,6 @@ public class TestShares
             }
         }
 
-        return InternalCombinations().Select(x => x.ToArray()).ToArray();
+        return [.. InternalCombinations().Select(x => x.ToArray())];
     }
 }

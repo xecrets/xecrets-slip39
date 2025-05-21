@@ -23,6 +23,7 @@
 */
 #endregion Copyright and MIT License
 
+using System.Globalization;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -105,7 +106,7 @@ public static class Extensions
         static byte[] FromNone(string secret)
         {
             byte[] secretBytes = Encoding.UTF8.GetBytes(secret);
-            int paddedLength = secretBytes.Length < 16 ? 16 : secretBytes.Length;
+            int paddedLength = secretBytes.Length < 16 ? 16 : secretBytes.Length + 1;
             paddedLength += paddedLength % 2;
             secretBytes = secretBytes
                 .ArrayConcat(Enumerable.Repeat((byte)0xFF, paddedLength - secretBytes.Length).ToArray());
@@ -137,21 +138,39 @@ public static class Extensions
             share = Share.Parse(value);
             return true;
         }
-        catch (ArgumentException)
+        catch (Exception ex) when (ex is ArgumentException or FormatException)
         {
             share = null!;
             return false;
         }
     }
 
+    private static readonly UTF8Encoding _utf8CheckingEncoder = new(encoderShouldEmitUTF8Identifier: false, throwOnInvalidBytes: true);
+
     /// <summary>
-    /// Convert a recovered binary master secret to a UTF-8 encoded string, assuming it may have been padded with 0xFF
-    /// bytes.
+    /// Convert a recovered binary master secret to a UTF-8 encoded string, assuming it has been padded with 0xFF
+    /// bytes. If it can't be interpreted as a valid UTF-8 string, it will be converted to a BIP-39 mnemonic
     /// </summary>
     /// <param name="masterSecret">The binary secret.</param>
-    /// <returns>The original unpadded string.</returns>
+    /// <returns>The original unpadded string, or a BIP-39 mnemonic.</returns>
     public static string ToSecretString(this byte[] masterSecret)
     {
+        static bool IsPrintable(string input)
+        {
+            foreach (char c in input)
+            {
+                UnicodeCategory category = CharUnicodeInfo.GetUnicodeCategory(c);
+                switch (category)
+                {
+                    case UnicodeCategory.Control:
+                    case UnicodeCategory.PrivateUse:
+                    case UnicodeCategory.OtherNotAssigned:
+                        return false;
+                }
+            }
+            return true;
+        }
+
         int paddingLength = 0;
         for (int i = masterSecret.Length - 1; i >= 0; --i)
         {
@@ -162,7 +181,22 @@ public static class Extensions
             paddingLength++;
         }
 
-        return Encoding.UTF8.GetString(masterSecret[..^paddingLength]);
+        if (paddingLength > 0)
+        {
+            try
+            {
+                string secret = _utf8CheckingEncoder.GetString(masterSecret, 0, masterSecret.Length - paddingLength);
+                if (IsPrintable(secret))
+                {
+                    return secret;
+                }
+            }
+            catch (Exception ex) when (ex is DecoderFallbackException or ArgumentException)
+            {
+            }
+        }
+
+        return masterSecret.ToBip39();
     }
 
     /// <summary>
@@ -171,7 +205,7 @@ public static class Extensions
     /// <param name="sss">The <see cref="IShamirsSecretSharing"/> instance.</param>
     /// <param name="shares">The shares to to recover from.</param>
     /// <returns>The recovered master secret.</returns>
-    public static byte[] CombineShares(this IShamirsSecretSharing sss, Share[] shares) =>
+    public static GroupedShares CombineShares(this IShamirsSecretSharing sss, Share[] shares) =>
         sss.CombineShares(shares, string.Empty);
 
     /// <summary>
@@ -262,6 +296,10 @@ public static class Extensions
     /// <returns>The BIP 39 mnemonic string.</returns>
     public static string ToBip39(this byte[] entropy)
     {
+        if (entropy.Length > 32)
+        {
+            return string.Empty;
+        }
         int csLength = entropy.Length * 8 / 32;
         byte[] sha256 = SHA256.HashData(entropy);
         byte[] bytes = entropy.ArrayConcat(sha256[..1]);

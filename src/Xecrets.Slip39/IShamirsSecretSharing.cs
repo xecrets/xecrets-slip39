@@ -54,5 +54,5 @@ public interface IShamirsSecretSharing
     /// <param name="shares">The shares to recover the secret from.</param>
     /// <param name="passphrase">The (optional) passphrase to decrypt the encrypted master secret with.</param>
     /// <returns>The original master secret.</returns>
-    byte[] CombineShares(Share[] shares, string passphrase);
+    GroupedShares CombineShares(Share[] shares, string passphrase);
 }

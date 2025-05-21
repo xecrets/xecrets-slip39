@@ -43,15 +43,15 @@ public class TestSlip39Vectors
         ShamirsSecretSharing sss = new(new FakeRandom());
         if (!string.IsNullOrEmpty(test.SecretHex))
         {
-            Share[] shares = test.Mnemonics.Select((m) =>
+            Share[] shares = [.. test.Mnemonics.Select((m) =>
             {
                 if (!m.TryParse(out Share share))
                 {
                     Assert.Fail($"Failed to parse mnemonic \"{m}\".");
                 }
                 return share;
-            }).ToArray();
-            byte[] secret = sss.CombineShares(shares, "TREZOR");
+            })];
+            byte[] secret = sss.CombineShares(shares, "TREZOR").Secret;
             Assert.Equal(test.SecretHex, Convert.ToHexString(secret).ToLower());
 
             //Assert.Equal(new BIP32Key(secret).ExtendedKey(), xprv);
@@ -60,15 +60,17 @@ public class TestSlip39Vectors
         {
             Assert.Throws<Slip39Exception>((Action)(() =>
             {
-                Share[] shares = test.Mnemonics.Select((m) =>
+                Share[] shares = [.. test.Mnemonics.Select((m) =>
                 {
                     return !m.TryParse(out Share share)
                         ? throw new Slip39Exception(ErrorCode.InvalidMnemonic,
                             $"Failed to parse mnemonic \"{m}\".")
                         : share;
-                }).ToArray();
-                sss.CombineShares((Share[])shares, string.Empty);
-                Assert.Fail($"Failed to raise exception for test vector \"{test.Description}\".");
+                })];
+                GroupedShares gs = sss.CombineShares((Share[])shares, string.Empty);
+                Assert.Equal(shares.Length, gs.ShareGroups.Sum(s => s.Length));
+                Assert.Equal([], gs.Secret);
+                throw new Slip39Exception(ErrorCode.Undefined, "It's actually a success. We don't throw when just not enough shares.");
             }));
         }
     }
@@ -85,16 +87,16 @@ public record Slip39TestVector(string Description, string[] Mnemonics, string Se
         {
             yield return new(
                 Description: (string)x[0],
-                Mnemonics: ((JArray)x[1]).Values<string>().Cast<string>().ToArray(),
+                Mnemonics: [.. ((JArray)x[1]).Values<string>().Cast<string>()],
                 SecretHex: (string)x[2],
                 Xprv: (string)x[3]
             );
         }
     }
 
-    private static readonly Slip39TestVector[] TestCases = VectorsData().ToArray();
+    private static readonly Slip39TestVector[] TestCases = [.. VectorsData()];
 
-    public static TheoryData<Slip39TestVector> TestCasesData => new TheoryData<Slip39TestVector>(TestCases);
+    public static TheoryData<Slip39TestVector> TestCasesData => [.. TestCases];
 
     public override string ToString() => Description;
 }
