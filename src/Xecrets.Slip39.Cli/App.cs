@@ -90,13 +90,13 @@ internal class App(IShamirsSecretSharing sss)
                 Debugger.Launch();
             }
 
-            byte[] masterSecret = sss.CombineShares(sh.Select(sh => Share.Parse(sh)).ToArray());
+            GroupedShares groupedShares = sss.CombineShares([.. sh.Select(sh => Share.Parse(sh))]);
             string secret = format switch
             {
-                StringEncoding.Base64 => masterSecret.ToUrlSafeBase64(),
-                StringEncoding.Hex => masterSecret.ToHex(),
-                StringEncoding.Bip39 => masterSecret.ToBip39(),
-                StringEncoding.None => masterSecret.ToSecretString(),
+                StringEncoding.Base64 => groupedShares.Secret.ToUrlSafeBase64(),
+                StringEncoding.Hex => groupedShares.Secret.ToHex(),
+                StringEncoding.Bip39 => groupedShares.Secret.ToBip39(),
+                StringEncoding.None => groupedShares.Secret.ToSecretString(),
                 _ => throw new NotSupportedException("This format is not supported."),
             };
             Console.WriteLine(secret);

@@ -137,7 +137,7 @@ public static class Extensions
             share = Share.Parse(value);
             return true;
         }
-        catch (ArgumentException)
+        catch (Exception ex) when (ex is ArgumentException or FormatException)
         {
             share = null!;
             return false;
@@ -171,7 +171,7 @@ public static class Extensions
     /// <param name="sss">The <see cref="IShamirsSecretSharing"/> instance.</param>
     /// <param name="shares">The shares to to recover from.</param>
     /// <returns>The recovered master secret.</returns>
-    public static byte[] CombineShares(this IShamirsSecretSharing sss, Share[] shares) =>
+    public static GroupedShares CombineShares(this IShamirsSecretSharing sss, Share[] shares) =>
         sss.CombineShares(shares, string.Empty);
 
     /// <summary>
@@ -262,6 +262,10 @@ public static class Extensions
     /// <returns>The BIP 39 mnemonic string.</returns>
     public static string ToBip39(this byte[] entropy)
     {
+        if (entropy.Length > 32)
+        {
+            return string.Empty;
+        }
         int csLength = entropy.Length * 8 / 32;
         byte[] sha256 = SHA256.HashData(entropy);
         byte[] bytes = entropy.ArrayConcat(sha256[..1]);

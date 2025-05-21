@@ -87,7 +87,7 @@ A third array consisting of the concatenated result.
 Convenience method to recover a master secret from a set of shares, without a password.
 
 ```csharp
-public static byte[] CombineShares(this Xecrets.Slip39.IShamirsSecretSharing sss, Xecrets.Slip39.Share[] shares);
+public static Xecrets.Slip39.GroupedShares CombineShares(this Xecrets.Slip39.IShamirsSecretSharing sss, Xecrets.Slip39.Share[] shares);
 ```
 #### Parameters
 
@@ -104,7 +104,7 @@ The [IShamirsSecretSharing](Xecrets.Slip39.md#Xecrets.Slip39.IShamirsSecretShari
 The shares to to recover from.
 
 #### Returns
-[System.Byte](https://docs.microsoft.com/en-us/dotnet/api/System.Byte 'System.Byte')[[]](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array')  
+[GroupedShares](Xecrets.Slip39.GroupedShares.md 'Xecrets.Slip39.GroupedShares')  
 The recovered master secret.
 
 <a name='Xecrets.Slip39.Extensions.FromBip39(thisstring)'></a>

@@ -11,6 +11,7 @@ The main entry point for the library is through the [IShamirsSecretSharing](Xecr
 | :--- | :--- |
 | [Extensions](Xecrets.Slip39.Extensions.md 'Xecrets.Slip39.Extensions') | A set of useful extensions. |
 | [Group](Xecrets.Slip39.Group.md 'Xecrets.Slip39.Group') | Defines the main parameter of a group. |
+| [GroupedShares](Xecrets.Slip39.GroupedShares.md 'Xecrets.Slip39.GroupedShares') | A collection of groups of shares, possibly complete, or incomplete. |
 | [ShamirsSecretSharing](Xecrets.Slip39.ShamirsSecretSharing.md 'Xecrets.Slip39.ShamirsSecretSharing') | A class for implementing Shamir's Secret Sharing with SLIP-0039 enhancements. |
 | [Share](Xecrets.Slip39.Share.md 'Xecrets.Slip39.Share') | A representation of a Shamir secret sharing share. |
 | [SharePrefix](Xecrets.Slip39.SharePrefix.md 'Xecrets.Slip39.SharePrefix') | A representation of the share prefix, which consists of the parameters for the share. |
@@ -92,7 +93,7 @@ Derived
 Recover the master secret from an appropriate set of shares.
 
 ```csharp
-byte[] CombineShares(Xecrets.Slip39.Share[] shares, string passphrase);
+Xecrets.Slip39.GroupedShares CombineShares(Xecrets.Slip39.Share[] shares, string passphrase);
 ```
 #### Parameters
 
@@ -109,7 +110,7 @@ The shares to recover the secret from.
 The (optional) passphrase to decrypt the encrypted master secret with.
 
 #### Returns
-[System.Byte](https://docs.microsoft.com/en-us/dotnet/api/System.Byte 'System.Byte')[[]](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array')  
+[GroupedShares](Xecrets.Slip39.GroupedShares.md 'Xecrets.Slip39.GroupedShares')  
 The original master secret.
 
 <a name='Xecrets.Slip39.IShamirsSecretSharing.GenerateShares(bool,int,int,Xecrets.Slip39.Group[],string,byte[])'></a>

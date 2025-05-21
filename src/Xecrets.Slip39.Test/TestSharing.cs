@@ -36,28 +36,28 @@ public class TestSharing
         Share[] shares = sss.GenerateShares(2, 4, "secret");
 
         Assert.Equal(16, shares[0].Value.Length);
-        Assert.Equal("secret", sss.CombineShares(shares[..2]).ToSecretString());
-        Assert.Equal("secret", sss.CombineShares(shares[1..3]).ToSecretString());
-        Assert.Equal("secret", sss.CombineShares(shares[2..]).ToSecretString());
-        Assert.Equal("secret", sss.CombineShares([shares[3], shares[0]]).ToSecretString());
+        Assert.Equal("secret", sss.CombineShares(shares[..2]).Secret.ToSecretString());
+        Assert.Equal("secret", sss.CombineShares(shares[1..3]).Secret.ToSecretString());
+        Assert.Equal("secret", sss.CombineShares(shares[2..]).Secret.ToSecretString());
+        Assert.Equal("secret", sss.CombineShares([shares[3], shares[0]]).Secret.ToSecretString());
 
-        string[] strings = shares.Select(s => s.ToString()).ToArray();
-        shares = strings.Select(s => Share.Parse(s)).ToArray();
-
-        Assert.Equal(16, shares[0].Value.Length);
-        Assert.Equal("secret", sss.CombineShares(shares[..2]).ToSecretString());
-        Assert.Equal("secret", sss.CombineShares(shares[1..3]).ToSecretString());
-        Assert.Equal("secret", sss.CombineShares(shares[2..]).ToSecretString());
-        Assert.Equal("secret", sss.CombineShares([shares[3], shares[0]]).ToSecretString());
-
-        strings = shares.Select(s => s.ToString("64")).ToArray();
-        shares = strings.Select(s => Share.Parse(s)).ToArray();
+        string[] strings = [.. shares.Select(s => s.ToString())];
+        shares = [.. strings.Select(s => Share.Parse(s))];
 
         Assert.Equal(16, shares[0].Value.Length);
-        Assert.Equal("secret", sss.CombineShares(shares[..2]).ToSecretString());
-        Assert.Equal("secret", sss.CombineShares(shares[1..3]).ToSecretString());
-        Assert.Equal("secret", sss.CombineShares(shares[2..]).ToSecretString());
-        Assert.Equal("secret", sss.CombineShares([shares[3], shares[0]]).ToSecretString());
+        Assert.Equal("secret", sss.CombineShares(shares[..2]).Secret.ToSecretString());
+        Assert.Equal("secret", sss.CombineShares(shares[1..3]).Secret.ToSecretString());
+        Assert.Equal("secret", sss.CombineShares(shares[2..]).Secret.ToSecretString());
+        Assert.Equal("secret", sss.CombineShares([shares[3], shares[0]]).Secret.ToSecretString());
+
+        strings = [.. shares.Select(s => s.ToString("64"))];
+        shares = [.. strings.Select(s => Share.Parse(s))];
+
+        Assert.Equal(16, shares[0].Value.Length);
+        Assert.Equal("secret", sss.CombineShares(shares[..2]).Secret.ToSecretString());
+        Assert.Equal("secret", sss.CombineShares(shares[1..3]).Secret.ToSecretString());
+        Assert.Equal("secret", sss.CombineShares(shares[2..]).Secret.ToSecretString());
+        Assert.Equal("secret", sss.CombineShares([shares[3], shares[0]]).Secret.ToSecretString());
     }
 
     [Fact]
@@ -67,28 +67,28 @@ public class TestSharing
         Share[] shares = sss.GenerateShares(2, 4, "abcdefghijklmnop");
 
         Assert.Equal(16, shares[0].Value.Length);
-        Assert.Equal("abcdefghijklmnop", sss.CombineShares(shares[..2]).ToSecretString());
-        Assert.Equal("abcdefghijklmnop", sss.CombineShares(shares[1..3]).ToSecretString());
-        Assert.Equal("abcdefghijklmnop", sss.CombineShares(shares[2..]).ToSecretString());
-        Assert.Equal("abcdefghijklmnop", sss.CombineShares([shares[3], shares[0]]).ToSecretString());
+        Assert.Equal("abcdefghijklmnop", sss.CombineShares(shares[..2]).Secret.ToSecretString());
+        Assert.Equal("abcdefghijklmnop", sss.CombineShares(shares[1..3]).Secret.ToSecretString());
+        Assert.Equal("abcdefghijklmnop", sss.CombineShares(shares[2..]).Secret.ToSecretString());
+        Assert.Equal("abcdefghijklmnop", sss.CombineShares([shares[3], shares[0]]).Secret.ToSecretString());
 
-        string[] strings = shares.Select(s => s.ToString()).ToArray();
-        shares = strings.Select(s => Share.Parse(s)).ToArray();
-
-        Assert.Equal(16, shares[0].Value.Length);
-        Assert.Equal("abcdefghijklmnop", sss.CombineShares(shares[..2]).ToSecretString());
-        Assert.Equal("abcdefghijklmnop", sss.CombineShares(shares[1..3]).ToSecretString());
-        Assert.Equal("abcdefghijklmnop", sss.CombineShares(shares[2..]).ToSecretString());
-        Assert.Equal("abcdefghijklmnop", sss.CombineShares([shares[3], shares[0]]).ToSecretString());
-
-        strings = shares.Select(s => s.ToString("64")).ToArray();
-        shares = strings.Select(s => Share.Parse(s)).ToArray();
+        string[] strings = [.. shares.Select(s => s.ToString())];
+        shares = [.. strings.Select(s => Share.Parse(s))];
 
         Assert.Equal(16, shares[0].Value.Length);
-        Assert.Equal("abcdefghijklmnop", sss.CombineShares(shares[..2]).ToSecretString());
-        Assert.Equal("abcdefghijklmnop", sss.CombineShares(shares[1..3]).ToSecretString());
-        Assert.Equal("abcdefghijklmnop", sss.CombineShares(shares[2..]).ToSecretString());
-        Assert.Equal("abcdefghijklmnop", sss.CombineShares([shares[3], shares[0]]).ToSecretString());
+        Assert.Equal("abcdefghijklmnop", sss.CombineShares(shares[..2]).Secret.ToSecretString());
+        Assert.Equal("abcdefghijklmnop", sss.CombineShares(shares[1..3]).Secret.ToSecretString());
+        Assert.Equal("abcdefghijklmnop", sss.CombineShares(shares[2..]).Secret.ToSecretString());
+        Assert.Equal("abcdefghijklmnop", sss.CombineShares([shares[3], shares[0]]).Secret.ToSecretString());
+
+        strings = [.. shares.Select(s => s.ToString("64"))];
+        shares = [.. strings.Select(s => Share.Parse(s))];
+
+        Assert.Equal(16, shares[0].Value.Length);
+        Assert.Equal("abcdefghijklmnop", sss.CombineShares(shares[..2]).Secret.ToSecretString());
+        Assert.Equal("abcdefghijklmnop", sss.CombineShares(shares[1..3]).Secret.ToSecretString());
+        Assert.Equal("abcdefghijklmnop", sss.CombineShares(shares[2..]).Secret.ToSecretString());
+        Assert.Equal("abcdefghijklmnop", sss.CombineShares([shares[3], shares[0]]).Secret.ToSecretString());
     }
 
     [Fact]
@@ -98,28 +98,28 @@ public class TestSharing
         Share[] shares = sss.GenerateShares(2, 4, "abcdefghijklmnopq");
 
         Assert.Equal(18, shares[0].Value.Length);
-        Assert.Equal("abcdefghijklmnopq", sss.CombineShares(shares[..2]).ToSecretString());
-        Assert.Equal("abcdefghijklmnopq", sss.CombineShares(shares[1..3]).ToSecretString());
-        Assert.Equal("abcdefghijklmnopq", sss.CombineShares(shares[2..]).ToSecretString());
-        Assert.Equal("abcdefghijklmnopq", sss.CombineShares([shares[3], shares[0]]).ToSecretString());
+        Assert.Equal("abcdefghijklmnopq", sss.CombineShares(shares[..2]).Secret.ToSecretString());
+        Assert.Equal("abcdefghijklmnopq", sss.CombineShares(shares[1..3]).Secret.ToSecretString());
+        Assert.Equal("abcdefghijklmnopq", sss.CombineShares(shares[2..]).Secret.ToSecretString());
+        Assert.Equal("abcdefghijklmnopq", sss.CombineShares([shares[3], shares[0]]).Secret.ToSecretString());
 
-        string[] strings = shares.Select(s => s.ToString()).ToArray();
-        shares = strings.Select(s => Share.Parse(s)).ToArray();
-
-        Assert.Equal(18, shares[0].Value.Length);
-        Assert.Equal("abcdefghijklmnopq", sss.CombineShares(shares[..2]).ToSecretString());
-        Assert.Equal("abcdefghijklmnopq", sss.CombineShares(shares[1..3]).ToSecretString());
-        Assert.Equal("abcdefghijklmnopq", sss.CombineShares(shares[2..]).ToSecretString());
-        Assert.Equal("abcdefghijklmnopq", sss.CombineShares([shares[3], shares[0]]).ToSecretString());
-
-        strings = shares.Select(s => s.ToString("64")).ToArray();
-        shares = strings.Select(s => Share.Parse(s)).ToArray();
+        string[] strings = [.. shares.Select(s => s.ToString())];
+        shares = [.. strings.Select(s => Share.Parse(s))];
 
         Assert.Equal(18, shares[0].Value.Length);
-        Assert.Equal("abcdefghijklmnopq", sss.CombineShares(shares[..2]).ToSecretString());
-        Assert.Equal("abcdefghijklmnopq", sss.CombineShares(shares[1..3]).ToSecretString());
-        Assert.Equal("abcdefghijklmnopq", sss.CombineShares(shares[2..]).ToSecretString());
-        Assert.Equal("abcdefghijklmnopq", sss.CombineShares([shares[3], shares[0]]).ToSecretString());
+        Assert.Equal("abcdefghijklmnopq", sss.CombineShares(shares[..2]).Secret.ToSecretString());
+        Assert.Equal("abcdefghijklmnopq", sss.CombineShares(shares[1..3]).Secret.ToSecretString());
+        Assert.Equal("abcdefghijklmnopq", sss.CombineShares(shares[2..]).Secret.ToSecretString());
+        Assert.Equal("abcdefghijklmnopq", sss.CombineShares([shares[3], shares[0]]).Secret.ToSecretString());
+
+        strings = [.. shares.Select(s => s.ToString("64"))];
+        shares = [.. strings.Select(s => Share.Parse(s))];
+
+        Assert.Equal(18, shares[0].Value.Length);
+        Assert.Equal("abcdefghijklmnopq", sss.CombineShares(shares[..2]).Secret.ToSecretString());
+        Assert.Equal("abcdefghijklmnopq", sss.CombineShares(shares[1..3]).Secret.ToSecretString());
+        Assert.Equal("abcdefghijklmnopq", sss.CombineShares(shares[2..]).Secret.ToSecretString());
+        Assert.Equal("abcdefghijklmnopq", sss.CombineShares([shares[3], shares[0]]).Secret.ToSecretString());
     }
 
     [Fact]
@@ -129,27 +129,27 @@ public class TestSharing
         Share[] shares = sss.GenerateShares(2, 4, "abcdefghijklmnopqr");
 
         Assert.Equal(18, shares[0].Value.Length);
-        Assert.Equal("abcdefghijklmnopqr", sss.CombineShares(shares[..2]).ToSecretString());
-        Assert.Equal("abcdefghijklmnopqr", sss.CombineShares(shares[1..3]).ToSecretString());
-        Assert.Equal("abcdefghijklmnopqr", sss.CombineShares(shares[2..]).ToSecretString());
-        Assert.Equal("abcdefghijklmnopqr", sss.CombineShares([shares[3], shares[0]]).ToSecretString());
+        Assert.Equal("abcdefghijklmnopqr", sss.CombineShares(shares[..2]).Secret.ToSecretString());
+        Assert.Equal("abcdefghijklmnopqr", sss.CombineShares(shares[1..3]).Secret.ToSecretString());
+        Assert.Equal("abcdefghijklmnopqr", sss.CombineShares(shares[2..]).Secret.ToSecretString());
+        Assert.Equal("abcdefghijklmnopqr", sss.CombineShares([shares[3], shares[0]]).Secret.ToSecretString());
 
-        string[] strings = shares.Select(s => s.ToString()).ToArray();
-        shares = strings.Select(s => Share.Parse(s)).ToArray();
-
-        Assert.Equal(18, shares[0].Value.Length);
-        Assert.Equal("abcdefghijklmnopqr", sss.CombineShares(shares[..2]).ToSecretString());
-        Assert.Equal("abcdefghijklmnopqr", sss.CombineShares(shares[1..3]).ToSecretString());
-        Assert.Equal("abcdefghijklmnopqr", sss.CombineShares(shares[2..]).ToSecretString());
-        Assert.Equal("abcdefghijklmnopqr", sss.CombineShares([shares[3], shares[0]]).ToSecretString());
-
-        strings = shares.Select(s => s.ToString("64")).ToArray();
-        shares = strings.Select(s => Share.Parse(s)).ToArray();
+        string[] strings = [.. shares.Select(s => s.ToString())];
+        shares = [.. strings.Select(s => Share.Parse(s))];
 
         Assert.Equal(18, shares[0].Value.Length);
-        Assert.Equal("abcdefghijklmnopqr", sss.CombineShares(shares[..2]).ToSecretString());
-        Assert.Equal("abcdefghijklmnopqr", sss.CombineShares(shares[1..3]).ToSecretString());
-        Assert.Equal("abcdefghijklmnopqr", sss.CombineShares(shares[2..]).ToSecretString());
-        Assert.Equal("abcdefghijklmnopqr", sss.CombineShares([shares[3], shares[0]]).ToSecretString());
+        Assert.Equal("abcdefghijklmnopqr", sss.CombineShares(shares[..2]).Secret.ToSecretString());
+        Assert.Equal("abcdefghijklmnopqr", sss.CombineShares(shares[1..3]).Secret.ToSecretString());
+        Assert.Equal("abcdefghijklmnopqr", sss.CombineShares(shares[2..]).Secret.ToSecretString());
+        Assert.Equal("abcdefghijklmnopqr", sss.CombineShares([shares[3], shares[0]]).Secret.ToSecretString());
+
+        strings = [.. shares.Select(s => s.ToString("64"))];
+        shares = [.. strings.Select(s => Share.Parse(s))];
+
+        Assert.Equal(18, shares[0].Value.Length);
+        Assert.Equal("abcdefghijklmnopqr", sss.CombineShares(shares[..2]).Secret.ToSecretString());
+        Assert.Equal("abcdefghijklmnopqr", sss.CombineShares(shares[1..3]).Secret.ToSecretString());
+        Assert.Equal("abcdefghijklmnopqr", sss.CombineShares(shares[2..]).Secret.ToSecretString());
+        Assert.Equal("abcdefghijklmnopqr", sss.CombineShares([shares[3], shares[0]]).Secret.ToSecretString());
     }
 }

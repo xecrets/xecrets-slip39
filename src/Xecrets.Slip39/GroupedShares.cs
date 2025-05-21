@@ -28,8 +28,8 @@
 namespace Xecrets.Slip39;
 
 /// <summary>
-/// Defines the main parameter of a group.
+/// A collection of groups of shares, possibly complete, or incomplete.
 /// </summary>
-/// <param name="ShareThreshold">Share threshold for group i, a positive integer, 1 ≤ Ti ≤ Ni.</param>
-/// <param name="ShareCount">Total number of shares in group i, a positive integer, 1 ≤ Ni ≤ 16.</param>
-public record Group(int ShareThreshold, int ShareCount);
+/// <param name="ShareGroups">An array of groups of shares.</param>
+/// <param name="Secret">The secret encoded by the shares, or an empty array</param>
+public record GroupedShares(Share[][] ShareGroups, byte[] Secret);
