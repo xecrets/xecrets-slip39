@@ -6,8 +6,7 @@
 Defines the main parameter of a group.
 
 ```csharp
-public class Group :
-System.IEquatable<Xecrets.Slip39.Group>
+public record Group : System.IEquatable<Xecrets.Slip39.Group>
 ```
 
 Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; Group
@@ -46,7 +45,7 @@ Total number of shares in group i, a positive integer, 1 ≤ Ni ≤ 16.
 Total number of shares in group i, a positive integer, 1 ≤ Ni ≤ 16.
 
 ```csharp
-public int ShareCount { get; set; }
+public int ShareCount { get; init; }
 ```
 
 #### Property Value
@@ -59,7 +58,7 @@ public int ShareCount { get; set; }
 Share threshold for group i, a positive integer, 1 ≤ Ti ≤ Ni.
 
 ```csharp
-public int ShareThreshold { get; set; }
+public int ShareThreshold { get; init; }
 ```
 
 #### Property Value

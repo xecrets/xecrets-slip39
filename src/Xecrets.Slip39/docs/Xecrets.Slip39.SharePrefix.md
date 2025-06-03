@@ -48,7 +48,7 @@ public static readonly int LengthBits;
 
 ## SharePrefix.Extendable Property
 
-The extendable backup flag (ext) field indicates that the id is used as  
+The extendable backup flag (ext) field indicates that the id is used as
 salt in the encryption of the master secret when ext = 0.
 
 ```csharp
@@ -88,8 +88,8 @@ public int GroupIndex { get; }
 
 ## SharePrefix.GroupThreshold Property
 
-The group threshold (Gt) field indicates how many group shares are needed to reconstruct the master secret. The  
-actual value is encoded as Gt = GT − 1, so a value of 0 indicates that a single group share is needed (GT = 1),  
+The group threshold (Gt) field indicates how many group shares are needed to reconstruct the master secret. The
+actual value is encoded as Gt = GT − 1, so a value of 0 indicates that a single group share is needed (GT = 1),
 a value of 1 indicates that two group shares are needed (GT = 2) etc.
 
 ```csharp
@@ -103,7 +103,7 @@ public int GroupThreshold { get; }
 
 ## SharePrefix.Id Property
 
-The identifier (id) field is a random 15-bit value which is the same for all shares and is used to verify that  
+The identifier (id) field is a random 15-bit value which is the same for all shares and is used to verify that
 the shares belong together.
 
 ```csharp
@@ -117,7 +117,7 @@ public int Id { get; }
 
 ## SharePrefix.IterationExponent Property
 
-The iteration exponent (e) field indicates the total number of iterations to be used in PBKDF2. The number of  
+The iteration exponent (e) field indicates the total number of iterations to be used in PBKDF2. The number of
 iterations is calculated as 10000×2^e.
 
 ```csharp
@@ -144,7 +144,7 @@ public int MemberIndex { get; }
 
 ## SharePrefix.MemberThreshold Property
 
-The member threshold (t) field indicates how many member shares are needed to reconstruct the group share. The  
+The member threshold (t) field indicates how many member shares are needed to reconstruct the group share. The
 actual value is encoded as t = T − 1.
 
 ```csharp

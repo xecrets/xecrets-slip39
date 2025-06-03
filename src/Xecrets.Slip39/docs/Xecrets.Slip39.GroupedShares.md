@@ -6,8 +6,7 @@
 A collection of groups of shares, possibly complete, or incomplete.
 
 ```csharp
-public class GroupedShares :
-System.IEquatable<Xecrets.Slip39.GroupedShares>
+public record GroupedShares : System.IEquatable<Xecrets.Slip39.GroupedShares>
 ```
 
 Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; GroupedShares
@@ -46,7 +45,7 @@ The secret encoded by the shares, or an empty array
 The secret encoded by the shares, or an empty array
 
 ```csharp
-public byte[] Secret { get; set; }
+public byte[] Secret { get; init; }
 ```
 
 #### Property Value
@@ -59,7 +58,7 @@ public byte[] Secret { get; set; }
 An array of groups of shares.
 
 ```csharp
-public Xecrets.Slip39.Share[][] ShareGroups { get; set; }
+public Xecrets.Slip39.Share[][] ShareGroups { get; init; }
 ```
 
 #### Property Value

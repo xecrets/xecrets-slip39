@@ -3,7 +3,7 @@
 
 ## Slip39Exception Class
 
-Creates an exception for catcheable Slip39 errors. This will only be thrown when the error is due to incorrect  
+Creates an exception for catcheable Slip39 errors. This will only be thrown when the error is due to incorrect
 input data, not due to an internal error or programming errors et.
 
 ```csharp
@@ -17,7 +17,7 @@ Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.O
 
 ## Slip39Exception(ErrorCode, string) Constructor
 
-Creates an exception for catcheable Slip39 errors. This will only be thrown when the error is due to incorrect  
+Creates an exception for catcheable Slip39 errors. This will only be thrown when the error is due to incorrect
 input data, not due to an internal error or programming errors et.
 
 ```csharp

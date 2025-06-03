@@ -2,9 +2,9 @@
 
 ## Xecrets.Slip39 Namespace
 
-The main entry point for the library is through the [IShamirsSecretSharing](Xecrets.Slip39.md#Xecrets.Slip39.IShamirsSecretSharing 'Xecrets.Slip39.IShamirsSecretSharing') interface, which  
-            has a default implementation in [ShamirsSecretSharing](Xecrets.Slip39.ShamirsSecretSharing.md 'Xecrets.Slip39.ShamirsSecretSharing'). The only other public type of importance is  
-            [Share](Xecrets.Slip39.Share.md 'Xecrets.Slip39.Share') which is how generated shares are represented and returned. It also has a static method to  
+The main entry point for the library is through the [IShamirsSecretSharing](Xecrets.Slip39.md#Xecrets.Slip39.IShamirsSecretSharing 'Xecrets.Slip39.IShamirsSecretSharing') interface, which
+            has a default implementation in [ShamirsSecretSharing](Xecrets.Slip39.ShamirsSecretSharing.md 'Xecrets.Slip39.ShamirsSecretSharing'). The only other public type of importance is
+            [Share](Xecrets.Slip39.Share.md 'Xecrets.Slip39.Share') which is how generated shares are represented and returned. It also has a static method to
             parse a share string into a [Share](Xecrets.Slip39.Share.md 'Xecrets.Slip39.Share') object.
 
 | Classes | |
@@ -15,7 +15,7 @@ The main entry point for the library is through the [IShamirsSecretSharing](Xecr
 | [ShamirsSecretSharing](Xecrets.Slip39.ShamirsSecretSharing.md 'Xecrets.Slip39.ShamirsSecretSharing') | A class for implementing Shamir's Secret Sharing with SLIP-0039 enhancements. |
 | [Share](Xecrets.Slip39.Share.md 'Xecrets.Slip39.Share') | A representation of a Shamir secret sharing share. |
 | [SharePrefix](Xecrets.Slip39.SharePrefix.md 'Xecrets.Slip39.SharePrefix') | A representation of the share prefix, which consists of the parameters for the share. |
-| [Slip39Exception](Xecrets.Slip39.Slip39Exception.md 'Xecrets.Slip39.Slip39Exception') | Creates an exception for catcheable Slip39 errors. This will only be thrown when the error is due to incorrect<br/>input data, not due to an internal error or programming errors et. |
+| [Slip39Exception](Xecrets.Slip39.Slip39Exception.md 'Xecrets.Slip39.Slip39Exception') | Creates an exception for catcheable Slip39 errors. This will only be thrown when the error is due to incorrect input data, not due to an internal error or programming errors et. |
 | [StrongRandom](Xecrets.Slip39.StrongRandom.md 'Xecrets.Slip39.StrongRandom') | An [IRandom](Xecrets.Slip39.md#Xecrets.Slip39.IRandom 'Xecrets.Slip39.IRandom') implementation using [System.Security.Cryptography.RandomNumberGenerator](https://docs.microsoft.com/en-us/dotnet/api/System.Security.Cryptography.RandomNumberGenerator 'System.Security.Cryptography.RandomNumberGenerator'). |
 ### Interfaces
 
@@ -75,7 +75,7 @@ A [System.Byte](https://docs.microsoft.com/en-us/dotnet/api/System.Byte 'System.
 
 ## IShamirsSecretSharing Interface
 
-Implement Shamirs Secret Sharing according to <seealso href="https://github.com/satoshilabs/slips/blob/master/slip-0039.md">  
+Implement Shamirs Secret Sharing according to <seealso href="https://github.com/satoshilabs/slips/blob/master/slip-0039.md">
 SLIP-039</seealso>.
 
 ```csharp
@@ -128,14 +128,14 @@ Xecrets.Slip39.Share[][] GenerateShares(bool extendable, int iterationExponent, 
 
 `extendable` [System.Boolean](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean 'System.Boolean')
 
-Indicates that the id is used as salt in the encryption of the master secret when  
+Indicates that the id is used as salt in the encryption of the master secret when
             false.
 
 <a name='Xecrets.Slip39.IShamirsSecretSharing.GenerateShares(bool,int,int,Xecrets.Slip39.Group[],string,byte[]).iterationExponent'></a>
 
 `iterationExponent` [System.Int32](https://docs.microsoft.com/en-us/dotnet/api/System.Int32 'System.Int32')
 
-The total number of iterations to be used in PBKDF2, calculated as  
+The total number of iterations to be used in PBKDF2, calculated as
             10000×2^e.
 
 <a name='Xecrets.Slip39.IShamirsSecretSharing.GenerateShares(bool,int,int,Xecrets.Slip39.Group[],string,byte[]).groupThreshold'></a>
@@ -164,10 +164,10 @@ The master secret, at least 128 bits and a multiple of 16 bits.
 
 #### Returns
 [Share](Xecrets.Slip39.Share.md 'Xecrets.Slip39.Share')[[]](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array')[[]](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array')  
-A [Share](https://docs.microsoft.com/en-us/dotnet/api/Share 'Share')[][] with shares that can be distributed according to the threshold  
+A [Share](https://docs.microsoft.com/en-us/dotnet/api/Share 'Share')[][] with shares that can be distributed according to the threshold
             parameters.
 
 | Enums | |
 | :--- | :--- |
-| [ErrorCode](Xecrets.Slip39.ErrorCode.md 'Xecrets.Slip39.ErrorCode') | Error codes used in [Slip39Exception](https://docs.microsoft.com/en-us/dotnet/api/Slip39Exception 'Slip39Exception') to facilitate UI error messages to users with localization etc.<br/>The full english text of the actual error is found in the message property of the exception. |
+| [ErrorCode](Xecrets.Slip39.ErrorCode.md 'Xecrets.Slip39.ErrorCode') | Error codes used in [Slip39Exception](https://docs.microsoft.com/en-us/dotnet/api/Slip39Exception 'Slip39Exception') to facilitate UI error messages to users with localization etc. The full english text of the actual error is found in the message property of the exception. |
 | [StringEncoding](Xecrets.Slip39.StringEncoding.md 'Xecrets.Slip39.StringEncoding') | The master secret string encoding |

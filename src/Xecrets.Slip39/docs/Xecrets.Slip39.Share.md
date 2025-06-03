@@ -80,7 +80,7 @@ public string ToString(string format);
 
 `format` [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')
 
-How the string should be formated. Empty and "G" produces a list of space separated  
+How the string should be formated. Empty and "G" produces a list of space separated
             mnemonic words. "64" produces an URL-safe base 64 representation. "X" produces a hex string.
 
 #### Returns

@@ -6,8 +6,7 @@
 A class for implementing Shamir's Secret Sharing with SLIP-0039 enhancements.
 
 ```csharp
-public class ShamirsSecretSharing :
-Xecrets.Slip39.IShamirsSecretSharing
+public class ShamirsSecretSharing : Xecrets.Slip39.IShamirsSecretSharing
 ```
 
 Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; ShamirsSecretSharing
@@ -84,7 +83,7 @@ public Xecrets.Slip39.Share[][] GenerateShares(bool extendable, int iterationExp
 
 `iterationExponent` [System.Int32](https://docs.microsoft.com/en-us/dotnet/api/System.Int32 'System.Int32')
 
-Exponent to determine the number of iterations for the encryption  
+Exponent to determine the number of iterations for the encryption
             algorithm.
 
 <a name='Xecrets.Slip39.ShamirsSecretSharing.GenerateShares(bool,int,int,Xecrets.Slip39.Group[],string,byte[]).groupThreshold'></a>
@@ -97,7 +96,7 @@ The number of groups required to reconstruct the secret.
 
 `groups` [Group](Xecrets.Slip39.Group.md 'Xecrets.Slip39.Group')[[]](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array')
 
-Array of tuples where each tuple represents (groupThreshold, shareCount) for each  
+Array of tuples where each tuple represents (groupThreshold, shareCount) for each
             group.
 
 <a name='Xecrets.Slip39.ShamirsSecretSharing.GenerateShares(bool,int,int,Xecrets.Slip39.Group[],string,byte[]).passphrase'></a>

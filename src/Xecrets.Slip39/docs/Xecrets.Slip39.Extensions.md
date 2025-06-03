@@ -174,7 +174,7 @@ The converted bytes.
 
 ## Extensions.GenerateShares(this IShamirsSecretSharing, int, int, byte[]) Method
 
-Convenience method to generate shares for the simple case of a single group of shares with a single threshold,  
+Convenience method to generate shares for the simple case of a single group of shares with a single threshold,
 and no encryption.
 
 ```csharp
@@ -208,14 +208,14 @@ The master secret to share.
 
 #### Returns
 [Share](Xecrets.Slip39.Share.md 'Xecrets.Slip39.Share')[[]](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array')  
-The set of shares, of which [memberThreshold](Xecrets.Slip39.Extensions.md#Xecrets.Slip39.Extensions.GenerateShares(thisXecrets.Slip39.IShamirsSecretSharing,int,int,byte[]).memberThreshold 'Xecrets.Slip39.Extensions.GenerateShares(this Xecrets.Slip39.IShamirsSecretSharing, int, int, byte[]).memberThreshold') are required to recover the  
+The set of shares, of which [memberThreshold](Xecrets.Slip39.Extensions.md#Xecrets.Slip39.Extensions.GenerateShares(thisXecrets.Slip39.IShamirsSecretSharing,int,int,byte[]).memberThreshold 'Xecrets.Slip39.Extensions.GenerateShares(this Xecrets.Slip39.IShamirsSecretSharing, int, int, byte[]).memberThreshold') are required to recover the
             secret.
 
 <a name='Xecrets.Slip39.Extensions.GenerateShares(thisXecrets.Slip39.IShamirsSecretSharing,int,int,string)'></a>
 
 ## Extensions.GenerateShares(this IShamirsSecretSharing, int, int, string) Method
 
-Convenience method to generate shares for the simple case of a single group of shares with a single threshold,  
+Convenience method to generate shares for the simple case of a single group of shares with a single threshold,
 and no encryption.
 
 ```csharp
@@ -249,19 +249,19 @@ The master secret to share as a string.
 
 #### Returns
 [Share](Xecrets.Slip39.Share.md 'Xecrets.Slip39.Share')[[]](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array')  
-The set of shares, of which [memberThreshold](Xecrets.Slip39.Extensions.md#Xecrets.Slip39.Extensions.GenerateShares(thisXecrets.Slip39.IShamirsSecretSharing,int,int,string).memberThreshold 'Xecrets.Slip39.Extensions.GenerateShares(this Xecrets.Slip39.IShamirsSecretSharing, int, int, string).memberThreshold') are required to recover the  
+The set of shares, of which [memberThreshold](Xecrets.Slip39.Extensions.md#Xecrets.Slip39.Extensions.GenerateShares(thisXecrets.Slip39.IShamirsSecretSharing,int,int,string).memberThreshold 'Xecrets.Slip39.Extensions.GenerateShares(this Xecrets.Slip39.IShamirsSecretSharing, int, int, string).memberThreshold') are required to recover the
             secret.
 
 ### Remarks
-The master secret is encoded as a [System.Byte](https://docs.microsoft.com/en-us/dotnet/api/System.Byte 'System.Byte')[] with UTF-8 encoded bytes, and if required  
-padded with 0xff to fulfil the requirements. When recovering the secret, any trailing 0xff bytes thus need to  
+The master secret is encoded as a [System.Byte](https://docs.microsoft.com/en-us/dotnet/api/System.Byte 'System.Byte')[] with UTF-8 encoded bytes, and if required
+padded with 0xff to fulfil the requirements. When recovering the secret, any trailing 0xff bytes thus need to
 be trimmed before producing the original master secret string, <seealso cref="M:Xecrets.Slip39.Extensions.ToSecretString(System.Byte[])"/>.
 
 <a name='Xecrets.Slip39.Extensions.GenerateShares(thisXecrets.Slip39.IShamirsSecretSharing,int,int,string,Xecrets.Slip39.StringEncoding)'></a>
 
 ## Extensions.GenerateShares(this IShamirsSecretSharing, int, int, string, StringEncoding) Method
 
-Convenience method to generate shares for the simple case of a single group of shares with a single threshold,  
+Convenience method to generate shares for the simple case of a single group of shares with a single threshold,
 and no encryption.
 
 ```csharp
@@ -301,12 +301,12 @@ The type of [StringEncoding](Xecrets.Slip39.StringEncoding.md 'Xecrets.Slip39.St
 
 #### Returns
 [Share](Xecrets.Slip39.Share.md 'Xecrets.Slip39.Share')[[]](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array')  
-The set of shares, of which [memberThreshold](Xecrets.Slip39.Extensions.md#Xecrets.Slip39.Extensions.GenerateShares(thisXecrets.Slip39.IShamirsSecretSharing,int,int,string,Xecrets.Slip39.StringEncoding).memberThreshold 'Xecrets.Slip39.Extensions.GenerateShares(this Xecrets.Slip39.IShamirsSecretSharing, int, int, string, Xecrets.Slip39.StringEncoding).memberThreshold') are required to recover the  
+The set of shares, of which [memberThreshold](Xecrets.Slip39.Extensions.md#Xecrets.Slip39.Extensions.GenerateShares(thisXecrets.Slip39.IShamirsSecretSharing,int,int,string,Xecrets.Slip39.StringEncoding).memberThreshold 'Xecrets.Slip39.Extensions.GenerateShares(this Xecrets.Slip39.IShamirsSecretSharing, int, int, string, Xecrets.Slip39.StringEncoding).memberThreshold') are required to recover the
             secret.
 
 ### Remarks
-The master secret is encoded as a [System.Byte](https://docs.microsoft.com/en-us/dotnet/api/System.Byte 'System.Byte')[] of UTF-8 encoded bytes, and if required padded  
-with 0xff to fulfil the requirements. When recovering the secret, any trailing 0xff bytes thus need to be  
+The master secret is encoded as a [System.Byte](https://docs.microsoft.com/en-us/dotnet/api/System.Byte 'System.Byte')[] of UTF-8 encoded bytes, and if required padded
+with 0xff to fulfil the requirements. When recovering the secret, any trailing 0xff bytes thus need to be
 trimmed before producing the original master secret string, <seealso cref="M:Xecrets.Slip39.Extensions.ToSecretString(System.Byte[])"/>.
 
 <a name='Xecrets.Slip39.Extensions.ToBip39(thisbyte[])'></a>
@@ -387,7 +387,7 @@ If an unknown encoding is specified.
 
 ## Extensions.ToSecretString(this byte[]) Method
 
-Convert a recovered binary master secret to a UTF-8 encoded string, assuming it has been padded with 0xFF  
+Convert a recovered binary master secret to a UTF-8 encoded string, assuming it has been padded with 0xFF
 bytes. If it can't be interpreted as a valid UTF-8 string, it will be converted to a BIP-39 mnemonic
 
 ```csharp
