@@ -3,13 +3,13 @@
 
 ## StrongRandom Class
 
-An [IRandom](Xecrets.Slip39.md#Xecrets.Slip39.IRandom 'Xecrets.Slip39.IRandom') implementation using [System.Security.Cryptography.RandomNumberGenerator](https://docs.microsoft.com/en-us/dotnet/api/System.Security.Cryptography.RandomNumberGenerator 'System.Security.Cryptography.RandomNumberGenerator').
+An [IRandom](Xecrets.Slip39.md#Xecrets.Slip39.IRandom 'Xecrets.Slip39.IRandom') implementation using [System.Security.Cryptography.RandomNumberGenerator](https://learn.microsoft.com/en-us/dotnet/api/system.security.cryptography.randomnumbergenerator 'System.Security.Cryptography.RandomNumberGenerator').
 
 ```csharp
 public class StrongRandom : Xecrets.Slip39.IRandom
 ```
 
-Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; StrongRandom
+Inheritance [System.Object](https://learn.microsoft.com/en-us/dotnet/api/system.object 'System.Object') &#129106; StrongRandom
 
 Implements [IRandom](Xecrets.Slip39.md#Xecrets.Slip39.IRandom 'Xecrets.Slip39.IRandom')
 ### Methods
@@ -27,7 +27,7 @@ public void GetBytes(byte[] buffer);
 
 <a name='Xecrets.Slip39.StrongRandom.GetBytes(byte[]).buffer'></a>
 
-`buffer` [System.Byte](https://docs.microsoft.com/en-us/dotnet/api/System.Byte 'System.Byte')[[]](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array')
+`buffer` [System.Byte](https://learn.microsoft.com/en-us/dotnet/api/system.byte 'System.Byte')[[]](https://learn.microsoft.com/en-us/dotnet/api/system.array 'System.Array')
 
 The buffer to fill.
 
@@ -37,7 +37,7 @@ Implements [GetBytes(byte[])](Xecrets.Slip39.md#Xecrets.Slip39.IRandom.GetBytes(
 
 ## StrongRandom.GetBytes(int) Method
 
-Get a [System.Byte](https://docs.microsoft.com/en-us/dotnet/api/System.Byte 'System.Byte')[] with random bytes.
+Get a [System.Byte](https://learn.microsoft.com/en-us/dotnet/api/system.byte 'System.Byte')[] with random bytes.
 
 ```csharp
 public byte[] GetBytes(int count);
@@ -46,12 +46,12 @@ public byte[] GetBytes(int count);
 
 <a name='Xecrets.Slip39.StrongRandom.GetBytes(int).count'></a>
 
-`count` [System.Int32](https://docs.microsoft.com/en-us/dotnet/api/System.Int32 'System.Int32')
+`count` [System.Int32](https://learn.microsoft.com/en-us/dotnet/api/system.int32 'System.Int32')
 
 The number of random bytes to get.
 
 Implements [GetBytes(int)](Xecrets.Slip39.md#Xecrets.Slip39.IRandom.GetBytes(int) 'Xecrets.Slip39.IRandom.GetBytes(int)')
 
 #### Returns
-[System.Byte](https://docs.microsoft.com/en-us/dotnet/api/System.Byte 'System.Byte')[[]](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array')  
-A [System.Byte](https://docs.microsoft.com/en-us/dotnet/api/System.Byte 'System.Byte')[] with random bytes.
+[System.Byte](https://learn.microsoft.com/en-us/dotnet/api/system.byte 'System.Byte')[[]](https://learn.microsoft.com/en-us/dotnet/api/system.array 'System.Array')  
+A [System.Byte](https://learn.microsoft.com/en-us/dotnet/api/system.byte 'System.Byte')[] with random bytes.

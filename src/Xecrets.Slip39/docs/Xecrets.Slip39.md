@@ -16,7 +16,7 @@ The main entry point for the library is through the [IShamirsSecretSharing](Xecr
 | [Share](Xecrets.Slip39.Share.md 'Xecrets.Slip39.Share') | A representation of a Shamir secret sharing share. |
 | [SharePrefix](Xecrets.Slip39.SharePrefix.md 'Xecrets.Slip39.SharePrefix') | A representation of the share prefix, which consists of the parameters for the share. |
 | [Slip39Exception](Xecrets.Slip39.Slip39Exception.md 'Xecrets.Slip39.Slip39Exception') | Creates an exception for catcheable Slip39 errors. This will only be thrown when the error is due to incorrect input data, not due to an internal error or programming errors et. |
-| [StrongRandom](Xecrets.Slip39.StrongRandom.md 'Xecrets.Slip39.StrongRandom') | An [IRandom](Xecrets.Slip39.md#Xecrets.Slip39.IRandom 'Xecrets.Slip39.IRandom') implementation using [System.Security.Cryptography.RandomNumberGenerator](https://docs.microsoft.com/en-us/dotnet/api/System.Security.Cryptography.RandomNumberGenerator 'System.Security.Cryptography.RandomNumberGenerator'). |
+| [StrongRandom](Xecrets.Slip39.StrongRandom.md 'Xecrets.Slip39.StrongRandom') | An [IRandom](Xecrets.Slip39.md#Xecrets.Slip39.IRandom 'Xecrets.Slip39.IRandom') implementation using [System.Security.Cryptography.RandomNumberGenerator](https://learn.microsoft.com/en-us/dotnet/api/system.security.cryptography.randomnumbergenerator 'System.Security.Cryptography.RandomNumberGenerator'). |
 ### Interfaces
 
 <a name='Xecrets.Slip39.IRandom'></a>
@@ -46,7 +46,7 @@ void GetBytes(byte[] buffer);
 
 <a name='Xecrets.Slip39.IRandom.GetBytes(byte[]).buffer'></a>
 
-`buffer` [System.Byte](https://docs.microsoft.com/en-us/dotnet/api/System.Byte 'System.Byte')[[]](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array')
+`buffer` [System.Byte](https://learn.microsoft.com/en-us/dotnet/api/system.byte 'System.Byte')[[]](https://learn.microsoft.com/en-us/dotnet/api/system.array 'System.Array')
 
 The buffer to fill.
 
@@ -54,7 +54,7 @@ The buffer to fill.
 
 ## IRandom.GetBytes(int) Method
 
-Get a [System.Byte](https://docs.microsoft.com/en-us/dotnet/api/System.Byte 'System.Byte')[] with random bytes.
+Get a [System.Byte](https://learn.microsoft.com/en-us/dotnet/api/system.byte 'System.Byte')[] with random bytes.
 
 ```csharp
 byte[] GetBytes(int count);
@@ -63,13 +63,13 @@ byte[] GetBytes(int count);
 
 <a name='Xecrets.Slip39.IRandom.GetBytes(int).count'></a>
 
-`count` [System.Int32](https://docs.microsoft.com/en-us/dotnet/api/System.Int32 'System.Int32')
+`count` [System.Int32](https://learn.microsoft.com/en-us/dotnet/api/system.int32 'System.Int32')
 
 The number of random bytes to get.
 
 #### Returns
-[System.Byte](https://docs.microsoft.com/en-us/dotnet/api/System.Byte 'System.Byte')[[]](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array')  
-A [System.Byte](https://docs.microsoft.com/en-us/dotnet/api/System.Byte 'System.Byte')[] with random bytes.
+[System.Byte](https://learn.microsoft.com/en-us/dotnet/api/system.byte 'System.Byte')[[]](https://learn.microsoft.com/en-us/dotnet/api/system.array 'System.Array')  
+A [System.Byte](https://learn.microsoft.com/en-us/dotnet/api/system.byte 'System.Byte')[] with random bytes.
 
 <a name='Xecrets.Slip39.IShamirsSecretSharing'></a>
 
@@ -99,13 +99,13 @@ Xecrets.Slip39.GroupedShares CombineShares(Xecrets.Slip39.Share[] shares, string
 
 <a name='Xecrets.Slip39.IShamirsSecretSharing.CombineShares(Xecrets.Slip39.Share[],string).shares'></a>
 
-`shares` [Share](Xecrets.Slip39.Share.md 'Xecrets.Slip39.Share')[[]](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array')
+`shares` [Share](Xecrets.Slip39.Share.md 'Xecrets.Slip39.Share')[[]](https://learn.microsoft.com/en-us/dotnet/api/system.array 'System.Array')
 
 The shares to recover the secret from.
 
 <a name='Xecrets.Slip39.IShamirsSecretSharing.CombineShares(Xecrets.Slip39.Share[],string).passphrase'></a>
 
-`passphrase` [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')
+`passphrase` [System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System.String')
 
 The (optional) passphrase to decrypt the encrypted master secret with.
 
@@ -126,48 +126,48 @@ Xecrets.Slip39.Share[][] GenerateShares(bool extendable, int iterationExponent, 
 
 <a name='Xecrets.Slip39.IShamirsSecretSharing.GenerateShares(bool,int,int,Xecrets.Slip39.Group[],string,byte[]).extendable'></a>
 
-`extendable` [System.Boolean](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean 'System.Boolean')
+`extendable` [System.Boolean](https://learn.microsoft.com/en-us/dotnet/api/system.boolean 'System.Boolean')
 
 Indicates that the id is used as salt in the encryption of the master secret when
             false.
 
 <a name='Xecrets.Slip39.IShamirsSecretSharing.GenerateShares(bool,int,int,Xecrets.Slip39.Group[],string,byte[]).iterationExponent'></a>
 
-`iterationExponent` [System.Int32](https://docs.microsoft.com/en-us/dotnet/api/System.Int32 'System.Int32')
+`iterationExponent` [System.Int32](https://learn.microsoft.com/en-us/dotnet/api/system.int32 'System.Int32')
 
 The total number of iterations to be used in PBKDF2, calculated as
             10000×2^e.
 
 <a name='Xecrets.Slip39.IShamirsSecretSharing.GenerateShares(bool,int,int,Xecrets.Slip39.Group[],string,byte[]).groupThreshold'></a>
 
-`groupThreshold` [System.Int32](https://docs.microsoft.com/en-us/dotnet/api/System.Int32 'System.Int32')
+`groupThreshold` [System.Int32](https://learn.microsoft.com/en-us/dotnet/api/system.int32 'System.Int32')
 
 The number of group shares needed to reconstruct the master secret.
 
 <a name='Xecrets.Slip39.IShamirsSecretSharing.GenerateShares(bool,int,int,Xecrets.Slip39.Group[],string,byte[]).groups'></a>
 
-`groups` [Group](Xecrets.Slip39.Group.md 'Xecrets.Slip39.Group')[[]](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array')
+`groups` [Group](Xecrets.Slip39.Group.md 'Xecrets.Slip39.Group')[[]](https://learn.microsoft.com/en-us/dotnet/api/system.array 'System.Array')
 
-The group definitions as a [Group](https://docs.microsoft.com/en-us/dotnet/api/Group 'Group')[].
+The group definitions as a [Group](https://learn.microsoft.com/en-us/dotnet/api/group 'Group')[].
 
 <a name='Xecrets.Slip39.IShamirsSecretSharing.GenerateShares(bool,int,int,Xecrets.Slip39.Group[],string,byte[]).passphrase'></a>
 
-`passphrase` [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')
+`passphrase` [System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System.String')
 
 The (optional) passphrase used to encrypt the master secret.
 
 <a name='Xecrets.Slip39.IShamirsSecretSharing.GenerateShares(bool,int,int,Xecrets.Slip39.Group[],string,byte[]).masterSecret'></a>
 
-`masterSecret` [System.Byte](https://docs.microsoft.com/en-us/dotnet/api/System.Byte 'System.Byte')[[]](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array')
+`masterSecret` [System.Byte](https://learn.microsoft.com/en-us/dotnet/api/system.byte 'System.Byte')[[]](https://learn.microsoft.com/en-us/dotnet/api/system.array 'System.Array')
 
 The master secret, at least 128 bits and a multiple of 16 bits.
 
 #### Returns
-[Share](Xecrets.Slip39.Share.md 'Xecrets.Slip39.Share')[[]](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array')[[]](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array')  
-A [Share](https://docs.microsoft.com/en-us/dotnet/api/Share 'Share')[][] with shares that can be distributed according to the threshold
+[Share](Xecrets.Slip39.Share.md 'Xecrets.Slip39.Share')[[]](https://learn.microsoft.com/en-us/dotnet/api/system.array 'System.Array')[[]](https://learn.microsoft.com/en-us/dotnet/api/system.array 'System.Array')  
+A [Share](https://learn.microsoft.com/en-us/dotnet/api/share 'Share')[][] with shares that can be distributed according to the threshold
             parameters.
 
 | Enums | |
 | :--- | :--- |
-| [ErrorCode](Xecrets.Slip39.ErrorCode.md 'Xecrets.Slip39.ErrorCode') | Error codes used in [Slip39Exception](https://docs.microsoft.com/en-us/dotnet/api/Slip39Exception 'Slip39Exception') to facilitate UI error messages to users with localization etc. The full english text of the actual error is found in the message property of the exception. |
+| [ErrorCode](Xecrets.Slip39.ErrorCode.md 'Xecrets.Slip39.ErrorCode') | Error codes used in [Slip39Exception](https://learn.microsoft.com/en-us/dotnet/api/slip39exception 'Slip39Exception') to facilitate UI error messages to users with localization etc. The full english text of the actual error is found in the message property of the exception. |
 | [StringEncoding](Xecrets.Slip39.StringEncoding.md 'Xecrets.Slip39.StringEncoding') | The master secret string encoding |

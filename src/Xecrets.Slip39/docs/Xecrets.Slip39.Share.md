@@ -9,14 +9,14 @@ A representation of a Shamir secret sharing share.
 public class Share
 ```
 
-Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; Share
+Inheritance [System.Object](https://learn.microsoft.com/en-us/dotnet/api/system.object 'System.Object') &#129106; Share
 ### Properties
 
 <a name='Xecrets.Slip39.Share.Prefix'></a>
 
 ## Share.Prefix Property
 
-The [SharePrefix](https://docs.microsoft.com/en-us/dotnet/api/SharePrefix 'SharePrefix') meta data of the share.
+The [SharePrefix](https://learn.microsoft.com/en-us/dotnet/api/shareprefix 'SharePrefix') meta data of the share.
 
 ```csharp
 public Xecrets.Slip39.SharePrefix Prefix { get; }
@@ -39,7 +39,7 @@ public static Xecrets.Slip39.Share Parse(string stringValue);
 
 <a name='Xecrets.Slip39.Share.Parse(string).stringValue'></a>
 
-`stringValue` [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')
+`stringValue` [System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System.String')
 
 The string to parse.
 
@@ -62,7 +62,7 @@ public override string ToString();
 ```
 
 #### Returns
-[System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  
+[System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System.String')  
 A string that represents the current object.
 
 <a name='Xecrets.Slip39.Share.ToString(string)'></a>
@@ -78,15 +78,15 @@ public string ToString(string format);
 
 <a name='Xecrets.Slip39.Share.ToString(string).format'></a>
 
-`format` [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')
+`format` [System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System.String')
 
 How the string should be formated. Empty and "G" produces a list of space separated
             mnemonic words. "64" produces an URL-safe base 64 representation. "X" produces a hex string.
 
 #### Returns
-[System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  
+[System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System.String')  
 The string representation.
 
 #### Exceptions
 
-[System.FormatException](https://docs.microsoft.com/en-us/dotnet/api/System.FormatException 'System.FormatException')
+[System.FormatException](https://learn.microsoft.com/en-us/dotnet/api/system.formatexception 'System.FormatException')

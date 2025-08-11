@@ -9,7 +9,7 @@ A representation of the share prefix, which consists of the parameters for the s
 public class SharePrefix
 ```
 
-Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; SharePrefix
+Inheritance [System.Object](https://learn.microsoft.com/en-us/dotnet/api/system.object 'System.Object') &#129106; SharePrefix
 ### Constructors
 
 <a name='Xecrets.Slip39.SharePrefix.SharePrefix(byte[])'></a>
@@ -25,9 +25,9 @@ public SharePrefix(byte[] prefix);
 
 <a name='Xecrets.Slip39.SharePrefix.SharePrefix(byte[]).prefix'></a>
 
-`prefix` [System.Byte](https://docs.microsoft.com/en-us/dotnet/api/System.Byte 'System.Byte')[[]](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array')
+`prefix` [System.Byte](https://learn.microsoft.com/en-us/dotnet/api/system.byte 'System.Byte')[[]](https://learn.microsoft.com/en-us/dotnet/api/system.array 'System.Array')
 
-A [System.Byte](https://docs.microsoft.com/en-us/dotnet/api/System.Byte 'System.Byte')[] containing the binary prefix.
+A [System.Byte](https://learn.microsoft.com/en-us/dotnet/api/system.byte 'System.Byte')[] containing the binary prefix.
 ### Fields
 
 <a name='Xecrets.Slip39.SharePrefix.LengthBits'></a>
@@ -41,7 +41,7 @@ public static readonly int LengthBits;
 ```
 
 #### Field Value
-[System.Int32](https://docs.microsoft.com/en-us/dotnet/api/System.Int32 'System.Int32')
+[System.Int32](https://learn.microsoft.com/en-us/dotnet/api/system.int32 'System.Int32')
 ### Properties
 
 <a name='Xecrets.Slip39.SharePrefix.Extendable'></a>
@@ -56,7 +56,7 @@ public bool Extendable { get; }
 ```
 
 #### Property Value
-[System.Boolean](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean 'System.Boolean')
+[System.Boolean](https://learn.microsoft.com/en-us/dotnet/api/system.boolean 'System.Boolean')
 
 <a name='Xecrets.Slip39.SharePrefix.GroupCount'></a>
 
@@ -69,7 +69,7 @@ public int GroupCount { get; }
 ```
 
 #### Property Value
-[System.Int32](https://docs.microsoft.com/en-us/dotnet/api/System.Int32 'System.Int32')
+[System.Int32](https://learn.microsoft.com/en-us/dotnet/api/system.int32 'System.Int32')
 
 <a name='Xecrets.Slip39.SharePrefix.GroupIndex'></a>
 
@@ -82,7 +82,7 @@ public int GroupIndex { get; }
 ```
 
 #### Property Value
-[System.Int32](https://docs.microsoft.com/en-us/dotnet/api/System.Int32 'System.Int32')
+[System.Int32](https://learn.microsoft.com/en-us/dotnet/api/system.int32 'System.Int32')
 
 <a name='Xecrets.Slip39.SharePrefix.GroupThreshold'></a>
 
@@ -97,7 +97,7 @@ public int GroupThreshold { get; }
 ```
 
 #### Property Value
-[System.Int32](https://docs.microsoft.com/en-us/dotnet/api/System.Int32 'System.Int32')
+[System.Int32](https://learn.microsoft.com/en-us/dotnet/api/system.int32 'System.Int32')
 
 <a name='Xecrets.Slip39.SharePrefix.Id'></a>
 
@@ -111,7 +111,7 @@ public int Id { get; }
 ```
 
 #### Property Value
-[System.Int32](https://docs.microsoft.com/en-us/dotnet/api/System.Int32 'System.Int32')
+[System.Int32](https://learn.microsoft.com/en-us/dotnet/api/system.int32 'System.Int32')
 
 <a name='Xecrets.Slip39.SharePrefix.IterationExponent'></a>
 
@@ -125,7 +125,7 @@ public int IterationExponent { get; }
 ```
 
 #### Property Value
-[System.Int32](https://docs.microsoft.com/en-us/dotnet/api/System.Int32 'System.Int32')
+[System.Int32](https://learn.microsoft.com/en-us/dotnet/api/system.int32 'System.Int32')
 
 <a name='Xecrets.Slip39.SharePrefix.MemberIndex'></a>
 
@@ -138,7 +138,7 @@ public int MemberIndex { get; }
 ```
 
 #### Property Value
-[System.Int32](https://docs.microsoft.com/en-us/dotnet/api/System.Int32 'System.Int32')
+[System.Int32](https://learn.microsoft.com/en-us/dotnet/api/system.int32 'System.Int32')
 
 <a name='Xecrets.Slip39.SharePrefix.MemberThreshold'></a>
 
@@ -152,7 +152,7 @@ public int MemberThreshold { get; }
 ```
 
 #### Property Value
-[System.Int32](https://docs.microsoft.com/en-us/dotnet/api/System.Int32 'System.Int32')
+[System.Int32](https://learn.microsoft.com/en-us/dotnet/api/system.int32 'System.Int32')
 ### Methods
 
 <a name='Xecrets.Slip39.SharePrefix.GenerateId(Xecrets.Slip39.IRandom)'></a>
@@ -173,5 +173,5 @@ public static int GenerateId(Xecrets.Slip39.IRandom random);
 The [IRandom](Xecrets.Slip39.md#Xecrets.Slip39.IRandom 'Xecrets.Slip39.IRandom') instance to use.
 
 #### Returns
-[System.Int32](https://docs.microsoft.com/en-us/dotnet/api/System.Int32 'System.Int32')  
+[System.Int32](https://learn.microsoft.com/en-us/dotnet/api/system.int32 'System.Int32')  
 An integer suitable as a random id for a share.

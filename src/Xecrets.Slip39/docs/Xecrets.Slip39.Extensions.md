@@ -9,7 +9,7 @@ A set of useful extensions.
 public static class Extensions
 ```
 
-Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; Extensions
+Inheritance [System.Object](https://learn.microsoft.com/en-us/dotnet/api/system.object 'System.Object') &#129106; Extensions
 ### Methods
 
 <a name='Xecrets.Slip39.Extensions.ArrayConcat_T_(thisT,T[])'></a>
@@ -38,12 +38,12 @@ The first element.
 
 <a name='Xecrets.Slip39.Extensions.ArrayConcat_T_(thisT,T[]).second'></a>
 
-`second` [T](Xecrets.Slip39.Extensions.md#Xecrets.Slip39.Extensions.ArrayConcat_T_(thisT,T[]).T 'Xecrets.Slip39.Extensions.ArrayConcat<T>(this T, T[]).T')[[]](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array')
+`second` [T](Xecrets.Slip39.Extensions.md#Xecrets.Slip39.Extensions.ArrayConcat_T_(thisT,T[]).T 'Xecrets.Slip39.Extensions.ArrayConcat<T>(this T, T[]).T')[[]](https://learn.microsoft.com/en-us/dotnet/api/system.array 'System.Array')
 
 The second array.
 
 #### Returns
-[T](Xecrets.Slip39.Extensions.md#Xecrets.Slip39.Extensions.ArrayConcat_T_(thisT,T[]).T 'Xecrets.Slip39.Extensions.ArrayConcat<T>(this T, T[]).T')[[]](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array')  
+[T](Xecrets.Slip39.Extensions.md#Xecrets.Slip39.Extensions.ArrayConcat_T_(thisT,T[]).T 'Xecrets.Slip39.Extensions.ArrayConcat<T>(this T, T[]).T')[[]](https://learn.microsoft.com/en-us/dotnet/api/system.array 'System.Array')  
 A third array consisting of the concatenated result.
 
 <a name='Xecrets.Slip39.Extensions.ArrayConcat_T_(thisT[],T[])'></a>
@@ -66,18 +66,18 @@ The type of the elements.
 
 <a name='Xecrets.Slip39.Extensions.ArrayConcat_T_(thisT[],T[]).first'></a>
 
-`first` [T](Xecrets.Slip39.Extensions.md#Xecrets.Slip39.Extensions.ArrayConcat_T_(thisT[],T[]).T 'Xecrets.Slip39.Extensions.ArrayConcat<T>(this T[], T[]).T')[[]](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array')
+`first` [T](Xecrets.Slip39.Extensions.md#Xecrets.Slip39.Extensions.ArrayConcat_T_(thisT[],T[]).T 'Xecrets.Slip39.Extensions.ArrayConcat<T>(this T[], T[]).T')[[]](https://learn.microsoft.com/en-us/dotnet/api/system.array 'System.Array')
 
 The first array.
 
 <a name='Xecrets.Slip39.Extensions.ArrayConcat_T_(thisT[],T[]).second'></a>
 
-`second` [T](Xecrets.Slip39.Extensions.md#Xecrets.Slip39.Extensions.ArrayConcat_T_(thisT[],T[]).T 'Xecrets.Slip39.Extensions.ArrayConcat<T>(this T[], T[]).T')[[]](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array')
+`second` [T](Xecrets.Slip39.Extensions.md#Xecrets.Slip39.Extensions.ArrayConcat_T_(thisT[],T[]).T 'Xecrets.Slip39.Extensions.ArrayConcat<T>(this T[], T[]).T')[[]](https://learn.microsoft.com/en-us/dotnet/api/system.array 'System.Array')
 
 The second array.
 
 #### Returns
-[T](Xecrets.Slip39.Extensions.md#Xecrets.Slip39.Extensions.ArrayConcat_T_(thisT[],T[]).T 'Xecrets.Slip39.Extensions.ArrayConcat<T>(this T[], T[]).T')[[]](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array')  
+[T](Xecrets.Slip39.Extensions.md#Xecrets.Slip39.Extensions.ArrayConcat_T_(thisT[],T[]).T 'Xecrets.Slip39.Extensions.ArrayConcat<T>(this T[], T[]).T')[[]](https://learn.microsoft.com/en-us/dotnet/api/system.array 'System.Array')  
 A third array consisting of the concatenated result.
 
 <a name='Xecrets.Slip39.Extensions.CombineShares(thisXecrets.Slip39.IShamirsSecretSharing,Xecrets.Slip39.Share[])'></a>
@@ -99,7 +99,7 @@ The [IShamirsSecretSharing](Xecrets.Slip39.md#Xecrets.Slip39.IShamirsSecretShari
 
 <a name='Xecrets.Slip39.Extensions.CombineShares(thisXecrets.Slip39.IShamirsSecretSharing,Xecrets.Slip39.Share[]).shares'></a>
 
-`shares` [Share](Xecrets.Slip39.Share.md 'Xecrets.Slip39.Share')[[]](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array')
+`shares` [Share](Xecrets.Slip39.Share.md 'Xecrets.Slip39.Share')[[]](https://learn.microsoft.com/en-us/dotnet/api/system.array 'System.Array')
 
 The shares to to recover from.
 
@@ -120,12 +120,12 @@ public static byte[] FromBip39(this string mnemonic);
 
 <a name='Xecrets.Slip39.Extensions.FromBip39(thisstring).mnemonic'></a>
 
-`mnemonic` [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')
+`mnemonic` [System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System.String')
 
 The list of mnemonic words.
 
 #### Returns
-[System.Byte](https://docs.microsoft.com/en-us/dotnet/api/System.Byte 'System.Byte')[[]](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array')  
+[System.Byte](https://learn.microsoft.com/en-us/dotnet/api/system.byte 'System.Byte')[[]](https://learn.microsoft.com/en-us/dotnet/api/system.array 'System.Array')  
 The converted bytes.
 
 <a name='Xecrets.Slip39.Extensions.FromHex(thisstring)'></a>
@@ -141,12 +141,12 @@ public static byte[] FromHex(this string hex);
 
 <a name='Xecrets.Slip39.Extensions.FromHex(thisstring).hex'></a>
 
-`hex` [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')
+`hex` [System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System.String')
 
 The string to convert.
 
 #### Returns
-[System.Byte](https://docs.microsoft.com/en-us/dotnet/api/System.Byte 'System.Byte')[[]](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array')  
+[System.Byte](https://learn.microsoft.com/en-us/dotnet/api/system.byte 'System.Byte')[[]](https://learn.microsoft.com/en-us/dotnet/api/system.array 'System.Array')  
 The converted bytes.
 
 <a name='Xecrets.Slip39.Extensions.FromUrlSafeBase64(thisstring)'></a>
@@ -162,12 +162,12 @@ public static byte[] FromUrlSafeBase64(this string base64);
 
 <a name='Xecrets.Slip39.Extensions.FromUrlSafeBase64(thisstring).base64'></a>
 
-`base64` [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')
+`base64` [System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System.String')
 
 The string to convert.
 
 #### Returns
-[System.Byte](https://docs.microsoft.com/en-us/dotnet/api/System.Byte 'System.Byte')[[]](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array')  
+[System.Byte](https://learn.microsoft.com/en-us/dotnet/api/system.byte 'System.Byte')[[]](https://learn.microsoft.com/en-us/dotnet/api/system.array 'System.Array')  
 The converted bytes.
 
 <a name='Xecrets.Slip39.Extensions.GenerateShares(thisXecrets.Slip39.IShamirsSecretSharing,int,int,byte[])'></a>
@@ -190,24 +190,24 @@ The [IShamirsSecretSharing](Xecrets.Slip39.md#Xecrets.Slip39.IShamirsSecretShari
 
 <a name='Xecrets.Slip39.Extensions.GenerateShares(thisXecrets.Slip39.IShamirsSecretSharing,int,int,byte[]).memberThreshold'></a>
 
-`memberThreshold` [System.Int32](https://docs.microsoft.com/en-us/dotnet/api/System.Int32 'System.Int32')
+`memberThreshold` [System.Int32](https://learn.microsoft.com/en-us/dotnet/api/system.int32 'System.Int32')
 
 The member threshold.
 
 <a name='Xecrets.Slip39.Extensions.GenerateShares(thisXecrets.Slip39.IShamirsSecretSharing,int,int,byte[]).memberCount'></a>
 
-`memberCount` [System.Int32](https://docs.microsoft.com/en-us/dotnet/api/System.Int32 'System.Int32')
+`memberCount` [System.Int32](https://learn.microsoft.com/en-us/dotnet/api/system.int32 'System.Int32')
 
 The total number of members.
 
 <a name='Xecrets.Slip39.Extensions.GenerateShares(thisXecrets.Slip39.IShamirsSecretSharing,int,int,byte[]).masterSecret'></a>
 
-`masterSecret` [System.Byte](https://docs.microsoft.com/en-us/dotnet/api/System.Byte 'System.Byte')[[]](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array')
+`masterSecret` [System.Byte](https://learn.microsoft.com/en-us/dotnet/api/system.byte 'System.Byte')[[]](https://learn.microsoft.com/en-us/dotnet/api/system.array 'System.Array')
 
 The master secret to share.
 
 #### Returns
-[Share](Xecrets.Slip39.Share.md 'Xecrets.Slip39.Share')[[]](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array')  
+[Share](Xecrets.Slip39.Share.md 'Xecrets.Slip39.Share')[[]](https://learn.microsoft.com/en-us/dotnet/api/system.array 'System.Array')  
 The set of shares, of which [memberThreshold](Xecrets.Slip39.Extensions.md#Xecrets.Slip39.Extensions.GenerateShares(thisXecrets.Slip39.IShamirsSecretSharing,int,int,byte[]).memberThreshold 'Xecrets.Slip39.Extensions.GenerateShares(this Xecrets.Slip39.IShamirsSecretSharing, int, int, byte[]).memberThreshold') are required to recover the
             secret.
 
@@ -231,29 +231,29 @@ The [IShamirsSecretSharing](Xecrets.Slip39.md#Xecrets.Slip39.IShamirsSecretShari
 
 <a name='Xecrets.Slip39.Extensions.GenerateShares(thisXecrets.Slip39.IShamirsSecretSharing,int,int,string).memberThreshold'></a>
 
-`memberThreshold` [System.Int32](https://docs.microsoft.com/en-us/dotnet/api/System.Int32 'System.Int32')
+`memberThreshold` [System.Int32](https://learn.microsoft.com/en-us/dotnet/api/system.int32 'System.Int32')
 
 The member threshold.
 
 <a name='Xecrets.Slip39.Extensions.GenerateShares(thisXecrets.Slip39.IShamirsSecretSharing,int,int,string).memberCount'></a>
 
-`memberCount` [System.Int32](https://docs.microsoft.com/en-us/dotnet/api/System.Int32 'System.Int32')
+`memberCount` [System.Int32](https://learn.microsoft.com/en-us/dotnet/api/system.int32 'System.Int32')
 
 The total number of members.
 
 <a name='Xecrets.Slip39.Extensions.GenerateShares(thisXecrets.Slip39.IShamirsSecretSharing,int,int,string).masterSecret'></a>
 
-`masterSecret` [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')
+`masterSecret` [System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System.String')
 
 The master secret to share as a string.
 
 #### Returns
-[Share](Xecrets.Slip39.Share.md 'Xecrets.Slip39.Share')[[]](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array')  
+[Share](Xecrets.Slip39.Share.md 'Xecrets.Slip39.Share')[[]](https://learn.microsoft.com/en-us/dotnet/api/system.array 'System.Array')  
 The set of shares, of which [memberThreshold](Xecrets.Slip39.Extensions.md#Xecrets.Slip39.Extensions.GenerateShares(thisXecrets.Slip39.IShamirsSecretSharing,int,int,string).memberThreshold 'Xecrets.Slip39.Extensions.GenerateShares(this Xecrets.Slip39.IShamirsSecretSharing, int, int, string).memberThreshold') are required to recover the
             secret.
 
 ### Remarks
-The master secret is encoded as a [System.Byte](https://docs.microsoft.com/en-us/dotnet/api/System.Byte 'System.Byte')[] with UTF-8 encoded bytes, and if required
+The master secret is encoded as a [System.Byte](https://learn.microsoft.com/en-us/dotnet/api/system.byte 'System.Byte')[] with UTF-8 encoded bytes, and if required
 padded with 0xff to fulfil the requirements. When recovering the secret, any trailing 0xff bytes thus need to
 be trimmed before producing the original master secret string, <seealso cref="M:Xecrets.Slip39.Extensions.ToSecretString(System.Byte[])"/>.
 
@@ -277,19 +277,19 @@ The [IShamirsSecretSharing](Xecrets.Slip39.md#Xecrets.Slip39.IShamirsSecretShari
 
 <a name='Xecrets.Slip39.Extensions.GenerateShares(thisXecrets.Slip39.IShamirsSecretSharing,int,int,string,Xecrets.Slip39.StringEncoding).memberThreshold'></a>
 
-`memberThreshold` [System.Int32](https://docs.microsoft.com/en-us/dotnet/api/System.Int32 'System.Int32')
+`memberThreshold` [System.Int32](https://learn.microsoft.com/en-us/dotnet/api/system.int32 'System.Int32')
 
 The member threshold.
 
 <a name='Xecrets.Slip39.Extensions.GenerateShares(thisXecrets.Slip39.IShamirsSecretSharing,int,int,string,Xecrets.Slip39.StringEncoding).memberCount'></a>
 
-`memberCount` [System.Int32](https://docs.microsoft.com/en-us/dotnet/api/System.Int32 'System.Int32')
+`memberCount` [System.Int32](https://learn.microsoft.com/en-us/dotnet/api/system.int32 'System.Int32')
 
 The total number of members.
 
 <a name='Xecrets.Slip39.Extensions.GenerateShares(thisXecrets.Slip39.IShamirsSecretSharing,int,int,string,Xecrets.Slip39.StringEncoding).masterSecret'></a>
 
-`masterSecret` [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')
+`masterSecret` [System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System.String')
 
 The master secret to share as a string.
 
@@ -300,12 +300,12 @@ The master secret to share as a string.
 The type of [StringEncoding](Xecrets.Slip39.StringEncoding.md 'Xecrets.Slip39.StringEncoding') of the string master secret.
 
 #### Returns
-[Share](Xecrets.Slip39.Share.md 'Xecrets.Slip39.Share')[[]](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array')  
+[Share](Xecrets.Slip39.Share.md 'Xecrets.Slip39.Share')[[]](https://learn.microsoft.com/en-us/dotnet/api/system.array 'System.Array')  
 The set of shares, of which [memberThreshold](Xecrets.Slip39.Extensions.md#Xecrets.Slip39.Extensions.GenerateShares(thisXecrets.Slip39.IShamirsSecretSharing,int,int,string,Xecrets.Slip39.StringEncoding).memberThreshold 'Xecrets.Slip39.Extensions.GenerateShares(this Xecrets.Slip39.IShamirsSecretSharing, int, int, string, Xecrets.Slip39.StringEncoding).memberThreshold') are required to recover the
             secret.
 
 ### Remarks
-The master secret is encoded as a [System.Byte](https://docs.microsoft.com/en-us/dotnet/api/System.Byte 'System.Byte')[] of UTF-8 encoded bytes, and if required padded
+The master secret is encoded as a [System.Byte](https://learn.microsoft.com/en-us/dotnet/api/system.byte 'System.Byte')[] of UTF-8 encoded bytes, and if required padded
 with 0xff to fulfil the requirements. When recovering the secret, any trailing 0xff bytes thus need to be
 trimmed before producing the original master secret string, <seealso cref="M:Xecrets.Slip39.Extensions.ToSecretString(System.Byte[])"/>.
 
@@ -322,12 +322,12 @@ public static string ToBip39(this byte[] entropy);
 
 <a name='Xecrets.Slip39.Extensions.ToBip39(thisbyte[]).entropy'></a>
 
-`entropy` [System.Byte](https://docs.microsoft.com/en-us/dotnet/api/System.Byte 'System.Byte')[[]](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array')
+`entropy` [System.Byte](https://learn.microsoft.com/en-us/dotnet/api/system.byte 'System.Byte')[[]](https://learn.microsoft.com/en-us/dotnet/api/system.array 'System.Array')
 
 The bytes to convert.
 
 #### Returns
-[System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  
+[System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System.String')  
 The BIP 39 mnemonic string.
 
 <a name='Xecrets.Slip39.Extensions.ToHex(thisbyte[])'></a>
@@ -343,12 +343,12 @@ public static string ToHex(this byte[] bytes);
 
 <a name='Xecrets.Slip39.Extensions.ToHex(thisbyte[]).bytes'></a>
 
-`bytes` [System.Byte](https://docs.microsoft.com/en-us/dotnet/api/System.Byte 'System.Byte')[[]](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array')
+`bytes` [System.Byte](https://learn.microsoft.com/en-us/dotnet/api/system.byte 'System.Byte')[[]](https://learn.microsoft.com/en-us/dotnet/api/system.array 'System.Array')
 
 The bytes to convert.
 
 #### Returns
-[System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  
+[System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System.String')  
 The hex string.
 
 <a name='Xecrets.Slip39.Extensions.ToSecretBytes(thisstring,Xecrets.Slip39.StringEncoding)'></a>
@@ -364,7 +364,7 @@ public static byte[] ToSecretBytes(this string masterSecret, Xecrets.Slip39.Stri
 
 <a name='Xecrets.Slip39.Extensions.ToSecretBytes(thisstring,Xecrets.Slip39.StringEncoding).masterSecret'></a>
 
-`masterSecret` [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')
+`masterSecret` [System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System.String')
 
 The string representation of the master secret.
 
@@ -375,12 +375,12 @@ The string representation of the master secret.
 How the string is encoded and should be interpreted.
 
 #### Returns
-[System.Byte](https://docs.microsoft.com/en-us/dotnet/api/System.Byte 'System.Byte')[[]](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array')  
+[System.Byte](https://learn.microsoft.com/en-us/dotnet/api/system.byte 'System.Byte')[[]](https://learn.microsoft.com/en-us/dotnet/api/system.array 'System.Array')  
 The raw byte[] representation of the master secret.
 
 #### Exceptions
 
-[System.InvalidOperationException](https://docs.microsoft.com/en-us/dotnet/api/System.InvalidOperationException 'System.InvalidOperationException')  
+[System.InvalidOperationException](https://learn.microsoft.com/en-us/dotnet/api/system.invalidoperationexception 'System.InvalidOperationException')  
 If an unknown encoding is specified.
 
 <a name='Xecrets.Slip39.Extensions.ToSecretString(thisbyte[])'></a>
@@ -397,12 +397,12 @@ public static string ToSecretString(this byte[] masterSecret);
 
 <a name='Xecrets.Slip39.Extensions.ToSecretString(thisbyte[]).masterSecret'></a>
 
-`masterSecret` [System.Byte](https://docs.microsoft.com/en-us/dotnet/api/System.Byte 'System.Byte')[[]](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array')
+`masterSecret` [System.Byte](https://learn.microsoft.com/en-us/dotnet/api/system.byte 'System.Byte')[[]](https://learn.microsoft.com/en-us/dotnet/api/system.array 'System.Array')
 
 The binary secret.
 
 #### Returns
-[System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  
+[System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System.String')  
 The original unpadded string, or a BIP-39 mnemonic.
 
 <a name='Xecrets.Slip39.Extensions.ToUrlSafeBase64(thisbyte[])'></a>
@@ -418,12 +418,12 @@ public static string ToUrlSafeBase64(this byte[] bytes);
 
 <a name='Xecrets.Slip39.Extensions.ToUrlSafeBase64(thisbyte[]).bytes'></a>
 
-`bytes` [System.Byte](https://docs.microsoft.com/en-us/dotnet/api/System.Byte 'System.Byte')[[]](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array')
+`bytes` [System.Byte](https://learn.microsoft.com/en-us/dotnet/api/system.byte 'System.Byte')[[]](https://learn.microsoft.com/en-us/dotnet/api/system.array 'System.Array')
 
 The bytes to convert.
 
 #### Returns
-[System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  
+[System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System.String')  
 The URL-safe base64 string.
 
 <a name='Xecrets.Slip39.Extensions.TryParse(thisstring,Xecrets.Slip39.Share)'></a>
@@ -439,7 +439,7 @@ public static bool TryParse(this string value, out Xecrets.Slip39.Share share);
 
 <a name='Xecrets.Slip39.Extensions.TryParse(thisstring,Xecrets.Slip39.Share).value'></a>
 
-`value` [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')
+`value` [System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System.String')
 
 The string value to try to parse.
 
@@ -450,5 +450,5 @@ The string value to try to parse.
 The resulting [Share](Xecrets.Slip39.Share.md 'Xecrets.Slip39.Share') if successful.
 
 #### Returns
-[System.Boolean](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean 'System.Boolean')  
+[System.Boolean](https://learn.microsoft.com/en-us/dotnet/api/system.boolean 'System.Boolean')  
 True if the parse was successful.

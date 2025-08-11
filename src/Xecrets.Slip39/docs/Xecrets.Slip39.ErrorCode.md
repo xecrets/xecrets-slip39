@@ -3,7 +3,7 @@
 
 ## ErrorCode Enum
 
-Error codes used in [Slip39Exception](https://docs.microsoft.com/en-us/dotnet/api/Slip39Exception 'Slip39Exception') to facilitate UI error messages to users with localization etc.
+Error codes used in [Slip39Exception](https://learn.microsoft.com/en-us/dotnet/api/slip39exception 'Slip39Exception') to facilitate UI error messages to users with localization etc.
 The full english text of the actual error is found in the message property of the exception.
 
 ```csharp
