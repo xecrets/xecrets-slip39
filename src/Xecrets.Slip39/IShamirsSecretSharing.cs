@@ -26,9 +26,8 @@
 namespace Xecrets.Slip39;
 
 /// <summary>
-/// Implement Shamirs Secret Sharing according to <seealso
-/// href="https://github.com/satoshilabs/slips/blob/master/slip-0039.md">
-/// SLIP-039</seealso>.
+/// Implement Shamirs Secret Sharing according to
+/// <seealso href="https://github.com/satoshilabs/slips/blob/master/slip-0039.md">SLIP-039</seealso>.
 /// </summary>
 public interface IShamirsSecretSharing
 {
