@@ -27,6 +27,10 @@
     <Version>2.3.0-beta</Version>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(XfNoDocumentation)' == 'true'">
+      <DisableDefaultDocumentation>true</DisableDefaultDocumentation>
+  </PropertyGroup>
+
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
     <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
