@@ -2,6 +2,6 @@
   "OutputDirectoryPath": "docs",
   "GeneratedPages": "Assembly, Namespaces, Classes, Enums, Structs",
   "LogLevel": "Warning",
-  "Markdown.HandleLineBreak": "false",
+  "Markdown.HandleLineBreak": false,
   "Markdown.MarkdownSanitizationRegex": "[\\\\]"
 }
