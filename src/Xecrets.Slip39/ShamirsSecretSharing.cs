@@ -449,8 +449,8 @@ public class ShamirsSecretSharing(IRandom random) : IShamirsSecretSharing
         byte[] saltPrefix = extendable ? [] : "shamir"u8.ToArray().ArrayConcat([(byte)(id >> 8), (byte)(id & 0xff)]);
         byte[] salt = saltPrefix.ArrayConcat(block);
         int iters = (BASE_ITERATION_COUNT / ROUND_COUNT) << iterationExponent;
-        using Rfc2898DeriveBytes pbkdf2 = new(key, salt, iters, HashAlgorithmName.SHA256);
-        return pbkdf2.GetBytes(block.Length);
+        
+        return Rfc2898DeriveBytes.Pbkdf2(key, salt, iters, HashAlgorithmName.SHA256, block.Length);
     }
 
     private static byte[] Xor(byte[] a, byte[] b)
