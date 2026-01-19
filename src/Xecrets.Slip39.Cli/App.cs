@@ -24,6 +24,7 @@
 #endregion Copyright and MIT License
 
 using System.CommandLine;
+using System.CommandLine.Parsing;
 using System.Diagnostics;
 
 namespace Xecrets.Slip39.Cli;
@@ -32,65 +33,80 @@ internal class App(IShamirsSecretSharing sss)
 {
     public async Task<int> Run(string[] args)
     {
-        StrongRandom random = new();
+        Option<bool> debugOption = new(name: "--debug")
+        {
+            Description = "Perform a debug break.",
+            Recursive =  true,
+        };
 
-        Option<bool> debugOption = new(
-            name: "--debug",
-            description: "Perform a debug break.");
+        Option<StringEncoding> formatOption = new(name: "--format")
+        {
+            Description = "Specify the format of the secret.",
+            Required = true,
+        };
 
-        Option<StringEncoding> formatOption = new(
-            name: "--format",
-            description: "Specify the format of the secret.");
+        Option<int> countOption = new(name: "--count")
+        {
+            Description = "The number of shares to generate.",
+        };
 
-        Option<int> countOption = new(
-           name: "--count",
-           description: "The number of shares to generate.");
+        Option<int> thresholdOption = new(name: "--threshold")
+        {
+            Description = "The number of shares required to recover the master secret.",
+        };
 
-        Option<int> thresholdOption = new(
-            name: "--threshold",
-            description: "The number of shares required to recover the master secret.");
-
-        Option<string> secretOption = new(
-            name: "--secret",
-            description: "The secret to split into shares.");
+        Option<string> secretOption = new(name: "--secret")
+        {
+            Description = "The secret to split into shares.",
+        };
 
         Command splitCommand = new(name: "split", description: "Split the secret into shares")
         {
             countOption,
             thresholdOption,
             secretOption,
+            formatOption,
         };
 
-        splitCommand.SetHandler((threshold, count, secret, format) =>
+        splitCommand.SetAction(parseResult =>
         {
+            int threshold = parseResult.GetValue(thresholdOption);
+            int count = parseResult.GetValue(countOption);
+            string secret = parseResult.GetValue(secretOption) ?? string.Empty;
+            StringEncoding format = parseResult.GetValue(formatOption);
+            
             Share[] shares = sss.GenerateShares(threshold, count, secret, format);
             foreach (Share share in shares)
             {
                 Console.WriteLine(share);
             }
-        }, thresholdOption, countOption, secretOption, formatOption);
+        });
 
-        Option<string[]> shareOption = new(
-        name: "--share",
-        description: "Combine this and any additional shares to recover the master secret.")
+        Option<string[]> shareOption = new(name: "--share")
         {
+            Description = "Combine this and any additional shares to recover the master secret.",
             AllowMultipleArgumentsPerToken = true,
-            IsRequired = true,
+            Required = true,
         };
 
         Command combineCommand = new(name: "combine", description: "Combine the given number of shares and recover the secret.")
         {
             shareOption,
+            formatOption,
         };
 
-        combineCommand.SetHandler((sh, format, debug) =>
+        combineCommand.SetAction(parseResult =>
         {
+            bool debug = parseResult.GetValue(debugOption);
+            string[] shares = parseResult.GetValue(shareOption) ?? [];
+            StringEncoding format = parseResult.GetValue(formatOption);
+            
             if (debug)
             {
                 Debugger.Launch();
             }
 
-            GroupedShares groupedShares = sss.CombineShares([.. sh.Select(sh => Share.Parse(sh))]);
+            GroupedShares groupedShares = sss.CombineShares([.. shares.Select(Share.Parse)]);
             string secret = format switch
             {
                 StringEncoding.Base64 => groupedShares.Secret.ToUrlSafeBase64(),
@@ -100,16 +116,26 @@ internal class App(IShamirsSecretSharing sss)
                 _ => throw new NotSupportedException("This format is not supported."),
             };
             Console.WriteLine(secret);
-        }, shareOption, formatOption, debugOption);
+        });
 
         RootCommand rootCommand = new("Simple app to generate Shamir secret shares and combine them again.")
         {
             splitCommand,
             combineCommand,
         };
-        rootCommand.AddGlobalOption(debugOption);
-        rootCommand.AddGlobalOption(formatOption);
+        rootCommand.Options.Add(debugOption);
+        
+        ParseResult parseResult = rootCommand.Parse(args);
+        if (parseResult.Errors.Any())
+        {
+            foreach (ParseError parseError in parseResult.Errors)
+            {
+                await Console.Error.WriteLineAsync(parseError.Message);
+            }
 
-        return await rootCommand.InvokeAsync(args);
+            return 1;
+        }
+        
+        return await parseResult.InvokeAsync();
     }
 }
