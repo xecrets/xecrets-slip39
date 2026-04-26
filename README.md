@@ -9,12 +9,8 @@ implementation](https://github.com/rust-bitcoin/rust-wallet/blob/master/src/sss.
 It has been refactored to more idiomatic C#, as well as adding a few features and improvements by [Svante
 Seleborg](https://github.com/xecrets) . Some convenience extensions for simpler use cases were added, a simple command
 line interface was implemented, and XML comments were added. Also support for URL safe base64 encoding of the shares
-was added as a more compact, but equivalent, representation of the shares. Limited BIP-39 support was added to allow
-for mnemonic generation and recovery of the master secret in BIP-39 format.
-
-# DISCLAIMER
-
-This project is still in early development phase. Use it at your own risk.
+was added as a more compact, but equivalent, representation of the shares. Limited [BIP-39](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki)
+support was added to allow for mnemonic generation and recovery of the master secret in BIP-39 format.
 
 ## Description
 
