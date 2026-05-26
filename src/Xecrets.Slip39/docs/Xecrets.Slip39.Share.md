@@ -9,7 +9,7 @@ A representation of a Shamir secret sharing share.
 public class Share
 ```
 
-Inheritance [System.Object](https://learn.microsoft.com/en-us/dotnet/api/system.object 'System.Object') &#129106; Share
+Inheritance [System.Object](https://learn.microsoft.com/en-us/dotnet/api/system.object 'System.Object') → Share
 ### Properties
 
 <a name='Xecrets.Slip39.Share.Prefix'></a>

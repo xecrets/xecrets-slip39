@@ -9,7 +9,7 @@ A class for implementing Shamir's Secret Sharing with SLIP-0039 enhancements.
 public class ShamirsSecretSharing : Xecrets.Slip39.IShamirsSecretSharing
 ```
 
-Inheritance [System.Object](https://learn.microsoft.com/en-us/dotnet/api/system.object 'System.Object') &#129106; ShamirsSecretSharing
+Inheritance [System.Object](https://learn.microsoft.com/en-us/dotnet/api/system.object 'System.Object') → ShamirsSecretSharing
 
 Implements [IShamirsSecretSharing](Xecrets.Slip39.md#Xecrets.Slip39.IShamirsSecretSharing 'Xecrets.Slip39.IShamirsSecretSharing')
 ### Constructors

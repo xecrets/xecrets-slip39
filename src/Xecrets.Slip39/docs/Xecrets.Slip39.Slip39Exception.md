@@ -10,7 +10,7 @@ input data, not due to an internal error or programming errors et.
 public class Slip39Exception : System.Exception
 ```
 
-Inheritance [System.Object](https://learn.microsoft.com/en-us/dotnet/api/system.object 'System.Object') &#129106; [System.Exception](https://learn.microsoft.com/en-us/dotnet/api/system.exception 'System.Exception') &#129106; Slip39Exception
+Inheritance [System.Object](https://learn.microsoft.com/en-us/dotnet/api/system.object 'System.Object') → [System.Exception](https://learn.microsoft.com/en-us/dotnet/api/system.exception 'System.Exception') → Slip39Exception
 ### Constructors
 
 <a name='Xecrets.Slip39.Slip39Exception.Slip39Exception(Xecrets.Slip39.ErrorCode,string)'></a>

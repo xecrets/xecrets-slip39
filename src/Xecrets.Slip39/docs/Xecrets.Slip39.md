@@ -30,7 +30,7 @@ public interface IRandom
 ```
 
 Derived  
-&#8627; [StrongRandom](Xecrets.Slip39.StrongRandom.md 'Xecrets.Slip39.StrongRandom')
+↳ [StrongRandom](Xecrets.Slip39.StrongRandom.md 'Xecrets.Slip39.StrongRandom')
 ### Methods
 
 <a name='Xecrets.Slip39.IRandom.GetBytes(byte[])'></a>
@@ -83,7 +83,7 @@ public interface IShamirsSecretSharing
 ```
 
 Derived  
-&#8627; [ShamirsSecretSharing](Xecrets.Slip39.ShamirsSecretSharing.md 'Xecrets.Slip39.ShamirsSecretSharing')
+↳ [ShamirsSecretSharing](Xecrets.Slip39.ShamirsSecretSharing.md 'Xecrets.Slip39.ShamirsSecretSharing')
 ### Methods
 
 <a name='Xecrets.Slip39.IShamirsSecretSharing.CombineShares(Xecrets.Slip39.Share[],string)'></a>

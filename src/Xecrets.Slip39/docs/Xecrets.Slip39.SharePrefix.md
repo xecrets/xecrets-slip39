@@ -9,7 +9,7 @@ A representation of the share prefix, which consists of the parameters for the s
 public class SharePrefix
 ```
 
-Inheritance [System.Object](https://learn.microsoft.com/en-us/dotnet/api/system.object 'System.Object') &#129106; SharePrefix
+Inheritance [System.Object](https://learn.microsoft.com/en-us/dotnet/api/system.object 'System.Object') → SharePrefix
 ### Constructors
 
 <a name='Xecrets.Slip39.SharePrefix.SharePrefix(byte[])'></a>

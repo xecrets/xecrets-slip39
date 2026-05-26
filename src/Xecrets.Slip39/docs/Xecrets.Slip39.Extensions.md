@@ -9,7 +9,7 @@ A set of useful extensions.
 public static class Extensions
 ```
 
-Inheritance [System.Object](https://learn.microsoft.com/en-us/dotnet/api/system.object 'System.Object') &#129106; Extensions
+Inheritance [System.Object](https://learn.microsoft.com/en-us/dotnet/api/system.object 'System.Object') → Extensions
 ### Methods
 
 <a name='Xecrets.Slip39.Extensions.ArrayConcat_T_(thisT,T[])'></a>
