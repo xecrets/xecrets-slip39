@@ -87,6 +87,19 @@ public class TestShares
         Assert.NotEqual(MS, sss.CombineShares(shares[1..4], string.Empty).Secret);
     }
 
+    [Theory]
+    [InlineData(-1)]
+    [InlineData(16)]
+    public void TestInvalidIterationExponentThrows(int iterationExponent)
+    {
+        ShamirsSecretSharing sss = new ShamirsSecretSharing(new FakeRandom());
+
+        Slip39Exception exception = Assert.Throws<Slip39Exception>(() =>
+            sss.GenerateShares(true, iterationExponent, 1, [new Group(3, 5)], "TREZOR", MS));
+
+        Assert.Equal(ErrorCode.InvalidFormat, exception.ErrorCode);
+    }
+
     [Fact]
     public void TestGroupSharing()
     {

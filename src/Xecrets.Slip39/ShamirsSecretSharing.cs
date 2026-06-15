@@ -82,6 +82,11 @@ public class ShamirsSecretSharing(IRandom random) : IShamirsSecretSharing
     /// <exception cref="Slip39Exception">Thrown when inputs do not meet the required constraints.</exception>
     public Share[][] GenerateShares(bool extendable, int iterationExponent, int groupThreshold, Group[] groups, string passphrase, byte[] masterSecret)
     {
+        if (iterationExponent is < 0 or > 15)
+        {
+            throw new Slip39Exception(ErrorCode.InvalidFormat, "Iteration exponent must be between 0 and 15.");
+        }
+
         // Validating seed strength and format
         if (masterSecret.Length * 8 < Share.MinStrengthBits || masterSecret.Length % 2 != 0)
         {
