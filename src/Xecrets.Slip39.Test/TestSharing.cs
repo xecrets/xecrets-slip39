@@ -31,6 +31,28 @@ namespace Xecrets.Slip39.Test;
 
 public class TestSharing
 {
+    private static readonly byte[] _masterSecret = "ABCDEFGHIJKLMNOP"u8.ToArray();
+
+    [Fact]
+    public void TestGeneratedIdsAreValid15BitValues()
+    {
+        Assert.Equal(32767, SharePrefix.GenerateId(new FixedRandom(0xff)));
+    }
+
+    [Fact]
+    public void TestNonExtendableSharesRoundTrip()
+    {
+        ShamirsSecretSharing sss = new(new FakeRandom());
+
+        for (int i = 0; i < 100; i++)
+        {
+            Share[] shares = sss.GenerateShares(extendable: false, 0, 1, [new Group(2, 3)],
+                string.Empty, _masterSecret)[0];
+
+            Assert.Equal(_masterSecret, sss.CombineShares(shares[..2], string.Empty).Secret);
+        }
+    }
+
     [Fact]
     public void TestSimplifiedShortStringSecretSharing()
     {
@@ -235,5 +257,17 @@ public class TestSharing
         Assert.Equal(expected, sss.CombineShares(shares[1..3]).Secret.ToSecretString());
         Assert.Equal(expected, sss.CombineShares(shares[2..]).Secret.ToSecretString());
         Assert.Equal(expected, sss.CombineShares([shares[3], shares[0]]).Secret.ToSecretString());
+    }
+
+    private sealed class FixedRandom(byte value) : IRandom
+    {
+        public void GetBytes(byte[] buffer) => Array.Fill(buffer, value);
+
+        public byte[] GetBytes(int count)
+        {
+            byte[] bytes = new byte[count];
+            GetBytes(bytes);
+            return bytes;
+        }
     }
 }

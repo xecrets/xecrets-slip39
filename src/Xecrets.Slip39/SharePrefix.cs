@@ -54,7 +54,7 @@ public class SharePrefix
     /// <param name="random">The <see cref="IRandom"/> instance to use.</param>
     /// <returns>An integer suitable as a random id for a share.</returns>
     public static int GenerateId(IRandom random) =>
-        BitConverter.ToInt32(random.GetBytes(4)) % ((1 << (Pos(nameof(Id)).length + 1)) - 1);
+        BitConverter.ToInt32(random.GetBytes(sizeof(int))) & ((1 << Pos(nameof(Id)).length) - 1);
 
     private static readonly int _lengthBytes = (LengthBits + 7) / 8;
 
