@@ -238,6 +238,11 @@ public class ShamirsSecretSharing(IRandom random) : IShamirsSecretSharing
             throw new Slip39Exception(ErrorCode.InconsistentShares, "Shares do not have the same iteration exponent.");
         }
 
+        if (shares.Any(s => s.Prefix.Extendable != shares[0].Prefix.Extendable))
+        {
+            throw new Slip39Exception(ErrorCode.InconsistentShares, "Shares do not have the same extendable flag.");
+        }
+
         if (shares.Any(s => s.Prefix.GroupThreshold != parameters.GroupThreshold))
         {
             throw new Slip39Exception(ErrorCode.InconsistentShares, "Shares do not have the same group threshold.");

@@ -75,6 +75,22 @@ public class TestShares
     }
 
     [Fact]
+    public void TestInconsistentExtendableFlagThrows()
+    {
+        ShamirsSecretSharing extendableSss = new ShamirsSecretSharing(new FakeRandom());
+        ShamirsSecretSharing nonExtendableSss = new ShamirsSecretSharing(new FakeRandom());
+        Share[] extendableShares =
+            extendableSss.GenerateShares(true, 0, 1, [new Group(2, 3)], string.Empty, MS)[0];
+        Share[] nonExtendableShares =
+            nonExtendableSss.GenerateShares(false, 0, 1, [new Group(2, 3)], string.Empty, MS)[0];
+
+        Slip39Exception exception = Assert.Throws<Slip39Exception>(() =>
+            extendableSss.CombineShares([extendableShares[0], nonExtendableShares[1]], string.Empty));
+
+        Assert.Equal(ErrorCode.InconsistentShares, exception.ErrorCode);
+    }
+
+    [Fact]
     public void TestIterationExponent()
     {
         ShamirsSecretSharing sss = new ShamirsSecretSharing(new FakeRandom());
