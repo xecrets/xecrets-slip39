@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="../.gitignore" />
+    <File Path="../LICENSE" />
+    <File Path="../shell.nix" />
+  </Folder>
+  <Project Path="Xecrets.Slip39.Cli/Xecrets.Slip39.Cli.csproj" />
+  <Project Path="Xecrets.Slip39.Test/Xecrets.Slip39.Test.csproj" />
+  <Project Path="Xecrets.Slip39/Xecrets.Slip39.csproj" />
+</Solution>
