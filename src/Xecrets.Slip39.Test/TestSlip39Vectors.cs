@@ -25,8 +25,7 @@
 */
 #endregion Copyright and MIT License
 
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+using System.Text.Json;
 
 using Xecrets.Slip39.Test.Properties;
 
@@ -81,15 +80,16 @@ public record Slip39TestVector(string Description, string[] Mnemonics, string Se
     private static IEnumerable<Slip39TestVector> VectorsData()
     {
         string vectorsJson = Resources.slip39vectors_json;
-        IEnumerable<object[]> vectors = JsonConvert.DeserializeObject<IEnumerable<object[]>>(vectorsJson)
+        JsonElement[] vectors = JsonSerializer.Deserialize<JsonElement[]>(vectorsJson)
             ?? throw new InvalidOperationException("Deserialization of 'vectors.json' failed.");
-        foreach (object[] x in vectors)
+        foreach (JsonElement vector in vectors)
         {
+            JsonElement[] x = vector.EnumerateArray().ToArray();
             yield return new(
-                Description: (string)x[0],
-                Mnemonics: [.. ((JArray)x[1]).Values<string>().Cast<string>()],
-                SecretHex: (string)x[2],
-                Xprv: (string)x[3]
+                Description: x[0].GetString() ?? throw new InvalidOperationException("A test vector has no description."),
+                Mnemonics: [.. x[1].EnumerateArray().Select(mnemonic => mnemonic.GetString() ?? throw new InvalidOperationException("A test vector has an invalid mnemonic."))],
+                SecretHex: x[2].GetString() ?? throw new InvalidOperationException("A test vector has no secret."),
+                Xprv: x[3].GetString() ?? throw new InvalidOperationException("A test vector has no extended private key.")
             );
         }
     }
