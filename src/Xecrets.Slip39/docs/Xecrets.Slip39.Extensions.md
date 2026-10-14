@@ -309,6 +309,84 @@ The master secret is encoded as a [System.Byte](https://learn.microsoft.com/en-u
 with 0xff to fulfil the requirements. When recovering the secret, any trailing 0xff bytes thus need to be
 trimmed before producing the original master secret string, <seealso cref="M:Xecrets.Slip39.Extensions.ToSecretString(System.Byte[])"/>.
 
+<a name='Xecrets.Slip39.Extensions.GetBits(thisbyte[],(intoffset,intlength))'></a>
+
+## Extensions.GetBits(this byte[], (int offset,int length)) Method
+
+Get bits from a bit array, represented as a [System.Byte](https://learn.microsoft.com/en-us/dotnet/api/system.byte 'System.Byte')[], where the bytes as well as the bits
+in the bytes are considered stored in big-endian order. This means that the most significant bit of the first
+byte is the first bit in the array, and the least significant bit of the last byte is the last bit.
+<seealso cref="M:Xecrets.Slip39.Extensions.SetBits(System.Byte[],System.ValueTuple{System.Int32,System.Int32},System.Int32)"/>
+
+```csharp
+public static int GetBits(this byte[] bytes, (int offset,int length) pos);
+```
+#### Parameters
+
+<a name='Xecrets.Slip39.Extensions.GetBits(thisbyte[],(intoffset,intlength)).bytes'></a>
+
+`bytes` [System.Byte](https://learn.microsoft.com/en-us/dotnet/api/system.byte 'System.Byte')[[]](https://learn.microsoft.com/en-us/dotnet/api/system.array 'System.Array')
+
+The bytes holding the bits.
+
+<a name='Xecrets.Slip39.Extensions.GetBits(thisbyte[],(intoffset,intlength)).pos'></a>
+
+`pos` [&lt;](https://learn.microsoft.com/en-us/dotnet/api/system.valuetuple 'System.ValueTuple')[System.Int32](https://learn.microsoft.com/en-us/dotnet/api/system.int32 'System.Int32')[,](https://learn.microsoft.com/en-us/dotnet/api/system.valuetuple 'System.ValueTuple')[System.Int32](https://learn.microsoft.com/en-us/dotnet/api/system.int32 'System.Int32')[&gt;](https://learn.microsoft.com/en-us/dotnet/api/system.valuetuple 'System.ValueTuple')
+
+The offset and length of the bit field to get.
+
+#### Returns
+[System.Int32](https://learn.microsoft.com/en-us/dotnet/api/system.int32 'System.Int32')  
+An [System.Int32](https://learn.microsoft.com/en-us/dotnet/api/system.int32 'System.Int32') that represents the bits.
+
+#### Exceptions
+
+[System.ArgumentOutOfRangeException](https://learn.microsoft.com/en-us/dotnet/api/system.argumentoutofrangeexception 'System.ArgumentOutOfRangeException')
+
+### Remarks
+At most 31 bits can be gotten. The bits are returned in the 'length' least signficant bits of the result, with
+the first bit being the most significant.
+
+<a name='Xecrets.Slip39.Extensions.SetBits(thisbyte[],(intoffset,intlength),int)'></a>
+
+## Extensions.SetBits(this byte[], (int offset,int length), int) Method
+
+Set bits in a bit array, represented as a [System.Byte](https://learn.microsoft.com/en-us/dotnet/api/system.byte 'System.Byte')[], where the bytes as well as the bits in
+the bytes are considered stored in big-endian order. This means that the most significant bit of the first byte
+is the first bit in the array, and the least significant bit of the last byte is the last bit.
+<seealso cref="M:Xecrets.Slip39.Extensions.GetBits(System.Byte[],System.ValueTuple{System.Int32,System.Int32})"/>
+
+```csharp
+public static void SetBits(this byte[] bytes, (int offset,int length) pos, int value);
+```
+#### Parameters
+
+<a name='Xecrets.Slip39.Extensions.SetBits(thisbyte[],(intoffset,intlength),int).bytes'></a>
+
+`bytes` [System.Byte](https://learn.microsoft.com/en-us/dotnet/api/system.byte 'System.Byte')[[]](https://learn.microsoft.com/en-us/dotnet/api/system.array 'System.Array')
+
+The bytes holding the bits.
+
+<a name='Xecrets.Slip39.Extensions.SetBits(thisbyte[],(intoffset,intlength),int).pos'></a>
+
+`pos` [&lt;](https://learn.microsoft.com/en-us/dotnet/api/system.valuetuple 'System.ValueTuple')[System.Int32](https://learn.microsoft.com/en-us/dotnet/api/system.int32 'System.Int32')[,](https://learn.microsoft.com/en-us/dotnet/api/system.valuetuple 'System.ValueTuple')[System.Int32](https://learn.microsoft.com/en-us/dotnet/api/system.int32 'System.Int32')[&gt;](https://learn.microsoft.com/en-us/dotnet/api/system.valuetuple 'System.ValueTuple')
+
+The offset and length of the bit field to get.
+
+<a name='Xecrets.Slip39.Extensions.SetBits(thisbyte[],(intoffset,intlength),int).value'></a>
+
+`value` [System.Int32](https://learn.microsoft.com/en-us/dotnet/api/system.int32 'System.Int32')
+
+The bits to set.
+
+#### Exceptions
+
+[System.ArgumentOutOfRangeException](https://learn.microsoft.com/en-us/dotnet/api/system.argumentoutofrangeexception 'System.ArgumentOutOfRangeException')
+
+### Remarks
+At most 31 bits can be set. The bits are set from the 'length' least signficant bits of the value, with the
+most significant bit being the first.
+
 <a name='Xecrets.Slip39.Extensions.ToBip39(thisbyte[])'></a>
 
 ## Extensions.ToBip39(this byte[]) Method
